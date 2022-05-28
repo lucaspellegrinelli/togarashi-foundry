@@ -1,0 +1,12 @@
+.sheet form {
+  display: flexbox;
+  flex-direction: column;
+}
+.sheet .sheet-content {
+  height: 100%;
+  display: flexbox;
+  flex-direction: column;
+}
+.sheet .sheet-content .editor {
+  height: 100%;
+}

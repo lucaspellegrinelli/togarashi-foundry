@@ -7,7 +7,7 @@
         ],
         "templates": {
             "itemDescription": {
-                "description": ""
+                "description": "descricao"
             }
         },
         "arma": {
