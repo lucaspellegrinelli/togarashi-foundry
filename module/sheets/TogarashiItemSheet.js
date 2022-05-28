@@ -14,8 +14,15 @@ export default class TogarashiItemSheet extends ItemSheet {
     }
 
     getData() {
-        const data = super.getData();
-        data.config = CONFIG.togarashi;
-        return data;
+        const baseData = super.getData();
+        let sheetData = {
+            owner: this.item.isOwner,
+            editable: this.isEditable,
+            item: baseData.item,
+            data: baseData.item.data.data,
+            config: CONFIG.togarashi
+        };
+
+        return sheetData;
     }
 }

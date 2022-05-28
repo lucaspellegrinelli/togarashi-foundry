@@ -13,9 +13,16 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     }
 
     getData() {
-        const data = super.getData();
-        data.config = CONFIG.togarashi;
-        data.weapons = data.items.filter(({ type }) => type == "weapon");
-        return data;
+        const baseData = super.getData();
+        let sheetData = {
+            owner: this.item.isOwner,
+            editable: this.isEditable,
+            item: baseData.item,
+            data: baseData.item.data.data,
+            config: CONFIG.togarashi,
+            weapons: data.items.filter(({ type }) => type == "weapon")
+        };
+
+        return sheetData;
     }
 }
