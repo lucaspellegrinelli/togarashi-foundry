@@ -1,7 +1,7 @@
 {
     "togarashi": {
         "weaponAttributes": {
-            "type": "Tipo",
+            "kind": "Tipo",
             "material": "Material",
             "damage": "Dano",
             "weight": "Peso",

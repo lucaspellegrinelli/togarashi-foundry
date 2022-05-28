@@ -1,20 +1,76 @@
 {
-    "Actor": {},
+    "Actor": {
+        "types": [
+            "character"
+        ],
+        "character": {
+            "experience": 0,
+            "stress": 0,
+            "health": {
+                "value": 0,
+                "max": 100
+            },
+            "vitalAura": {
+                "value": 0,
+                "max": 100
+            },
+            "dailyAura": {
+                "value": 0,
+                "max": 100
+            },
+            "force": {
+                "base": 0,
+                "modifier": 0
+            },
+            "dexterity": {
+                "base": 0,
+                "modifier": 0
+            },
+            "resistence": {
+                "base": 0,
+                "modifier": 0
+            },
+            "intelligence": {
+                "base": 0,
+                "modifier": 0
+            },
+            "focus": {
+                "base": 0,
+                "modifier": 0
+            },
+            "intuition": {
+                "base": 0,
+                "modifier": 0
+            },
+            "naturalEnergy": {
+                "base": 0,
+                "modifier": 0
+            },
+            "opening": {
+                "base": 0,
+                "modifier": 0
+            },
+            "control": {
+                "base": 0,
+                "modifier": 0
+            }
+        }
+    },
     "Item": {
         "types": [
-            "arma",
-            "armadura"
+            "weapon",
+            "armor"
         ],
         "templates": {
             "itemDescription": {
-                "description": "descricao"
+                "description": "description"
             }
         },
         "arma": {
             "templates": [
                 "itemDescription"
             ],
-            "type": "espada",
+            "kind": "espada",
             "material": "madeira",
             "damage": 0,
             "weight": 0,

@@ -1,5 +1,6 @@
 import { togarashi } from "./module/config.js";
 import TogarashiItemSheet from "./module/sheets/TogarashiItemSheet.js";
+import TogarashiCharacterSheet from "./module/sheets/TogarashiCharacterSheet.js";
 
 Hooks.once("init", () => {
     console.log("Togarashi | Initializing Togarashi Game System");
@@ -8,4 +9,7 @@ Hooks.once("init", () => {
     
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("togarashi", TogarashiItemSheet, { makeDefault: true });
+
+    Actors.unregisterSheet("core", ItemSheet);
+    Actors.registerSheet("togarashi", TogarashiCharacterSheet, { makeDefault: true });
 });
