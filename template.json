@@ -63,22 +63,22 @@
         ],
         "templates": {
             "itemDescription": {
-                "description": "description"
+                "description": ""
             }
         },
-        "arma": {
+        "weapon": {
             "templates": [
                 "itemDescription"
             ],
-            "kind": "espada",
-            "material": "madeira",
+            "type": "dagger",
+            "material": "wood",
             "damage": 0,
             "weight": 0,
             "accuracy": 0,
             "critical": 0,
             "durability": 0
         },
-        "armadura": {
+        "armor": {
             "templates": [
                 "itemDescription"
             ],

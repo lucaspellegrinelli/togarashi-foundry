@@ -1,12 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img src="systems/togarashi/assets/weapons/{{data.data.kind}}.png" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <img src="systems/togarashi/assets/weapons/{{data.data.type}}.png" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
         <table>
             <tr>
-                <th>{{localize "togarashi.weaponAttributes.kind"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.type"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.material"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
@@ -16,37 +16,29 @@
             </tr>
             <tr>
                 <td>
-                    <select name="data.kind">
-                        {{#select data.kind}}
-                        {{#each config.weaponKinds as |name kind|}}
-                        <option value="{{kind}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                    <select name="data.type" data-field="data.type">
+                        {{selectOptions config.weaponTypes selected=data.type localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select name="data.material">
-                        {{#select data.material}}
-                        {{#each config.materials as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
+                    <select name="data.material" data-field="data.material">
+                        {{selectOptions config.materials selected=data.material localize=true}}
                     </select>
                 </td>
                 <td>
-                    <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
+                    <input name="data.damage" type="text" value="{{data.data.damage}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                    <input name="data.weight" type="text" value="{{data.data.weight}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
+                    <input name="data.accuracy" type="text" value="{{data.data.accuracy}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                    <input name="data.critical" type="text" value="{{data.data.critical}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    <input name="data.durability" type="text" value="{{data.data.durability}}" data-dtype="Number"></input>
                 </td>
             </tr>
         </table>

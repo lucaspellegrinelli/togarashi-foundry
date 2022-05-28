@@ -1,6 +1,6 @@
 export const togarashi = {};
 
-togarashi.weaponKinds = {
+togarashi.weaponTypes = {
     "dagger": "togarashi.weaponTypes.dagger",
     "sword": "togarashi.weaponTypes.sword"
 };
