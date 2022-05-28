@@ -1,0 +1,22 @@
+{
+    "togarashi": {
+        "weaponAttributes": {
+            "type": "Tipo",
+            "material": "Material",
+            "damage": "Dano",
+            "weight": "Peso",
+            "accuracy": "Acerto",
+            "critical": "Critico",
+            "durability": "Resistencia",
+            "description": "Descrição"
+        },
+        "weaponTypes": {
+            "dagger": "Adaga",
+            "sword": "Espada"
+        },
+        "materials": {
+            "wood": "Madeira",
+            "bronze": "Bronze"
+        }
+    }
+}

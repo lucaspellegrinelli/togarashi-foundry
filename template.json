@@ -1,0 +1,34 @@
+{
+    "Actor": {},
+    "Item": {
+        "types": [
+            "arma",
+            "armadura"
+        ],
+        "templates": {
+            "itemDescription": {
+                "description": ""
+            }
+        },
+        "arma": {
+            "templates": [
+                "itemDescription"
+            ],
+            "type": "espada",
+            "material": "madeira",
+            "damage": 0,
+            "weight": 0,
+            "accuracy": 0,
+            "critical": 0,
+            "durability": 0
+        },
+        "armadura": {
+            "templates": [
+                "itemDescription"
+            ],
+            "blockLight": 0,
+            "blockHeavy": 0,
+            "weight": 0
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.weaponAttributes.type"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.material"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.accuracy"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.critical"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.durability"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="data.type">
+                        {{#select data.type}}
+                        {{#each config.weaponTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td>
+                    <select name="data.material">
+                        {{#select data.material}}
+                        {{#each config.materials as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </td>
+                <td>
+                    <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                </td>
+            </tr>
+        </table>
+
+        <p>{{localize "togarashi.weaponAttributes.description"}}</p>
+        <textarea name="data.description">{{data.description}}</textarea>
+    </div>
+</form>
