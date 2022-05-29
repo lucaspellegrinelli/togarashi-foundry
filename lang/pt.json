@@ -2,9 +2,14 @@
     "togarashi": {
         "attributes": "Atributos",
         "modifiers": "Modificadores",
+        "modifier": "Modificador",
         "description": "Descrição",
         "status": "Status",
         "aura": "Aura",
+        "armors": "Armaduras",
+        "weapons": "Armas",
+        "items": "Items",
+        "item": "Item",
         "itemAttributes": {
             "type": "Tipo",
             "material": "Material",

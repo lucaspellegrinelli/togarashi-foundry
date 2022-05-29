@@ -22,7 +22,9 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             data: mergeObject(baseData.actor.data.data, this.getExtraStats()),
             config: CONFIG.togarashi,
             items: baseData.items,
-            weapons: baseData.items.filter(({ type }) => type == "weapon")
+            weapons: baseData.items.filter(({ type }) => type == "weapon"),
+            armors: baseData.items.filter(({ type }) => type == "armor"),
+            genericItems: baseData.items.filter(({ type }) => type == "generic")
         };
 
         return sheetData;

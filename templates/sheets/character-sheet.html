@@ -121,6 +121,62 @@
             </tr>
         </table>
 
-        <h2>{{localize "togarashi.modifiers"}}</h2>
+        <div class="flexrow">
+            <div class="modifiers-tab">
+                <h2>{{localize "togarashi.modifiers"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.status"}}</th>
+                        <th>{{localize "togarashi.modifier"}}</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="armors-tab">
+                <h2>{{localize "togarashi.armors"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.item"}}</th>
+                        <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                    </tr>
+                    {{#each armors as |armor|}}
+                        <tr>
+                            <td>{{armor.name}}</td>
+                            <td>{{armor.data.data.weight}}</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+            <div class="weapons-tab">
+                <h2>{{localize "togarashi.weapons"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.item"}}</th>
+                        <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                    </tr>
+                    {{#each weapons as |weapon|}}
+                        <tr>
+                            <td>{{weapon.name}}</td>
+                            <td>{{weapon.data.weight}}</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+            <div class="items-tab">
+                <h2>{{localize "togarashi.items"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.item"}}</th>
+                        <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                    </tr>
+                    {{#each genericItems as |item|}}
+                        <tr>
+                            <td>{{item.name}}</td>
+                            <td>00</td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+        
     </div>
 </form>
