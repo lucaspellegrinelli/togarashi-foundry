@@ -73,7 +73,7 @@
   display: block;
 }
 .togarashi.sheet.character form .editable-tabs-container {
-  margin-top: 25px;
+  margin-top: 5px;
 }
 .togarashi.sheet.character form .editable-tabs-container .editable-tabs {
   margin-right: 5px;
@@ -81,4 +81,8 @@
 }
 .togarashi.sheet.character form .editable-tabs-container .editable-tabs td {
   text-align: center;
+}
+.togarashi.sheet.character form .editable-tabs-container .editable-tabs h2 {
+  border: 0;
+  margin: 0;
 }

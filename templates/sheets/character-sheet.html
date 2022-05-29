@@ -121,6 +121,8 @@
             </tr>
         </table>
 
+        <h2>{{localize "togarashi.itemAttributes.weight"}}: {{weightStats.curr}} / {{weightStats.max}}</h2>
+
         <div class="flexrow editable-tabs-container">
             <div class="editable-tabs modifiers-tab">
                 <h2>{{localize "togarashi.modifiers"}}</h2>
@@ -139,7 +141,7 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each armors as |item|}}
-                        <tr>
+                        <tr class="item-card" data-item-id="{{item._id}}">
                             <td>{{item.name}}</td>
                             <td>{{item.weight}}</td>
                         </tr>
@@ -154,7 +156,7 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each weapons as |item|}}
-                        <tr>
+                        <tr class="item-card" data-item-id="{{item._id}}">
                             <td>{{item.name}}</td>
                             <td>{{item.weight}}</td>
                         </tr>
@@ -169,7 +171,7 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each genericItems as |item|}}
-                        <tr>
+                        <tr class="item-card" data-item-id="{{item._id}}">
                             <td>{{item.name}}</td>
                             <td>{{item.weight}}</td>
                         </tr>

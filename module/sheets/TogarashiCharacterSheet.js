@@ -11,6 +11,24 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         });
     }
 
+    itemContextMenu = [
+        {
+            name: game.i18n.localize("togarashi.edit"),
+            icon: '<i class="fas fa-edit"></i>',
+            callback: element => {
+                const item = this.actor.items.get(element.data("item-id"));
+                item.sheet.render(true);
+            }
+        },
+        {
+            name: game.i18n.localize("togarashi.delete"),
+            icon: '<i class="fas fa-trash"></i>',
+            callback: element => {
+                this.actor.deleteEmbeddedDocuments("Item", [element.data("item-id")]);
+            }
+        }
+    ];
+
     get template() {
         return `systems/togarashi/templates/sheets/character-sheet.html`;
     }
@@ -30,11 +48,17 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             armors: baseData.items.filter(item => item.type == "armor").map(itemStatsCalc),
             genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc),
             weightStats: {
-                curr: baseData.items.map(itemStatsCalc).reduce((a, b) => a + b, 0),
+                curr: baseData.items.map(itemStatsCalc).reduce((a, b) => a + b.weight, 0),
                 max: 5 * (baseData.actor.data.data.force.base + baseData.actor.data.data.force.modifier)
             }
         };
 
         return sheetData;
+    }
+
+    activateListeners(html) {
+        if (this.isEditable) {
+            new ContextMenu(html, ".item-card", this.itemContextMenu);
+        }
     }
 }

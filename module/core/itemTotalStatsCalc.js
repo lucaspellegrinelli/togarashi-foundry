@@ -3,13 +3,17 @@ import { materialStats } from "../data/materialStats.js";
 import { armorStats } from "../data/armorStats.js";
 
 export const itemStatsCalc = (itemData, baseWeaponDurability=100) => {
+    let result = { };
     if (itemData.type == "weapon")
-        return weaponStatsCalc(itemData, baseWeaponDurability);
+        result = weaponStatsCalc(itemData, baseWeaponDurability);
     else if (itemData.type == "armor")
-        return armorStatsCalc(itemData);
+        result = armorStatsCalc(itemData);
     else if (itemData.type == "generic")
-        return genericItemStatsCalc(itemData);
-    else return { }
+        result = genericItemStatsCalc(itemData);
+
+    result.name = itemData.name;
+    result._id = itemData._id;
+    return result;
 };
 
 export const weaponStatsCalc = (itemData, baseWeaponDurability=100) => {
@@ -27,7 +31,6 @@ export const weaponStatsCalc = (itemData, baseWeaponDurability=100) => {
     const modBlock = itemData.data.block || 0;
 
     return {
-        name: itemData.name,
         damage: modDamage + weaponTypeBonuses.damage + materialBonuses.damage,
         weight: modWeight + weaponTypeBonuses.weight + materialBonuses.weight,
         accuracy: modAccuracy + weaponTypeBonuses.accuracy + materialBonuses.accuracy,
@@ -46,7 +49,6 @@ export const armorStatsCalc = itemData => {
     const modBlock = itemData.data.block || 0;
 
     return {
-        name: itemData.name,
         weight: modWeight + armorTypeBonuses.weight,
         block: modBlock + armorTypeBonuses.block,
     }
@@ -54,7 +56,6 @@ export const armorStatsCalc = itemData => {
 
 export const genericItemStatsCalc = itemData => {
     return {
-        name: itemData.name,
         weight: itemData.data.weight || 0
     }
 };
