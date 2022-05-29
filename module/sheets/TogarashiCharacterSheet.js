@@ -1,4 +1,5 @@
 import { itemStatsCalc } from "../core/itemTotalStatsCalc.js";
+import { characterStatsCalc } from "../core/characterTotalStatsCalc.js";
 
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
@@ -21,29 +22,19 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             owner: this.actor.isOwner,
             editable: this.isEditable,
             actor: baseData.actor,
-            data: mergeObject(baseData.actor.data.data, this.getExtraStats()),
+            data: baseData.actor.data.data,
             config: CONFIG.togarashi,
             items: baseData.items,
+            guard: characterStatsCalc(baseData.actor.data),
             weapons: baseData.items.filter(item => item.type == "weapon").map(itemStatsCalc),
             armors: baseData.items.filter(item => item.type == "armor").map(itemStatsCalc),
-            genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc)
+            genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc),
+            weightStats: {
+                curr: baseData.items.map(itemStatsCalc).reduce((a, b) => a + b, 0),
+                max: 5 * (baseData.actor.data.data.force.base + baseData.actor.data.data.force.modifier)
+            }
         };
 
-        console.log(sheetData);
-
         return sheetData;
-    }
-
-    getExtraStats() {
-        const baseData = super.getData();
-
-        const experience = baseData.actor.data.data.experience;
-        const resistence = baseData.actor.data.data.resistence.base + baseData.actor.data.data.resistence.modifier;
-        const dexterity = baseData.actor.data.data.dexterity.base + baseData.actor.data.data.dexterity.modifier;
-
-        return {
-            guardLow: resistence + experience,
-            guardHigh: resistence + dexterity + experience
-        }
     }
 }
