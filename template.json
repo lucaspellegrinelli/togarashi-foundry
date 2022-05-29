@@ -59,23 +59,27 @@
     "Item": {
         "types": [
             "weapon",
-            "armor"
+            "armor",
+            "generic"
         ],
         "templates": {
             "itemDescription": {
                 "description": ""
+            },
+            "itemWeight": {
+                "weight": 0
             }
         },
         "weapon": {
             "templates": [
-                "itemDescription"
+                "itemDescription",
+                "itemWeight"
             ],
             "type": "dagger",
             "material": "wood",
             "damageType": "cut",
             "secondaryDamageType": "none",
             "damage": 0,
-            "weight": 0,
             "accuracy": 0,
             "critical": 0,
             "durability": 0,
@@ -83,11 +87,17 @@
         },
         "armor": {
             "templates": [
-                "itemDescription"
+                "itemDescription",
+                "itemWeight"
             ],
-            "blockLight": 0,
-            "blockHeavy": 0,
-            "weight": 0
+            "type": "light",
+            "material": "lether",
+            "block": 0
+        },
+        "generic": {
+            "templates": [
+                "itemWeight"
+            ]
         }
     }
 }

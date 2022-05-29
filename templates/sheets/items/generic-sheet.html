@@ -1,0 +1,33 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <table>
+            <tr>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="true-stat-value">{{data.weight}}</span>
+                </td>
+            </tr>
+        </table>
+
+        <h2>{{localize "togarashi.modifiers"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                </td>
+            </tr>
+        </table>
+
+        <h2>{{localize "togarashi.description"}}</h2>
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+</form>

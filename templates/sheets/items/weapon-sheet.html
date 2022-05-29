@@ -7,12 +7,12 @@
         <h2>{{localize "togarashi.status"}}</h2>
         <table>
             <tr>
-                <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.accuracy"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.critical"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.durability"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.block"}}</th>
+                <th>{{localize "togarashi.itemAttributes.damage"}}</th>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
+                <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+                <th>{{localize "togarashi.itemAttributes.block"}}</th>
+                <th>{{localize "togarashi.itemAttributes.durability"}}</th>
             </tr>
             <tr>
                 <td>
@@ -28,10 +28,10 @@
                     <span class="true-stat-value">{{data.trueCritical}}</span>
                 </td>
                 <td>
-                    <span class="true-stat-value">{{data.trueDurability}}</span>
+                    <span class="true-stat-value">{{data.trueBlock}}</span>
                 </td>
                 <td>
-                    <span class="true-stat-value">{{data.trueBlock}}</span>
+                    <span class="true-stat-value">{{data.trueDurability}}</span>
                 </td>
             </tr>
         </table>
@@ -39,10 +39,10 @@
         <h2>{{localize "togarashi.attributes"}}</h2>
         <table>
             <tr>
-                <th>{{localize "togarashi.weaponAttributes.type"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.material"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.damageType"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.secondaryDamageType"}}</th>
+                <th>{{localize "togarashi.itemAttributes.type"}}</th>
+                <th>{{localize "togarashi.itemAttributes.material"}}</th>
+                <th>{{localize "togarashi.itemAttributes.damageType"}}</th>
+                <th>{{localize "togarashi.itemAttributes.secondaryDamageType"}}</th>
             </tr>
             <tr>
                 <td>
@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <select name="data.material" data-field="data.material">
-                        {{selectOptions config.materials selected=data.material localize=true}}
+                        {{selectOptions config.weaponMaterials selected=data.material localize=true}}
                     </select>
                 </td>
                 <td>
@@ -71,12 +71,12 @@
         <h2>{{localize "togarashi.modifiers"}}</h2>
         <table>
             <tr>
-                <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.accuracy"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.critical"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.durability"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.block"}}</th>
+                <th>{{localize "togarashi.itemAttributes.damage"}}</th>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
+                <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+                <th>{{localize "togarashi.itemAttributes.block"}}</th>
+                <th>{{localize "togarashi.itemAttributes.durability"}}</th>
             </tr>
             <tr>
                 <td>
@@ -92,10 +92,10 @@
                     <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
+                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
                 </td>
             </tr>
         </table>

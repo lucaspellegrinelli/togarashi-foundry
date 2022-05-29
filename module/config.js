@@ -5,8 +5,18 @@ togarashi.weaponTypes = {
     sword: "togarashi.weaponTypes.sword"
 };
 
-togarashi.materials = {
+togarashi.armorTypes = {
+    light: "togarashi.armorTypes.light",
+    heavy: "togarashi.armorTypes.heavy"
+};
+
+togarashi.weaponMaterials = {
     wood: "togarashi.materials.wood",
+    copper: "togarashi.materials.copper"
+};
+
+togarashi.armorMaterials = {
+    lether: "togarashi.materials.lether",
     copper: "togarashi.materials.copper"
 };
 

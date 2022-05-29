@@ -4,7 +4,7 @@
         "modifiers": "Modificadores",
         "description": "Descrição",
         "status": "Status",
-        "weaponAttributes": {
+        "itemAttributes": {
             "type": "Tipo",
             "material": "Material",
             "damageType": "Tipo do Dano",
@@ -21,7 +21,12 @@
             "dagger": "Adaga",
             "sword": "Espada"
         },
+        "armorTypes": {
+            "light": "Leve",
+            "heavy": "Pesada"
+        },
         "materials": {
+            "lether": "Couro",
             "wood": "Madeira",
             "copper": "Cobre"
         },
