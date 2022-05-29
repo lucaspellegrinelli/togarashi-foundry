@@ -1,12 +1,22 @@
-.sheet form {
+.togarashi.sheet.item form {
   display: flexbox;
   flex-direction: column;
 }
-.sheet .sheet-content {
+.togarashi.sheet.item form select {
+  width: 100%;
+}
+.togarashi.sheet.item .sheet-content {
   height: 100%;
   display: flexbox;
   flex-direction: column;
 }
-.sheet .sheet-content .editor {
+.togarashi.sheet.item .sheet-content .editor {
   height: 100%;
+}
+.togarashi.sheet.item .true-stat-value {
+  width: 100%;
+  font-weight: 600;
+  font-size: 14pt;
+  text-align: center;
+  display: block;
 }

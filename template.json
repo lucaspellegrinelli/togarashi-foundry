@@ -19,39 +19,39 @@
                 "max": 100
             },
             "force": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "dexterity": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "resistence": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "intelligence": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "focus": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "intuition": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "naturalEnergy": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "opening": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             },
             "control": {
-                "base": 0,
+                "base": 1,
                 "modifier": 0
             }
         }
@@ -72,11 +72,14 @@
             ],
             "type": "dagger",
             "material": "wood",
+            "damageType": "cut",
+            "secondaryDamageType": "none",
             "damage": 0,
             "weight": 0,
             "accuracy": 0,
             "critical": 0,
-            "durability": 0
+            "durability": 0,
+            "block": 0
         },
         "armor": {
             "templates": [

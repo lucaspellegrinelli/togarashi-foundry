@@ -4,15 +4,45 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
+        <h2>{{localize "togarashi.status"}}</h2>
         <table>
             <tr>
-                <th>{{localize "togarashi.weaponAttributes.type"}}</th>
-                <th>{{localize "togarashi.weaponAttributes.material"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.accuracy"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.critical"}}</th>
                 <th>{{localize "togarashi.weaponAttributes.durability"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.block"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="true-stat-value">{{data.trueDamage}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{data.trueWeight}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{data.trueAccuracy}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{data.trueCritical}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{data.trueDurability}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{data.trueBlock}}</span>
+                </td>
+            </tr>
+        </table>
+
+        <h2>{{localize "togarashi.attributes"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.weaponAttributes.type"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.material"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.damageType"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.secondaryDamageType"}}</th>
             </tr>
             <tr>
                 <td>
@@ -25,6 +55,30 @@
                         {{selectOptions config.materials selected=data.material localize=true}}
                     </select>
                 </td>
+                <td>
+                    <select disabled name="data.damageType" data-field="data.damageType">
+                        {{selectOptions config.damageTypes selected=data.damageType localize=true}}
+                    </select>
+                </td>
+                <td>
+                    <select disabled name="data.secondaryDamageType" data-field="data.secondaryDamageType">
+                        {{selectOptions config.damageTypes selected=data.secondaryDamageType localize=true}}
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <h2>{{localize "togarashi.modifiers"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.weaponAttributes.damage"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.weight"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.accuracy"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.critical"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.durability"}}</th>
+                <th>{{localize "togarashi.weaponAttributes.block"}}</th>
+            </tr>
+            <tr>
                 <td>
                     <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
                 </td>
@@ -40,9 +94,13 @@
                 <td>
                     <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
                 </td>
+                <td>
+                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
+                </td>
             </tr>
         </table>
 
+        <h2>{{localize "togarashi.description"}}</h2>
         {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>

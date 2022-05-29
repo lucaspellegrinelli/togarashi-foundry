@@ -1,13 +1,20 @@
 {
     "togarashi": {
+        "attributes": "Atributos",
+        "modifiers": "Modificadores",
+        "description": "Descrição",
+        "status": "Status",
         "weaponAttributes": {
             "type": "Tipo",
             "material": "Material",
+            "damageType": "Tipo do Dano",
+            "secondaryDamageType": "Tipo do Dano (2)",
             "damage": "Dano",
             "weight": "Peso",
             "accuracy": "Acerto",
             "critical": "Critico",
             "durability": "Resistencia",
+            "block": "Block",
             "description": "Descrição"
         },
         "weaponTypes": {
@@ -16,7 +23,13 @@
         },
         "materials": {
             "wood": "Madeira",
-            "bronze": "Bronze"
+            "copper": "Cobre"
+        },
+        "damageTypes": {
+            "none": "Nenhum",
+            "cut": "Cortante",
+            "impact": "Impacto",
+            "piercing": "Piercing"
         }
     }
 }
