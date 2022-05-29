@@ -86,3 +86,6 @@
   border: 0;
   margin: 0;
 }
+.togarashi.sheet.character form .editable-tabs-container .editable-tabs .selected {
+  background-color: #6ddb85;
+}

@@ -11,7 +11,10 @@
         "items": "Items",
         "item": "Item",
         "edit": "Editar",
+        "see": "Ver",
         "delete": "Deletar",
+        "equip": "Equipar",
+        "unequip": "Desequipar",
         "itemAttributes": {
             "type": "Tipo",
             "material": "Material",

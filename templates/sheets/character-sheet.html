@@ -141,10 +141,17 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each armors as |item|}}
-                        <tr class="item-card" data-item-id="{{item._id}}">
-                            <td>{{item.name}}</td>
-                            <td>{{item.weight}}</td>
-                        </tr>
+                        {{#if (eq ../data.equippedItems.armor item._id)}}
+                            <tr class="item-card selected" data-item-type="armor" data-item-id="{{item._id}}">
+                                <td>{{item.name}}</td>
+                                <td>{{item.weight}}</td>
+                            </tr>
+                        {{else}}
+                            <tr class="item-card" data-item-type="armor" data-item-id="{{item._id}}">
+                                <td>{{item.name}}</td>
+                                <td>{{item.weight}}</td>
+                            </tr>
+                        {{/if}}
                     {{/each}}
                 </table>
             </div>
@@ -156,10 +163,18 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each weapons as |item|}}
-                        <tr class="item-card" data-item-id="{{item._id}}">
-                            <td>{{item.name}}</td>
-                            <td>{{item.weight}}</td>
-                        </tr>
+                        {{#if (eq ../data.equippedItems.weapon item._id)}}
+                            <tr class="item-card selected" data-item-type="weapon" data-item-id="{{item._id}}">
+                                <td>{{item.name}}</td>
+                                <td>{{item.weight}}</td>
+                            </tr>
+                        {{else}}
+                            <tr class="item-card" data-item-type="weapon" data-item-id="{{item._id}}">
+                                <td>{{item.name}}</td>
+                                <td>{{item.weight}}</td>
+                            </tr>
+                        {{/if}}
+                        
                     {{/each}}
                 </table>
             </div>
@@ -171,7 +186,7 @@
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
                     {{#each genericItems as |item|}}
-                        <tr class="item-card" data-item-id="{{item._id}}">
+                        <tr class="item-card" data-item-type="generic" data-item-id="{{item._id}}">
                             <td>{{item.name}}</td>
                             <td>{{item.weight}}</td>
                         </tr>

@@ -13,7 +13,35 @@ export default class TogarashiCharacterSheet extends ActorSheet {
 
     itemContextMenu = [
         {
-            name: game.i18n.localize("togarashi.edit"),
+            name: game.i18n.localize("togarashi.equip"),
+            icon: '<i class="fas fa-child"></i>',
+            condition: element => !element.hasClass("selected") && (element.data("item-type") == "weapon" || element.data("item-type") == "armor"),
+            callback: element => {
+                const item = this.actor.items.get(element.data("item-id"));
+                
+                if (item.data.type == "weapon") {
+                    this.actor.update({ "data.equippedItems.weapon": item.data._id });
+                } else if (item.data.type == "armor") {
+                    this.actor.update({ "data.equippedItems.armor": item.data._id });
+                }
+            }
+        },
+        {
+            name: game.i18n.localize("togarashi.unequip"),
+            icon: '<i class="fas fa-child"></i>',
+            condition: element => element.hasClass("selected") && (element.data("item-type") == "weapon" || element.data("item-type") == "armor"),
+            callback: element => {
+                const item = this.actor.items.get(element.data("item-id"));
+                
+                if (item.data.type == "weapon") {
+                    this.actor.update({ "data.equippedItems.weapon": "" });
+                } else if (item.data.type == "armor") {
+                    this.actor.update({ "data.equippedItems.armor": "" });
+                }
+            }
+        },
+        {
+            name: game.i18n.localize("togarashi.see"),
             icon: '<i class="fas fa-edit"></i>',
             callback: element => {
                 const item = this.actor.items.get(element.data("item-id"));

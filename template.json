@@ -7,6 +7,10 @@
             "experience": 0,
             "stress": 0,
             "texture": "physical",
+            "equippedItems": {
+                "weapon": "",
+                "armor": ""
+            },
             "health": {
                 "value": 0,
                 "max": 100
