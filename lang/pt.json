@@ -8,6 +8,7 @@
         "aura": "Aura",
         "armors": "Armaduras",
         "weapons": "Armas",
+        "weapon": "Arma",
         "items": "Items",
         "item": "Item",
         "edit": "Editar",
@@ -15,6 +16,8 @@
         "delete": "Deletar",
         "equip": "Equipar",
         "unequip": "Desequipar",
+        "mastery": "Perícia / Estilo",
+        "modifierType": "Tipo",
         "itemAttributes": {
             "type": "Tipo",
             "material": "Material",
@@ -53,6 +56,7 @@
             "special": "Especial"
         },
         "characterStats": {
+            "health": "Vida",
             "force": "Força",
             "dexterity": "Destreza",
             "resistence": "Resistência",
@@ -65,7 +69,8 @@
             "guardLow": "Guarda de baixo",
             "guardHigh": "Guarda de cima",
             "experience": "XP",
-            "texture": "Textura"
+            "texture": "Textura",
+            "dailyAura": "Aura Diária"
         },
         "textureTypes": {
             "physical": "Física",
@@ -90,6 +95,12 @@
             "a": "Rank A",
             "s": "Rank S",
             "ss": "Rank SS"
+        },
+        "statsModifierTypes": {
+            "lowerWhileActive": "Diminuir enquanto ativo",
+            "upperWhileActive": "Aumentar enquanto ativo",
+            "lowerPermanent": "Diminuir permanentemente",
+            "upperPermanent": "Aumentar permanentemente"
         }
     }
 }

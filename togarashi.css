@@ -89,3 +89,16 @@
 .togarashi.sheet.character form .editable-tabs-container .editable-tabs .selected {
   background-color: #6ddb85;
 }
+.togarashi.sheet.character form .add-mastery-button {
+  width: 100%;
+  text-align: right;
+  padding-right: 10px;
+}
+.togarashi.sheet.character form .add-status-mod-button {
+  width: 100%;
+  text-align: right;
+  padding-right: 10px;
+}
+.togarashi.sheet.character form .modifier-value {
+  width: 75px;
+}

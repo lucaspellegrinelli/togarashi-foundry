@@ -121,18 +121,9 @@
             </tr>
         </table>
 
-        <h2>{{localize "togarashi.itemAttributes.weight"}}: {{weightStats.curr}} / {{weightStats.max}}</h2>
+        <h1>{{localize "togarashi.items"}} ({{weightStats.curr}} / {{weightStats.max}} peso)</h1>
 
         <div class="flexrow editable-tabs-container">
-            <div class="editable-tabs modifiers-tab">
-                <h2>{{localize "togarashi.modifiers"}}</h2>
-                <table>
-                    <tr>
-                        <th>{{localize "togarashi.status"}}</th>
-                        <th>{{localize "togarashi.modifier"}}</th>
-                    </tr>
-                </table>
-            </div>
             <div class="editable-tabs armors-tab">
                 <h2>{{localize "togarashi.armors"}}</h2>
                 <table>
@@ -194,6 +185,65 @@
                 </table>
             </div>
         </div>
-        
+
+        <h1>{{localize "togarashi.modifiers"}}</h1>
+        <div class="flexrow editable-tabs-container">
+            <div class="editable-tabs status-modifiers-tab">
+                <h2>{{localize "togarashi.status"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.status"}}</th>
+                        <th>{{localize "togarashi.modifierType"}}</th>
+                        <th>{{localize "togarashi.modifier"}}</th>
+                    </tr>
+                    {{#each data.statusModifiers as |statusModifier id|}}
+                        <tr data-id="{{id}}">
+                            <td>
+                                <select name="statusModifier.status" data-field="statusModifier.status">
+                                    {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
+                                </select>
+                            </td>
+                            <td>
+                                <select name="statusModifier.modifierType" data-field="statusModifier.modifierType">
+                                    {{selectOptions ../config.statsModifierTypes selected=statusModifier.modifierType localize=true}}
+                                </select>
+                            </td>
+                            <td>
+                                <input class="base-stat modifier-value" name="statusModifier.modifier" type="number" value="{{statusModifier.modifier}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </table>
+                <i class="fas fa-plus add-status-mod-button"></i>
+            </div>
+            <div class="editable-tabs mastery-tab">
+                <h2>{{localize "togarashi.mastery"}}</h2>
+                <table>
+                    <tr>
+                        <th>{{localize "togarashi.status"}}</th>
+                        <th>{{localize "togarashi.weapon"}}</th>
+                        <th>{{localize "togarashi.modifier"}}</th>
+                    </tr>
+                    {{#each data.masteries as |mastery id|}}
+                        <tr data-id="{{id}}">
+                            <td>
+                                <select name="mastery.status" data-field="mastery.status">
+                                    {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
+                                </select>
+                            </td>
+                            <td>
+                                <select name="mastery.weapon" data-field="mastery.weapon">
+                                    {{selectOptions ../config.weaponTypes selected=mastery.weapon localize=true}}
+                                </select>
+                            </td>
+                            <td>
+                                <input class="base-stat modifier-value" name="mastery.modifier" type="number" value="{{mastery.modifier}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </table>
+                <i class="fas fa-plus add-mastery-button"></i>
+            </div>
+        </div>
     </div>
 </form>

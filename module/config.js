@@ -53,3 +53,28 @@ togarashi.auraRanks = {
     s: "togarashi.auraRanks.s",
     ss: "togarashi.auraRanks.ss"
 }
+
+togarashi.modifiableStats = {
+    health: "togarashi.characterStats.health",
+    dailyAura: "togarashi.characterStats.dailyAura",
+    force: "togarashi.characterStats.force",
+    dexterity: "togarashi.characterStats.dexterity",
+    resistence: "togarashi.characterStats.resistence",
+    intelligence: "togarashi.characterStats.intelligence",
+    focus: "togarashi.characterStats.focus",
+    intuition: "togarashi.characterStats.intuition",
+    naturalEnergy: "togarashi.characterStats.naturalEnergy",
+    opening: "togarashi.characterStats.opening",
+    control: "togarashi.characterStats.control",
+    guardLow: "togarashi.characterStats.guardLow",
+    guardHigh: "togarashi.characterStats.guardHigh",
+    accuracy: "togarashi.itemAttributes.accuracy",
+    damage: "togarashi.itemAttributes.damage"
+};
+
+togarashi.statsModifierTypes = {
+    lowerWhileActive: "togarashi.statsModifierTypes.lowerWhileActive",
+    upperWhileActive: "togarashi.statsModifierTypes.upperWhileActive",
+    lowerPermanent: "togarashi.statsModifierTypes.lowerPermanent",
+    upperPermanent: "togarashi.statsModifierTypes.upperPermanent"
+};

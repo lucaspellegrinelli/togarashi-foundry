@@ -11,6 +11,8 @@
                 "weapon": "",
                 "armor": ""
             },
+            "statusModifiers": [],
+            "masteries": [],
             "health": {
                 "value": 0,
                 "max": 100
