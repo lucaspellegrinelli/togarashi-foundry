@@ -119,8 +119,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             html.find(".add-mastery-button").click(this._onMasteryAdd.bind(this));
             html.find(".add-status-mod-button").click(this._onStatusModifierAdd.bind(this));
 
-            html.find(".mastery-change-field").change(ev => this._onMasteryEditChange(ev));
-            html.find(".statsmod-change-field").change(ev => this._onStatusModifierEditChange(ev));
+            html.find(".change-field").change(ev => this._onEditChange(ev));
         }
     }
 
@@ -131,12 +130,6 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         this.actor.update({ "data.masteries": currentMasteryList });
     }
 
-    _onMasteryEdit(index, changes) {
-        let currentMasteryList = this.getData().data.masteries;
-        currentMasteryList[index] = mergeObject(currentMasteryList[index], changes);
-        this.actor.update({ "data.masteries": currentMasteryList });
-    }
-
     _onStatusModifierAdd(event) {
         event.preventDefault();
         const currentStatusModList = this.getData().data.statusModifiers;
@@ -144,39 +137,25 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         this.actor.update({ "data.statusModifiers": currentStatusModList });
     }
 
-    _onStatusModifierEdit(index, changes) {
-        let currentStatusModList = this.getData().data.statusModifiers;
-        currentStatusModList[index] = mergeObject(currentStatusModList[index], changes);
-        this.actor.update({ "data.statusModifiers": currentStatusModList });
-    }
-
-    async _onMasteryEditChange(event) {
+    async _onEditChange(event) {
         event.preventDefault(); 
     
         const element = event.currentTarget;
         const listRow = element.closest("tr");
     
         const index = listRow.dataset.changeIndex;
+        const array = listRow.dataset.changeArray;
     
         const field = element.dataset.field;
         let value = element.value;
         if(element.dataset.dtype == "Number") value = Number(value);
 
-        this._onMasteryEdit(index, {[field]: value});
+        this._onArrayEdit(index, array, {[field]: value});
     }
 
-    async _onStatusModifierEditChange(event) {
-        event.preventDefault(); 
-    
-        const element = event.currentTarget;
-        const listRow = element.closest("tr");
-    
-        const index = listRow.dataset.changeIndex;
-    
-        const field = element.dataset.field;
-        let value = element.value;
-        if(element.dataset.dtype == "Number") value = Number(value);
-
-        this._onStatusModifierEdit(index, {[field]: value});
+    _onArrayEdit(index, array, changes) {
+        let currentArray = this.getData().data[array];
+        currentArray[index] = mergeObject(currentArray[index], changes);
+        this.actor.update({ [`data.${array}`]: currentArray });
     }
 }
