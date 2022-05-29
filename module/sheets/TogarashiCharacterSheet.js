@@ -62,7 +62,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             name: game.i18n.localize("togarashi.delete"),
             icon: '<i class="fas fa-trash"></i>',
             callback: element => {
-                const id = element.data("item-id");
+                const id = element.data("change-index");
                 const currentStatusModList = this.getData().data.statusModifiers;
                 currentStatusModList.splice(id, 1);
                 this.actor.update({ "data.statusModifiers": currentStatusModList });
@@ -75,7 +75,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             name: game.i18n.localize("togarashi.delete"),
             icon: '<i class="fas fa-trash"></i>',
             callback: element => {
-                const id = element.data("item-id");
+                const id = element.data("change-index");
                 const currentMasteryList = this.getData().data.masteries;
                 currentMasteryList.splice(id, 1);
                 this.actor.update({ "data.masteries": currentMasteryList });
