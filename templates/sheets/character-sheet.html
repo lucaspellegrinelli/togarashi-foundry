@@ -197,7 +197,7 @@
                         <th>{{localize "togarashi.modifier"}}</th>
                     </tr>
                     {{#each data.statusModifiers as |statusModifier id|}}
-                        <tr data-id="{{id}}">
+                        <tr class="status-mod-card" data-id="{{id}}">
                             <td>
                                 <select name="statusModifier.status" data-field="statusModifier.status">
                                     {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
@@ -225,7 +225,7 @@
                         <th>{{localize "togarashi.modifier"}}</th>
                     </tr>
                     {{#each data.masteries as |mastery id|}}
-                        <tr data-id="{{id}}">
+                        <tr class="mastery-card" data-id="{{id}}">
                             <td>
                                 <select name="mastery.status" data-field="mastery.status">
                                     {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
