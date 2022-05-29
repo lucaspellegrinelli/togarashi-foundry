@@ -57,28 +57,16 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         }
     ];
 
-    statModContextMenu = [
+    modifiersContextMenu = [
         {
             name: game.i18n.localize("togarashi.delete"),
             icon: '<i class="fas fa-trash"></i>',
             callback: element => {
                 const id = element.data("change-index");
-                const currentStatusModList = this.getData().data.statusModifiers;
-                currentStatusModList.splice(id, 1);
-                this.actor.update({ "data.statusModifiers": currentStatusModList });
-            }
-        }
-    ];
-
-    masteryContextMenu = [
-        {
-            name: game.i18n.localize("togarashi.delete"),
-            icon: '<i class="fas fa-trash"></i>',
-            callback: element => {
-                const id = element.data("change-index");
-                const currentMasteryList = this.getData().data.masteries;
-                currentMasteryList.splice(id, 1);
-                this.actor.update({ "data.masteries": currentMasteryList });
+                const array = element.data("change-array");
+                const currentList = this.getData().data[array];
+                currentList.splice(id, 1);
+                this.actor.update({ [`data.${array}`]: currentList });
             }
         }
     ];
@@ -165,8 +153,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     activateListeners(html) {
         if (this.isEditable) {
             new ContextMenu(html, ".item-card", this.itemContextMenu);
-            new ContextMenu(html, ".mastery-card", this.masteryContextMenu);
-            new ContextMenu(html, ".status-mod-card", this.statModContextMenu);
+            new ContextMenu(html, ".modifiers-card", this.modifiersContextMenu);
             
             html.find(".add-mastery-button").click(this._onMasteryAdd.bind(this));
             html.find(".add-status-mod-button").click(this._onStatusModifierAdd.bind(this));

@@ -197,7 +197,7 @@
                         <th>{{localize "togarashi.modifier"}}</th>
                     </tr>
                     {{#each data.statusModifiers as |statusModifier|}}
-                        <tr class="status-mod-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
+                        <tr class="modifiers-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
                             <td>
                                 <select class="change-field" data-field="status">
                                     {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
@@ -225,7 +225,7 @@
                         <th>{{localize "togarashi.modifier"}}</th>
                     </tr>
                     {{#each data.masteries as |mastery|}}
-                        <tr class="mastery-card" data-change-array="masteries" data-change-index="{{@index}}">
+                        <tr class="modifiers-card" data-change-array="masteries" data-change-index="{{@index}}">
                             <td>
                                 <select class="change-field" data-field="status">
                                     {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
