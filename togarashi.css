@@ -46,3 +46,29 @@
   flex: 1;
   text-align: center;
 }
+.togarashi.sheet.character form .top-stats-content {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.togarashi.sheet.character form .top-stats-content .name-editor {
+  width: 75%;
+}
+.togarashi.sheet.character form .aura-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.togarashi.sheet.character form .aura-entry {
+  text-align: center;
+  margin: 5px;
+}
+.togarashi.sheet.character form .aura-entry img {
+  border: 0;
+}
+.togarashi.sheet.character form .true-stat-value {
+  width: 100%;
+  font-weight: 600;
+  font-size: 14pt;
+  text-align: center;
+  display: block;
+}

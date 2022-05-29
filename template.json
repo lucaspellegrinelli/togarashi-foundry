@@ -6,6 +6,7 @@
         "character": {
             "experience": 0,
             "stress": 0,
+            "texture": "physical",
             "health": {
                 "value": 0,
                 "max": 100
@@ -53,6 +54,16 @@
             "control": {
                 "base": 1,
                 "modifier": 0
+            },
+            "auras": {
+                "normal": "none",
+                "blue": "none",
+                "indigo": "none",
+                "purple": "none",
+                "orange": "none",
+                "yellow": "none",
+                "green": "none",
+                "red": "none"
             }
         }
     },

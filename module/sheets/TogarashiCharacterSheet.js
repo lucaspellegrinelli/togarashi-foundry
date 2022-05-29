@@ -2,7 +2,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 840,
-            height: 340,
+            height: 450,
             template: `systems/togarashi/templates/sheets/character-sheet.html`,
             classes: [ "togarashi", "sheet", "character" ]
         });
@@ -19,12 +19,25 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             owner: this.actor.isOwner,
             editable: this.isEditable,
             actor: baseData.actor,
-            data: baseData.actor.data.data,
+            data: mergeObject(baseData.actor.data.data, this.getExtraStats()),
             config: CONFIG.togarashi,
             items: baseData.items,
             weapons: baseData.items.filter(({ type }) => type == "weapon")
         };
 
         return sheetData;
+    }
+
+    getExtraStats() {
+        const baseData = super.getData();
+
+        const experience = baseData.actor.data.data.experience;
+        const resistence = baseData.actor.data.data.resistence.base + baseData.actor.data.data.resistence.modifier;
+        const dexterity = baseData.actor.data.data.dexterity.base + baseData.actor.data.data.dexterity.modifier;
+
+        return {
+            guardLow: resistence + experience,
+            guardHigh: resistence + dexterity + experience
+        }
     }
 }

@@ -4,6 +4,7 @@
         "modifiers": "Modificadores",
         "description": "Descrição",
         "status": "Status",
+        "aura": "Aura",
         "itemAttributes": {
             "type": "Tipo",
             "material": "Material",
@@ -50,7 +51,35 @@
             "intuition": "Intuição",
             "naturalEnergy": "Energia Natural",
             "opening": "Abertura",
-            "control": "Controle"
+            "control": "Controle",
+            "guardLow": "Guarda de baixo",
+            "guardHigh": "Guarda de cima",
+            "experience": "XP",
+            "texture": "Textura"
+        },
+        "textureTypes": {
+            "physical": "Física",
+            "wild": "Selvagem"
+        },
+        "auraTypes": {
+            "normal": "Normal",
+            "blue": "Azul",
+            "indigo": "Indigo",
+            "purple": "Roxa",
+            "orange": "Laranja",
+            "yellow": "Amarela",
+            "green": "Verde",
+            "red": "Vermelha"
+        },
+        "auraRanks": {
+            "none": "N/A",
+            "e": "Rank E",
+            "d": "Rank D",
+            "c": "Rank C",
+            "b": "Rank B",
+            "a": "Rank A",
+            "s": "Rank S",
+            "ss": "Rank SS"
         }
     }
 }
