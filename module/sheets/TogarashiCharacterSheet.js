@@ -118,6 +118,9 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             
             html.find(".add-mastery-button").click(this._onMasteryAdd.bind(this));
             html.find(".add-status-mod-button").click(this._onStatusModifierAdd.bind(this));
+
+            html.find(".mastery-change-field").change(ev => this._onMasteryEditChange(ev));
+            html.find(".statsmod-change-field").change(ev => this._onStatusModifierEditChange(ev));
         }
     }
 
@@ -128,10 +131,52 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         this.actor.update({ "data.masteries": currentMasteryList });
     }
 
+    _onMasteryEdit(index, changes) {
+        let currentMasteryList = this.getData().data.masteries;
+        currentMasteryList[index] = mergeObject(currentMasteryList[index], changes);
+        this.actor.update({ "data.masteries": currentMasteryList });
+    }
+
     _onStatusModifierAdd(event) {
         event.preventDefault();
         const currentStatusModList = this.getData().data.statusModifiers;
         currentStatusModList.push({ status: "health", modifierType: "lowerWhileActive", modifier: 0 });
         this.actor.update({ "data.statusModifiers": currentStatusModList });
+    }
+
+    _onStatusModifierEdit(index, changes) {
+        let currentStatusModList = this.getData().data.statusModifiers;
+        currentStatusModList[index] = mergeObject(currentStatusModList[index], changes);
+        this.actor.update({ "data.statusModifiers": currentStatusModList });
+    }
+
+    async _onMasteryEditChange(event) {
+        event.preventDefault(); 
+    
+        const element = event.currentTarget;
+        const listRow = element.closest("tr");
+    
+        const index = listRow.dataset.changeIndex;
+    
+        const field = element.dataset.field;
+        let value = element.value;
+        if(element.dataset.dtype == "Number") value = Number(value);
+
+        this._onMasteryEdit(index, {[field]: value});
+    }
+
+    async _onStatusModifierEditChange(event) {
+        event.preventDefault(); 
+    
+        const element = event.currentTarget;
+        const listRow = element.closest("tr");
+    
+        const index = listRow.dataset.changeIndex;
+    
+        const field = element.dataset.field;
+        let value = element.value;
+        if(element.dataset.dtype == "Number") value = Number(value);
+
+        this._onStatusModifierEdit(index, {[field]: value});
     }
 }

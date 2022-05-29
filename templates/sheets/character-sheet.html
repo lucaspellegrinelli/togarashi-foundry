@@ -195,21 +195,25 @@
                         <th>{{localize "togarashi.status"}}</th>
                         <th>{{localize "togarashi.modifierType"}}</th>
                         <th>{{localize "togarashi.modifier"}}</th>
+                        <th></th>
                     </tr>
-                    {{#each data.statusModifiers as |statusModifier id|}}
-                        <tr class="status-mod-card" data-id="{{id}}">
+                    {{#each data.statusModifiers as |statusModifier|}}
+                        <tr class="status-mod-card" data-change-index="{{@index}}">
                             <td>
-                                <select name="statusModifier.status" data-field="statusModifier.status">
+                                <select class="statsmod-change-field" data-field="status">
                                     {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
                                 </select>
                             </td>
                             <td>
-                                <select name="statusModifier.modifierType" data-field="statusModifier.modifierType">
+                                <select class="statsmod-change-field" data-field="modifierType">
                                     {{selectOptions ../config.statsModifierTypes selected=statusModifier.modifierType localize=true}}
                                 </select>
                             </td>
                             <td>
-                                <input class="base-stat modifier-value" name="statusModifier.modifier" type="number" value="{{statusModifier.modifier}}" data-dtype="Number"></input>
+                                <input class="statsmod-change-field" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                            </td>
+                            <td>
+                                <i class="fas fa-trash"></i>
                             </td>
                         </tr>
                     {{/each}}
@@ -218,26 +222,44 @@
             </div>
             <div class="editable-tabs mastery-tab">
                 <h2>{{localize "togarashi.mastery"}}</h2>
+                <!-- <ol>
+                    {{#each data.masteries as |mastery|}}
+                        <li class="flexrow" data-change-index="{{@index}}">
+                            <select class="mastery-change-field" data-field="status">
+                                {{selectOptions ../config.modifiableStats selected=mastery.status inverted=true localize=true}}
+                            </select>
+                            <select class="mastery-change-field" data-field="weapon">
+                                {{selectOptions ../config.weaponTypes selected=mastery.weapon inverted=true localize=true}}
+                            </select>
+                            <input class="mastery-change-field" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                        </li>
+                    {{/each}}
+                </ol> -->
+
                 <table>
                     <tr>
                         <th>{{localize "togarashi.status"}}</th>
                         <th>{{localize "togarashi.weapon"}}</th>
                         <th>{{localize "togarashi.modifier"}}</th>
+                        <th></th>
                     </tr>
-                    {{#each data.masteries as |mastery id|}}
-                        <tr class="mastery-card" data-id="{{id}}">
+                    {{#each data.masteries as |mastery|}}
+                        <tr class="mastery-card" data-change-index="{{@index}}">
                             <td>
-                                <select name="mastery.status" data-field="mastery.status">
+                                <select class="mastery-change-field" data-field="status">
                                     {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
                                 </select>
                             </td>
                             <td>
-                                <select name="mastery.weapon" data-field="mastery.weapon">
+                                <select class="mastery-change-field" data-field="weapon">
                                     {{selectOptions ../config.weaponTypes selected=mastery.weapon localize=true}}
                                 </select>
                             </td>
                             <td>
-                                <input class="base-stat modifier-value" name="mastery.modifier" type="number" value="{{mastery.modifier}}" data-dtype="Number"></input>
+                                <input class="mastery-change-field" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                            </td>
+                            <td>
+                                <i class="fas fa-trash"></i>
                             </td>
                         </tr>
                     {{/each}}
