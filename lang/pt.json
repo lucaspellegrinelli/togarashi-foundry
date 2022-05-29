@@ -98,9 +98,9 @@
         },
         "statsModifierTypes": {
             "lowerWhileActive": "Diminuir enquanto ativo",
-            "upperWhileActive": "Aumentar enquanto ativo",
+            "higherWhileActive": "Aumentar enquanto ativo",
             "lowerPermanent": "Diminuir permanentemente",
-            "upperPermanent": "Aumentar permanentemente"
+            "higherPermanent": "Aumentar permanentemente"
         }
     }
 }

@@ -103,11 +103,43 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc),
             weightStats: {
                 curr: baseData.items.map(itemStatsCalc).reduce((a, b) => a + b.weight, 0),
-                max: 5 * (baseData.actor.data.data.force.base + baseData.actor.data.data.force.modifier)
+                max: 5 * this.getFullForce()
             }
         };
 
         return sheetData;
+    }
+
+    getApplyableMasteries() {
+        const baseData = super.getData().data.data;
+        const masteries = baseData.masteries;
+        const equipedWeaponId = baseData.equippedItems.weapon;
+
+        if (equipedWeaponId == "") return [];
+
+        const equipedWeaponItem = this.actor.items.get(equipedWeaponId);
+        const equipedWeaponType = equipedWeaponItem.data.data.type;
+
+        return masteries.filter(mastery => mastery.weapon == equipedWeaponType);
+    }
+
+    getStatusModWhileActive() {
+        const baseData = super.getData().data.data;
+        const statModifiers = baseData.statusModifiers;
+        return statModifiers.filter(sm => sm.modifierType == "lowerWhileActive" || sm.modifierType == "higherWhileActive");
+    }
+
+    getFullForce() {
+        const baseData = super.getData();
+        const base = baseData.actor.data.data.force.base;
+        const modifier = baseData.actor.data.data.force.modifier;
+        const masteryModifiers = this.getApplyableMasteries().filter(m => m.status == "force");
+        const statModifiers = this.getStatusModWhileActive().filter(sm => sm.status == "force");
+
+        const masteryModSum = masteryModifiers.reduce((cumm, curr) => cumm + curr.modifier, 0);
+        const statModSum = statModifiers.reduce((cumm, curr) => cumm + curr.modifier, 0);
+
+        return base + modifier + masteryModSum + statModSum;
     }
 
     activateListeners(html) {
@@ -150,7 +182,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         let value = element.value;
         if(element.dataset.dtype == "Number") value = Number(value);
 
-        this._onArrayEdit(index, array, {[field]: value});
+        this._onArrayEdit(index, array, { [field]: value });
     }
 
     _onArrayEdit(index, array, changes) {
