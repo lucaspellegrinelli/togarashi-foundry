@@ -121,8 +121,8 @@
             </tr>
         </table>
 
-        <div class="flexrow">
-            <div class="modifiers-tab">
+        <div class="flexrow editable-tabs-container">
+            <div class="editable-tabs modifiers-tab">
                 <h2>{{localize "togarashi.modifiers"}}</h2>
                 <table>
                     <tr>
@@ -131,37 +131,37 @@
                     </tr>
                 </table>
             </div>
-            <div class="armors-tab">
+            <div class="editable-tabs armors-tab">
                 <h2>{{localize "togarashi.armors"}}</h2>
                 <table>
                     <tr>
                         <th>{{localize "togarashi.item"}}</th>
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
-                    {{#each armors as |armor|}}
+                    {{#each armors as |item|}}
                         <tr>
-                            <td>{{armor.name}}</td>
-                            <td>{{armor.data.data.weight}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.weight}}</td>
                         </tr>
                     {{/each}}
                 </table>
             </div>
-            <div class="weapons-tab">
+            <div class="editable-tabs weapons-tab">
                 <h2>{{localize "togarashi.weapons"}}</h2>
                 <table>
                     <tr>
                         <th>{{localize "togarashi.item"}}</th>
                         <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                     </tr>
-                    {{#each weapons as |weapon|}}
+                    {{#each weapons as |item|}}
                         <tr>
-                            <td>{{weapon.name}}</td>
-                            <td>{{weapon.data.weight}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.weight}}</td>
                         </tr>
                     {{/each}}
                 </table>
             </div>
-            <div class="items-tab">
+            <div class="editable-tabs items-tab">
                 <h2>{{localize "togarashi.items"}}</h2>
                 <table>
                     <tr>
@@ -171,7 +171,7 @@
                     {{#each genericItems as |item|}}
                         <tr>
                             <td>{{item.name}}</td>
-                            <td>00</td>
+                            <td>{{item.weight}}</td>
                         </tr>
                     {{/each}}
                 </table>

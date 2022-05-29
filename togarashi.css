@@ -72,3 +72,13 @@
   text-align: center;
   display: block;
 }
+.togarashi.sheet.character form .editable-tabs-container {
+  margin-top: 25px;
+}
+.togarashi.sheet.character form .editable-tabs-container .editable-tabs {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.togarashi.sheet.character form .editable-tabs-container .editable-tabs td {
+  text-align: center;
+}

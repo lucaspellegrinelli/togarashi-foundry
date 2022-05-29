@@ -1,3 +1,5 @@
+import { itemStatsCalc } from "../core/itemTotalStatsCalc.js";
+
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -22,10 +24,12 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             data: mergeObject(baseData.actor.data.data, this.getExtraStats()),
             config: CONFIG.togarashi,
             items: baseData.items,
-            weapons: baseData.items.filter(({ type }) => type == "weapon"),
-            armors: baseData.items.filter(({ type }) => type == "armor"),
-            genericItems: baseData.items.filter(({ type }) => type == "generic")
+            weapons: baseData.items.filter(item => item.type == "weapon").map(itemStatsCalc),
+            armors: baseData.items.filter(item => item.type == "armor").map(itemStatsCalc),
+            genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc)
         };
+
+        console.log(sheetData);
 
         return sheetData;
     }
