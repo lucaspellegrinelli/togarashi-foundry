@@ -126,7 +126,27 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     getStatusModWhileActive() {
         const baseData = super.getData().data.data;
         const statModifiers = baseData.statusModifiers;
-        return statModifiers.filter(sm => sm.modifierType == "lowerWhileActive" || sm.modifierType == "higherWhileActive");
+        return statModifiers.filter(sm => sm.modifierType == "whileActive");
+    }
+
+    getPermanentStatusMods() {
+        const baseData = super.getData().data.data;
+        const statModifiers = baseData.statusModifiers;
+        return statModifiers.filter(sm => sm.modifierType == "permanent");
+    };
+
+    tickStatusMods() {
+        const baseData = super.getData().data.data;
+        const permanentMods = this.getPermanentStatusMods();
+        permanentMods.forEach(mod => {
+            if (typeof baseData[mod.status] == "object") {
+                const currentStat = baseData[mod.status].base;
+                this.actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
+            } else {
+                const currentStat = baseData[mod.status];
+                this.actor.update({ [`data.${mod.status}`]: currentStat + mod.modifier });
+            }
+        });
     }
 
     getFullForce() {
@@ -165,7 +185,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     _onStatusModifierAdd(event) {
         event.preventDefault();
         const currentStatusModList = this.getData().data.statusModifiers;
-        currentStatusModList.push({ status: "health", modifierType: "lowerWhileActive", modifier: 0 });
+        currentStatusModList.push({ status: "health", modifierType: "whileActive", modifier: 0 });
         this.actor.update({ "data.statusModifiers": currentStatusModList });
     }
 

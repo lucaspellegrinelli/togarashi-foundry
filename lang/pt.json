@@ -97,10 +97,8 @@
             "ss": "Rank SS"
         },
         "statsModifierTypes": {
-            "lowerWhileActive": "Diminuir enquanto ativo",
-            "higherWhileActive": "Aumentar enquanto ativo",
-            "lowerPermanent": "Diminuir permanentemente",
-            "higherPermanent": "Aumentar permanentemente"
+            "whileActive": "Enquanto ativo",
+            "permanent": "Permanent"
         }
     }
 }

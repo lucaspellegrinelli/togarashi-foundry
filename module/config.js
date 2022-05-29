@@ -73,8 +73,6 @@ togarashi.modifiableStats = {
 };
 
 togarashi.statsModifierTypes = {
-    lowerWhileActive: "togarashi.statsModifierTypes.lowerWhileActive",
-    higherWhileActive: "togarashi.statsModifierTypes.higherWhileActive",
-    lowerPermanent: "togarashi.statsModifierTypes.lowerPermanent",
-    higherPermanent: "togarashi.statsModifierTypes.higherPermanent"
+    whileActive: "togarashi.statsModifierTypes.whileActive",
+    permanent: "togarashi.statsModifierTypes.permanent"
 };

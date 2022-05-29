@@ -195,7 +195,6 @@
                         <th>{{localize "togarashi.status"}}</th>
                         <th>{{localize "togarashi.modifierType"}}</th>
                         <th>{{localize "togarashi.modifier"}}</th>
-                        <th></th>
                     </tr>
                     {{#each data.statusModifiers as |statusModifier|}}
                         <tr class="status-mod-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
@@ -212,9 +211,6 @@
                             <td>
                                 <input class="change-field" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
                             </td>
-                            <td>
-                                <i class="fas fa-trash"></i>
-                            </td>
                         </tr>
                     {{/each}}
                 </table>
@@ -227,7 +223,6 @@
                         <th>{{localize "togarashi.status"}}</th>
                         <th>{{localize "togarashi.weapon"}}</th>
                         <th>{{localize "togarashi.modifier"}}</th>
-                        <th></th>
                     </tr>
                     {{#each data.masteries as |mastery|}}
                         <tr class="mastery-card" data-change-array="masteries" data-change-index="{{@index}}">
@@ -243,9 +238,6 @@
                             </td>
                             <td>
                                 <input class="change-field" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
-                            </td>
-                            <td>
-                                <i class="fas fa-trash"></i>
                             </td>
                         </tr>
                     {{/each}}
