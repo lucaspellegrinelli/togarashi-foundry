@@ -1,56 +1,83 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
+        <h2>{{localize "togarashi.status"}}</h2>
         <table>
             <tr>
-                <th>{{localize "togarashi.itemAttributes.type"}}</th>
-                <th>{{localize "togarashi.itemAttributes.material"}}</th>
-                <th>{{localize "togarashi.itemAttributes.damage"}}</th>
-                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
-                <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
-                <th>{{localize "togarashi.itemAttributes.critical"}}</th>
-                <th>{{localize "togarashi.itemAttributes.durability"}}</th>
+                <th>{{localize "togarashi.characterStatsGroups.physical"}}</th>
+                <th>{{localize "togarashi.characterStatsGroups.mental"}}</th>
+                <th>{{localize "togarashi.characterStatsGroups.special"}}</th>
             </tr>
             <tr>
                 <td>
-                    <select name="data.type">
-                        {{#select data.type}}
-                        {{#each config.weaponTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
+                    <table class="stat-group">
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.force.base">{{localize "togarashi.characterStats.force"}}</label>
+                                <input class="base-stat" name="data.force.base" type="number" value="{{data.force.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.dexterity.base">{{localize "togarashi.characterStats.dexterity"}}</label>
+                                <input class="base-stat" name="data.dexterity.base" type="number" value="{{data.dexterity.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.resistence.base">{{localize "togarashi.characterStats.resistence"}}</label>
+                                <input class="base-stat" name="data.resistence.base" type="number" value="{{data.resistence.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
                 <td>
-                    <select name="data.material">
-                        {{#select data.material}}
-                        {{#each config.materials as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
+                    <table class="stat-group">
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.intelligence.base">{{localize "togarashi.characterStats.intelligence"}}</label>
+                                <input class="base-stat" name="data.intelligence.base" type="number" value="{{data.intelligence.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.focus.base">{{localize "togarashi.characterStats.focus"}}</label>
+                                <input class="base-stat" name="data.focus.base" type="number" value="{{data.focus.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.force.base">{{localize "togarashi.characterStats.intuition"}}</label>
+                                <input class="base-stat" name="data.intuition.base" type="number" value="{{data.intuition.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
                 <td>
-                    <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    <table class="stat-group">
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.naturalEnergy.base">{{localize "togarashi.characterStats.naturalEnergy"}}</label>
+                                <input class="base-stat" name="data.naturalEnergy.base" type="number" value="{{data.naturalEnergy.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.opening.base">{{localize "togarashi.characterStats.opening"}}</label>
+                                <input class="base-stat" name="data.opening.base" type="number" value="{{data.opening.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="base-stat-container">
+                                <label class="base-stat-label" for="data.control.base">{{localize "togarashi.characterStats.control"}}</label>
+                                <input class="base-stat" name="data.control.base" type="number" value="{{data.control.base}}" data-dtype="Number"></input>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
-
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </form>

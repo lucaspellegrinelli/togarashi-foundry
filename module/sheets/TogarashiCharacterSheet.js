@@ -1,7 +1,7 @@
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 530,
+            width: 840,
             height: 340,
             template: `systems/togarashi/templates/sheets/character-sheet.html`,
             classes: [ "togarashi", "sheet", "character" ]
@@ -14,13 +14,15 @@ export default class TogarashiCharacterSheet extends ActorSheet {
 
     getData() {
         const baseData = super.getData();
+
         let sheetData = {
-            owner: this.item.isOwner,
+            owner: this.actor.isOwner,
             editable: this.isEditable,
-            item: baseData.item,
-            data: baseData.item.data.data,
+            actor: baseData.actor,
+            data: baseData.actor.data.data,
             config: CONFIG.togarashi,
-            weapons: data.items.filter(({ type }) => type == "weapon")
+            items: baseData.items,
+            weapons: baseData.items.filter(({ type }) => type == "weapon")
         };
 
         return sheetData;

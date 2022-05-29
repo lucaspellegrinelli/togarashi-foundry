@@ -35,6 +35,22 @@
             "cut": "Cortante",
             "impact": "Impacto",
             "piercing": "Piercing"
+        },
+        "characterStatsGroups": {
+            "physical": "Físico",
+            "mental": "Mental",
+            "special": "Especial"
+        },
+        "characterStats": {
+            "force": "Força",
+            "dexterity": "Destreza",
+            "resistence": "Resistência",
+            "intelligence": "Inteligência",
+            "focus": "Foco",
+            "intuition": "Intuição",
+            "naturalEnergy": "Energia Natural",
+            "opening": "Abertura",
+            "control": "Controle"
         }
     }
 }

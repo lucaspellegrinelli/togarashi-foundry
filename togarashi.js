@@ -10,6 +10,6 @@ Hooks.once("init", () => {
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("togarashi", TogarashiItemSheet, { makeDefault: true });
 
-    Actors.unregisterSheet("core", ItemSheet);
+    Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("togarashi", TogarashiCharacterSheet, { makeDefault: true });
 });
