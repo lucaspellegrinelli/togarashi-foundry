@@ -2,6 +2,15 @@ import { togarashi } from "./module/config.js";
 import TogarashiItemSheet from "./module/sheets/TogarashiItemSheet.js";
 import TogarashiCharacterSheet from "./module/sheets/TogarashiCharacterSheet.js";
 
+async function preloadHandlebarsTemplates() {
+    const templatePaths = [
+        
+    ];
+
+    return loadTemplates(templatePaths);
+  };
+  
+
 Hooks.once("init", () => {
     console.log("Togarashi | Initializing Togarashi Game System");
 
@@ -12,4 +21,6 @@ Hooks.once("init", () => {
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("togarashi", TogarashiCharacterSheet, { makeDefault: true });
+
+    preloadHandlebarsTemplates();
 });
