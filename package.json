@@ -7,7 +7,6 @@
         "sass": "^1.52.1"
     },
     "dependencies": {
-        "bulma": "^0.9.4",
         "gulp-concat": "^2.6.1",
         "node-sass": "^7.0.1"
     }
