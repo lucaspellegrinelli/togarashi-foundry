@@ -52,6 +52,16 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             name: game.i18n.localize("togarashi.delete"),
             icon: '<i class="fas fa-trash"></i>',
             callback: element => {
+                const baseData = super.getData().data.data;
+                const equipedWeaponId = baseData.equippedItems.weapon;
+                const equippedArmorId = baseData.equippedItems.armor;
+
+                if (equipedWeaponId == element.data("item-id")) {
+                    this.actor.update({ "data.equippedItems.weapon": "" });
+                } else if (equippedArmorId == element.data("item-id")) {
+                    this.actor.update({ "data.equippedItems.armor": "" });
+                }
+                
                 this.actor.deleteEmbeddedDocuments("Item", [element.data("item-id")]);
             }
         }

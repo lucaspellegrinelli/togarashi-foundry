@@ -5,13 +5,9 @@
     "tasks": [
         {
             "type": "gulp",
-            "task": "default",
+            "task": "sass",
             "problemMatcher": [],
-            "label": "gulp: default",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "label": "gulp: sass"
         }
     ]
 }

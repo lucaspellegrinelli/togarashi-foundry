@@ -1,21 +1,11 @@
-// Less configuration
-var gulp = require("gulp");
-var less = require("gulp-less");
+const gulp = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const concat = require("gulp-concat");
 
-gulp.task("less", function(cb) {
-  gulp
-    .src("less/togarashi.less")
-    .pipe(less())
-    .pipe(
-      gulp.dest("./")
-    );
-  cb();
+sass.compiler = require("node-sass");
+gulp.task("sass", function () {
+   return gulp.src("./scss/**/*.scss")
+   .pipe(concat("togarashi.scss"))
+   .pipe(sass().on("error", sass.logError))
+   .pipe(gulp.dest("./"));
 });
-
-gulp.task(
-  "default",
-  gulp.series("less", function(cb) {
-    gulp.watch("*.less", gulp.series("less"));
-    cb();
-  })
-);

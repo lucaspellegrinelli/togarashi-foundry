@@ -1,7 +1,14 @@
 {
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-less": "^5.0.0",
-    "gulp-sass": "^5.1.0"
-  }
+    "scripts": {
+        "scss": "npm link gulp && gulp sass"
+    },
+    "devDependencies": {
+        "gulp-sass": "^5.1.0",
+        "sass": "^1.52.1"
+    },
+    "dependencies": {
+        "bulma": "^0.9.4",
+        "gulp-concat": "^2.6.1",
+        "node-sass": "^7.0.1"
+    }
 }

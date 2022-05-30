@@ -10,7 +10,8 @@
         "togarashi.js"
     ],
     "styles": [
-        "togarashi.css"
+        "togarashi.css",
+        "node_modules/bulma/css/bulma.min.css"
     ],
     "packs": [
 
