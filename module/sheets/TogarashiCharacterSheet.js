@@ -4,8 +4,8 @@ import { characterStatsCalc } from "../core/characterTotalStatsCalc.js";
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 840,
-            height: 450,
+            width: 1000,
+            height: 650,
             template: `systems/togarashi/templates/sheets/character-sheet.html`,
             classes: [ "togarashi", "sheet", "character" ]
         });

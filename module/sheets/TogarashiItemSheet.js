@@ -4,7 +4,7 @@ export default class TogarashiItemSheet extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 530,
-            height: 340,
+            height: 530,
             template: `systems/togarashi/templates/sheets/items/weapon-sheet.html`,
             classes: [ "togarashi", "sheet", "item" ]
         });
