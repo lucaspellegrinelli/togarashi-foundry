@@ -6,7 +6,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             width: 1000,
             height: 650,
-            template: `systems/togarashi/templates/sheets/character-sheet.html`,
+            template: `systems/togarashi/templates/sheets/character/character-sheet.html`,
             classes: [ "togarashi", "sheet", "character" ]
         });
     }
@@ -82,7 +82,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     ];
 
     get template() {
-        return `systems/togarashi/templates/sheets/character-sheet.html`;
+        return `systems/togarashi/templates/sheets/character/character-sheet.html`;
     }
 
     getData() {
