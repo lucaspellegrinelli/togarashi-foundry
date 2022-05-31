@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="systems/togarashi/assets/armors/{{data.type}}.png" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
         <h2>{{localize "togarashi.status"}}</h2>
@@ -28,12 +28,12 @@
             </tr>
             <tr>
                 <td>
-                    <select data-field="data.type">
+                    <select name="data.type" data-field="data.type">
                         {{selectOptions config.armorTypes selected=data.type localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select data-field="data.material">
+                    <select name="data.material" data-field="data.material">
                         {{selectOptions config.armorMaterials selected=data.material localize=true}}
                     </select>
                 </td>
@@ -48,10 +48,10 @@
             </tr>
             <tr>
                 <td>
-                    <input  type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.block}}" data-dtype="Number"></input>
+                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
                 </td>
             </tr>
         </table>

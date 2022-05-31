@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="systems/togarashi/assets/weapons/{{data.type}}.png" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
         <h2>{{localize "togarashi.status"}}</h2>
@@ -80,22 +80,22 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" value="{{data.damage}}" data-dtype="Number"></input>
+                    <input name="data.type" type="text" value="{{data.damage}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
+                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.block}}" data-dtype="Number"></input>
+                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
                 </td>
             </tr>
         </table>
