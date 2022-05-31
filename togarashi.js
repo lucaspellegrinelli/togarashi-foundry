@@ -4,7 +4,11 @@ import TogarashiCharacterSheet from "./module/sheets/TogarashiCharacterSheet.js"
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
-        
+        "systems/togarashi/templates/character/partials/aura-list.html",
+        "systems/togarashi/templates/character/partials/main-info.html",
+        "systems/togarashi/templates/character/partials/stats-table.html",
+        "systems/togarashi/templates/character/partials/items-table.html",
+        "systems/togarashi/templates/character/partials/modifiers-table.html"
     ];
 
     return loadTemplates(templatePaths);

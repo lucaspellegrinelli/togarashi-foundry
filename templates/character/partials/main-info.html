@@ -1,0 +1,28 @@
+<div class="top-stats-content">
+    <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+    <h1><input class="name-editor" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    <table>
+        <tr>
+            <th>{{localize "togarashi.characterStats.guardLow"}}</th>
+            <th>{{localize "togarashi.characterStats.guardHigh"}}</th>
+            <th>{{localize "togarashi.characterStats.experience"}}</th>
+            <th>{{localize "togarashi.characterStats.texture"}}</th>
+        </tr>
+        <tr>
+            <td>
+                <span class="true-stat-value">{{guard.guardLow}}</span>
+            </td>
+            <td>
+                <span class="true-stat-value">{{guard.guardHigh}}</span>
+            </td>
+            <td>
+                <input class="base-stat" style="width: 50px" name="data.experience" type="number" value="{{data.experience}}" data-dtype="Number"></input>
+            </td>
+            <td>
+                <select name="data.texture" data-field="data.texture">
+                    {{selectOptions config.textureTypes selected=data.texture localize=true}}
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>

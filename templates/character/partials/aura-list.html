@@ -1,0 +1,10 @@
+<div class="aura-content">
+    {{#each data.auras as |rank name|}}
+        <div class="aura-entry">
+            <img src="systems/togarashi/assets/auras/{{name}}.png" title="{{name}}" height="56" width="56"/>
+            <select name="data.auras.{{name}}" data-field="data.auras.{{name}}">
+                {{selectOptions ../config.auraRanks selected=rank localize=true}}
+            </select>
+        </div>
+    {{/each}}
+</div>

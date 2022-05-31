@@ -5,13 +5,12 @@ export default class TogarashiItemSheet extends ItemSheet {
         return mergeObject(super.defaultOptions, {
             width: 530,
             height: 530,
-            template: `systems/togarashi/templates/sheets/items/weapon-sheet.html`,
             classes: [ "togarashi", "sheet", "item" ]
         });
     }
 
     get template() {
-        return `systems/togarashi/templates/sheets/items/${this.item.data.type}-sheet.html`;
+        return `systems/togarashi/templates/items/${this.item.data.type}-sheet.html`;
     }
 
     getData() {

@@ -1,0 +1,58 @@
+<div class="flexrow editable-tabs-container">
+    <div class="editable-tabs status-modifiers-tab">
+        <h2>{{localize "togarashi.status"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.status"}}</th>
+                <th>{{localize "togarashi.modifierType"}}</th>
+                <th>{{localize "togarashi.modifier"}}</th>
+            </tr>
+            {{#each data.statusModifiers as |statusModifier|}}
+                <tr class="modifiers-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
+                    <td>
+                        <select class="change-field" data-field="status">
+                            {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="change-field" data-field="modifierType">
+                            {{selectOptions ../config.statsModifierTypes selected=statusModifier.modifierType localize=true}}
+                        </select>
+                    </td>
+                    <td>
+                        <input class="change-field" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+        <i class="fas fa-plus add-status-mod-button"></i>
+    </div>
+    <div class="editable-tabs mastery-tab">
+        <h2>{{localize "togarashi.mastery"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.status"}}</th>
+                <th>{{localize "togarashi.weapon"}}</th>
+                <th>{{localize "togarashi.modifier"}}</th>
+            </tr>
+            {{#each data.masteries as |mastery|}}
+                <tr class="modifiers-card" data-change-array="masteries" data-change-index="{{@index}}">
+                    <td>
+                        <select class="change-field" data-field="status">
+                            {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="change-field" data-field="weapon">
+                            {{selectOptions ../config.weaponTypes selected=mastery.weapon localize=true}}
+                        </select>
+                    </td>
+                    <td>
+                        <input class="change-field" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+        <i class="fas fa-plus add-mastery-button"></i>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="flexrow editable-tabs-container">
+    <div class="editable-tabs armors-tab">
+        <h2>{{localize "togarashi.armors"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.item"}}</th>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+            </tr>
+            {{#each armors as |item|}}
+                {{#if (eq ../data.equippedItems.armor item._id)}}
+                    <tr class="item-card selected" data-item-type="armor" data-item-id="{{item._id}}">
+                        <td>{{item.name}}</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                {{else}}
+                    <tr class="item-card" data-item-type="armor" data-item-id="{{item._id}}">
+                        <td>{{item.name}}</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+        </table>
+    </div>
+    <div class="editable-tabs weapons-tab">
+        <h2>{{localize "togarashi.weapons"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.item"}}</th>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+            </tr>
+            {{#each weapons as |item|}}
+                {{#if (eq ../data.equippedItems.weapon item._id)}}
+                    <tr class="item-card selected" data-item-type="weapon" data-item-id="{{item._id}}">
+                        <td>{{item.name}}</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                {{else}}
+                    <tr class="item-card" data-item-type="weapon" data-item-id="{{item._id}}">
+                        <td>{{item.name}}</td>
+                        <td>{{item.weight}}</td>
+                    </tr>
+                {{/if}}
+                
+            {{/each}}
+        </table>
+    </div>
+    <div class="editable-tabs items-tab">
+        <h2>{{localize "togarashi.items"}}</h2>
+        <table>
+            <tr>
+                <th>{{localize "togarashi.item"}}</th>
+                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+            </tr>
+            {{#each genericItems as |item|}}
+                <tr class="item-card" data-item-type="generic" data-item-id="{{item._id}}">
+                    <td>{{item.name}}</td>
+                    <td>{{item.weight}}</td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

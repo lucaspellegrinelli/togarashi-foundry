@@ -1,0 +1,16 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="sheet-content">
+        <div class="flexrow">
+            {{> "systems/togarashi/templates/character/partials/aura-list.html"}}
+            {{> "systems/togarashi/templates/character/partials/main-info.html"}}
+        </div>
+        
+        {{> "systems/togarashi/templates/character/partials/stats-table.html"}}
+
+        <h1>{{localize "togarashi.items"}} ({{weightStats.curr}} / {{weightStats.max}} peso)</h1>
+        {{> "systems/togarashi/templates/character/partials/items-table.html"}}
+
+        <h1>{{localize "togarashi.modifiers"}}</h1>
+        {{> "systems/togarashi/templates/character/partials/modifiers-table.html"}}
+    </div>
+</form>
