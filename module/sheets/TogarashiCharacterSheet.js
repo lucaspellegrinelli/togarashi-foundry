@@ -7,6 +7,11 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             width: 1000,
             height: 650,
             template: `systems/togarashi/templates/character/character-sheet.html`,
+            // tabs: [{
+			// 	navSelector: ".sheet-tabs",
+			// 	contentSelector: ".sheet-body",
+			// 	initial: "powers"
+			// }],
             classes: [ "togarashi", "sheet", "character" ]
         });
     }
