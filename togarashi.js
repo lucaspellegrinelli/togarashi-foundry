@@ -12,7 +12,19 @@ async function preloadHandlebarsTemplates() {
     ];
 
     return loadTemplates(templatePaths);
-  };
+};
+
+function registerSystemSettings() {
+    game.settings.register("togarashi", "showTaskCheckOptions", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.testSetting.name",
+        hint: "SETTINGS.testSetting.label",
+        type: String,
+        default: "test"
+    });
+}
+  
   
 //Easter Egg
 Hooks.once("init", () => {
@@ -27,4 +39,5 @@ Hooks.once("init", () => {
     Actors.registerSheet("togarashi", TogarashiCharacterSheet, { makeDefault: true });
 
     preloadHandlebarsTemplates();
+    registerSystemSettings();
 });

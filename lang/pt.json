@@ -100,5 +100,11 @@
             "whileActive": "Enquanto ativo",
             "permanent": "Permanent"
         }
-    }
+    },
+    "SETTINGS": {
+        "testSetting": {
+          "name": "This is a test.",
+          "label": "Don't panic."
+        }
+    }    
 }
