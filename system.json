@@ -30,5 +30,8 @@
     "gridDistance": 5,
     "gridUnits": "ft",
     "primaryTokenAttribute": "wounds",
-    "initiative": "1d6"
+    "initiative": "1d6",
+    "url": "https://github.com/lucaspellegrinelli/togarashi-foundry",
+    "manifest": "https://raw.githubusercontent.com/lucaspellegrinelli/togarashi-foundry/main/system.json",
+    "download": "https://github.com/lucaspellegrinelli/togarashi-foundry/archive/refs/heads/main.zip",
 }
