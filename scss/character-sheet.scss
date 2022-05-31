@@ -57,6 +57,11 @@
         }
 
         // aura-list.html
+        .aura-icon {
+            width: 56px;
+            height: auto;
+        }
+
         .aura-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
