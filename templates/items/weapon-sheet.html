@@ -46,22 +46,22 @@
             </tr>
             <tr>
                 <td>
-                    <select data-field="data.type">
+                    <select name="data.type" data-field="data.type">
                         {{selectOptions config.weaponTypes selected=data.type localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select data-field="data.material">
+                    <select name="data.material" data-field="data.material">
                         {{selectOptions config.weaponMaterials selected=data.material localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select disabled data-field="data.damageType">
+                    <select disabled name="data.damageType" data-field="data.damageType">
                         {{selectOptions config.damageTypes selected=data.damageType localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select disabled data-field="data.secondaryDamageType">
+                    <select disabled name="data.secondaryDamageType" data-field="data.secondaryDamageType">
                         {{selectOptions config.damageTypes selected=data.secondaryDamageType localize=true}}
                     </select>
                 </td>
