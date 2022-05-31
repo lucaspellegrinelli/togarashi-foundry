@@ -33,7 +33,22 @@
         },
         "weaponTypes": {
             "dagger": "Adaga",
-            "sword": "Espada"
+            "sword": "Espada",
+            "rapier": "Rapieira",
+            "greatsword": "Montante",
+            "staff": "Bastão",
+            "spear": "Lança",
+            "halberd": "Alabarda",
+            "big_hammer": "Martelo Grande",
+            "small_hammer": "Martelo Pequeno",
+            "big_axe": "Machado Grande",
+            "small_axe": "Machado Pequeno",
+            "gauntlet":"Manopla",
+            "katar":"Katar",
+            "chakram":"Chakram",
+            "impact_chains":"Correntes de Impacto",
+            "slashing_chain":"Corrente Cortante",
+            "shield":"Escudo"
         },
         "armorTypes": {
             "light": "Leve",
@@ -42,13 +57,29 @@
         "materials": {
             "lether": "Couro",
             "wood": "Madeira",
-            "copper": "Cobre"
+            "copper": "Cobre",
+            "iron": "Ferro",
+            "titanium": "Titânio",
+            "silver": "Prata",
+            "gold": "Ouro",
+            "platinum": "Platina",
+            "jade": "Jade",
+            "diamond": "Diamante",
+            "mithril": "Mithril",
+            "bronze": "Bronze",
+            "steel": "Aço",
+            "black_steel": "Aço Negro",
+            "damascus_steel": "Aço Damasco",
+            "electrum": "Electrum",
+            "black_wood": "Madeira Degra",
+            "orichalcos": "Orichalcos",
+            "adamantinium": "Adamantina"
         },
         "damageTypes": {
             "none": "Nenhum",
             "cut": "Cortante",
             "impact": "Impacto",
-            "piercing": "Piercing"
+            "piercing": "Perfurante"
         },
         "characterStatsGroups": {
             "physical": "Físico",
