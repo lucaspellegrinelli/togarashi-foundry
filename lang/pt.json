@@ -70,7 +70,8 @@
             "guardHigh": "Guarda de cima",
             "experience": "XP",
             "texture": "Textura",
-            "dailyAura": "Aura Diária"
+            "dailyAura": "Aura Diária",
+            "vitalAura": "Aura Vitalícia"
         },
         "textureTypes": {
             "physical": "Física",

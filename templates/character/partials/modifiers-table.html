@@ -10,17 +10,17 @@
             {{#each data.statusModifiers as |statusModifier|}}
                 <tr class="modifiers-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
                     <td>
-                        <select class="change-field" data-field="status">
+                        <select class="change-array-obj" data-field="status">
                             {{selectOptions ../config.modifiableStats selected=statusModifier.status localize=true}}
                         </select>
                     </td>
                     <td>
-                        <select class="change-field" data-field="modifierType">
+                        <select class="change-array-obj" data-field="modifierType">
                             {{selectOptions ../config.statsModifierTypes selected=statusModifier.modifierType localize=true}}
                         </select>
                     </td>
                     <td>
-                        <input class="change-field" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                        <input class="change-array-obj" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
                     </td>
                 </tr>
             {{/each}}
@@ -38,17 +38,17 @@
             {{#each data.masteries as |mastery|}}
                 <tr class="modifiers-card" data-change-array="masteries" data-change-index="{{@index}}">
                     <td>
-                        <select class="change-field" data-field="status">
+                        <select class="change-array-obj" data-field="status">
                             {{selectOptions ../config.modifiableStats selected=mastery.status localize=true}}
                         </select>
                     </td>
                     <td>
-                        <select class="change-field" data-field="weapon">
+                        <select class="change-array-obj" data-field="weapon">
                             {{selectOptions ../config.weaponTypes selected=mastery.weapon localize=true}}
                         </select>
                     </td>
                     <td>
-                        <input class="change-field" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                        <input class="change-array-obj" type="number" value="{{mastery.modifier}}" data-field="modifier" data-dtype="Number"></input>
                     </td>
                 </tr>
             {{/each}}

@@ -10,6 +10,8 @@
     margin: 0;
     padding: 0;
     border: 0; }
+  .togarashi.sheet.character form .small-input {
+    width: 50px; }
   .togarashi.sheet.character form .base-stat-container {
     display: flex; }
   .togarashi.sheet.character form .base-stat-label {
@@ -112,6 +114,8 @@
     margin: 0;
     padding: 0;
     border: 0; }
+  .togarashi.sheet.character form .small-input {
+    width: 50px; }
   .togarashi.sheet.character form .base-stat-container {
     display: flex; }
   .togarashi.sheet.character form .base-stat-label {

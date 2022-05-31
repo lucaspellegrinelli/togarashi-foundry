@@ -168,7 +168,8 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             html.find(".add-mastery-button").click(this._onMasteryAdd.bind(this));
             html.find(".add-status-mod-button").click(this._onStatusModifierAdd.bind(this));
 
-            html.find(".change-field").change(ev => this._onEditChange(ev));
+            html.find(".change-array-obj").change(ev => this._onEditArrayObject(ev));
+            html.find(".change-obj").change(ev => this._onEditObject(ev));
         }
     }
 
@@ -186,7 +187,16 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         this.actor.update({ "data.statusModifiers": currentStatusModList });
     }
 
-    async _onEditChange(event) {
+    // Helpers
+    async _onEditObject(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const field = element.dataset.field;
+        const value = element.dataset.dtype == "Number" ? Number(element.value) : element.value;
+        this.actor.update({ [field]: value });
+    }
+
+    async _onEditArrayObject(event) {
         event.preventDefault(); 
     
         const element = event.currentTarget;
@@ -199,12 +209,8 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         let value = element.value;
         if(element.dataset.dtype == "Number") value = Number(value);
 
-        this._onArrayEdit(index, array, { [field]: value });
-    }
-
-    _onArrayEdit(index, array, changes) {
         let currentArray = this.getData().data[array];
-        currentArray[index] = mergeObject(currentArray[index], changes);
+        currentArray[index] = mergeObject(currentArray[index], { [field]: value });
         this.actor.update({ [`data.${array}`]: currentArray });
     }
 }

@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="systems/togarashi/assets/weapons/{{data.type}}.png" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+        <h1><input type="text" value="{{item.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     </header>
     <div class="sheet-content">
         <h2>{{localize "togarashi.status"}}</h2>
@@ -46,22 +46,22 @@
             </tr>
             <tr>
                 <td>
-                    <select name="data.type" data-field="data.type">
+                    <select data-field="data.type">
                         {{selectOptions config.weaponTypes selected=data.type localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select name="data.material" data-field="data.material">
+                    <select data-field="data.material">
                         {{selectOptions config.weaponMaterials selected=data.material localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select disabled name="data.damageType" data-field="data.damageType">
+                    <select disabled data-field="data.damageType">
                         {{selectOptions config.damageTypes selected=data.damageType localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select disabled name="data.secondaryDamageType" data-field="data.secondaryDamageType">
+                    <select disabled data-field="data.secondaryDamageType">
                         {{selectOptions config.damageTypes selected=data.secondaryDamageType localize=true}}
                     </select>
                 </td>
@@ -80,22 +80,22 @@
             </tr>
             <tr>
                 <td>
-                    <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.damage}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.weight}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.critical}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.block}}" data-dtype="Number"></input>
                 </td>
                 <td>
-                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    <input type="text" value="{{data.durability}}" data-dtype="Number"></input>
                 </td>
             </tr>
         </table>
