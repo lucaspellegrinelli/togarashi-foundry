@@ -10,7 +10,7 @@ async function preloadHandlebarsTemplates() {
     return loadTemplates(templatePaths);
   };
   
-
+//Easter Egg
 Hooks.once("init", () => {
     console.log("Togarashi | Initializing Togarashi Game System");
 
