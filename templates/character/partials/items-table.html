@@ -7,17 +7,10 @@
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
             </tr>
             {{#each armors as |item|}}
-                {{#if (eq ../data.equippedItems.armor item._id)}}
-                    <tr class="item-card selected" data-item-type="armor" data-item-id="{{item._id}}">
-                        <td>{{item.name}}</td>
-                        <td>{{item.weight}}</td>
-                    </tr>
-                {{else}}
-                    <tr class="item-card" data-item-type="armor" data-item-id="{{item._id}}">
-                        <td>{{item.name}}</td>
-                        <td>{{item.weight}}</td>
-                    </tr>
-                {{/if}}
+                <tr class="item-card {{#if (eq ../data.equippedItems.armor item._id)}}selected{{/if}}" data-item-type="armor" data-item-id="{{item._id}}">
+                    <td>{{item.name}}</td>
+                    <td>{{item.weight}}</td>
+                </tr>
             {{/each}}
         </table>
     </div>
@@ -29,18 +22,10 @@
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
             </tr>
             {{#each weapons as |item|}}
-                {{#if (eq ../data.equippedItems.weapon item._id)}}
-                    <tr class="item-card selected" data-item-type="weapon" data-item-id="{{item._id}}">
-                        <td>{{item.name}}</td>
-                        <td>{{item.weight}}</td>
-                    </tr>
-                {{else}}
-                    <tr class="item-card" data-item-type="weapon" data-item-id="{{item._id}}">
-                        <td>{{item.name}}</td>
-                        <td>{{item.weight}}</td>
-                    </tr>
-                {{/if}}
-                
+                <tr class="item-card {{#if (eq ../data.equippedItems.weapon item._id)}}selected{{/if}}" data-item-type="weapon" data-item-id="{{item._id}}">
+                    <td>{{item.name}}</td>
+                    <td>{{item.weight}}</td>
+                </tr>  
             {{/each}}
         </table>
     </div>
