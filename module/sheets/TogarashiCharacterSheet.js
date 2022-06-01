@@ -1,5 +1,7 @@
 import TogarashiItem from "../objects/TogarashiItem.js";
 
+import { openDialogBox } from "../utils/dialogBox.js";
+
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {

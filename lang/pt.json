@@ -131,6 +131,10 @@
         "statsModifierTypes": {
             "whileActive": "Enquanto ativo",
             "permanent": "Permanent"
+        },
+        "dialogBox": {
+            "normal": "Ok",
+            "cancel": "Fechar"
         }
     },
     "SETTINGS": {

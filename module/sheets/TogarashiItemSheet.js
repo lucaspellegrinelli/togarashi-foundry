@@ -14,8 +14,6 @@ export default class TogarashiItemSheet extends ItemSheet {
     getData() {
         const baseData = super.getData();
 
-        console.log(this.item);
-
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
