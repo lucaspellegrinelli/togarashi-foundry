@@ -16,7 +16,7 @@ export default class TogarashiActor extends Actor {
 
         if (equipedWeaponId == "") return [];
 
-        const equipedWeaponItem = this.actor.items.get(equipedWeaponId);
+        const equipedWeaponItem = this.items.get(equipedWeaponId);
         const equipedWeaponType = equipedWeaponItem.data.data.type;
 
         return masteries.filter(mastery => mastery.weapon == equipedWeaponType);
