@@ -1,6 +1,6 @@
 export const guarda_calc = async (actor, n_dice, lower, upper, modifier, crit, dice_sides=10) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
-    await send_roll_in_chat(actor, rolls.result, "systems/togarashi/templates/chat/dice-roll.html");
+    await send_roll_in_chat(actor, rolls.result);
     return await guarda_calc_eval(rolls.dice, lower, upper, modifier, crit, dice_sides);
 }
 
