@@ -1,6 +1,12 @@
 import { togarashi } from "./module/config.js";
 import TogarashiItemSheet from "./module/sheets/TogarashiItemSheet.js";
 import TogarashiCharacterSheet from "./module/sheets/TogarashiCharacterSheet.js";
+import TogarashiCombat from "./module/combat/combat.js";
+import TogarashiCombatTracker from "./module/combat/combatTracker.js";
+import TogarashiCombatant from "./module/combat/combatant.js";
+import TogarashiCombatantConfig from "./module/combat/combatantConfig.js";
+import TogarashiItem from "./module/objects/TogarashiItem.js";
+import TogarashiActor from "./module/objects/TogarashiActor.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -31,6 +37,14 @@ Hooks.once("init", () => {
     console.log("Togarashi | Initializing Togarashi Game System");
 
     CONFIG.togarashi = togarashi;
+    
+    CONFIG.Item.documentClass = TogarashiItem;
+    CONFIG.Actor.documentClass = TogarashiActor;
+    CONFIG.Combat.documentClass = TogarashiCombat;
+    CONFIG.Combatant.documentClass = TogarashiCombatant;
+    CONFIG.Combatant.sheetClass = TogarashiCombatantConfig;
+
+    CONFIG.ui.combat = TogarashiCombatTracker;
     
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("togarashi", TogarashiItemSheet, { makeDefault: true });

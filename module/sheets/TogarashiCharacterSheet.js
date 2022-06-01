@@ -1,5 +1,4 @@
-import { itemStatsCalc } from "../core/itemTotalStatsCalc.js";
-import { characterStatsCalc } from "../core/characterTotalStatsCalc.js";
+import TogarashiItem from "../objects/TogarashiItem.js";
 
 export default class TogarashiCharacterSheet extends ActorSheet {
     static get defaultOptions() {
@@ -100,69 +99,17 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             data: baseData.actor.data.data,
             config: CONFIG.togarashi,
             items: baseData.items,
-            guard: characterStatsCalc(baseData.actor.data),
-            weapons: baseData.items.filter(item => item.type == "weapon").map(itemStatsCalc),
-            armors: baseData.items.filter(item => item.type == "armor").map(itemStatsCalc),
-            genericItems: baseData.items.filter(item => item.type == "generic").map(itemStatsCalc),
+            guard: this.actor.characterStatsCalc(baseData.actor.data),
+            weapons: baseData.items.filter(item => item.type == "weapon").map(TogarashiItem.itemStatsCalcFromObj),
+            armors: baseData.items.filter(item => item.type == "armor").map(TogarashiItem.itemStatsCalcFromObj),
+            genericItems: baseData.items.filter(item => item.type == "generic").map(TogarashiItem.itemStatsCalcFromObj),
             weightStats: {
-                curr: baseData.items.map(itemStatsCalc).reduce((a, b) => a + b.weight, 0),
-                max: 5 * this.getFullForce()
+                curr: baseData.items.map(TogarashiItem.itemStatsCalcFromObj).reduce((a, b) => a + b.weight, 0),
+                max: 5 * this.actor.getFullForce()
             }
         };
 
         return sheetData;
-    }
-
-    getApplyableMasteries() {
-        const baseData = super.getData().data.data;
-        const masteries = baseData.masteries;
-        const equipedWeaponId = baseData.equippedItems.weapon;
-
-        if (equipedWeaponId == "") return [];
-
-        const equipedWeaponItem = this.actor.items.get(equipedWeaponId);
-        const equipedWeaponType = equipedWeaponItem.data.data.type;
-
-        return masteries.filter(mastery => mastery.weapon == equipedWeaponType);
-    }
-
-    getStatusModWhileActive() {
-        const baseData = super.getData().data.data;
-        const statModifiers = baseData.statusModifiers;
-        return statModifiers.filter(sm => sm.modifierType == "whileActive");
-    }
-
-    getPermanentStatusMods() {
-        const baseData = super.getData().data.data;
-        const statModifiers = baseData.statusModifiers;
-        return statModifiers.filter(sm => sm.modifierType == "permanent");
-    };
-
-    tickStatusMods() {
-        const baseData = super.getData().data.data;
-        const permanentMods = this.getPermanentStatusMods();
-        permanentMods.forEach(mod => {
-            if (typeof baseData[mod.status] == "object") {
-                const currentStat = baseData[mod.status].base;
-                this.actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
-            } else {
-                const currentStat = baseData[mod.status];
-                this.actor.update({ [`data.${mod.status}`]: currentStat + mod.modifier });
-            }
-        });
-    }
-
-    getFullForce() {
-        const baseData = super.getData();
-        const base = baseData.actor.data.data.force.base;
-        const modifier = baseData.actor.data.data.force.modifier;
-        const masteryModifiers = this.getApplyableMasteries().filter(m => m.status == "force");
-        const statModifiers = this.getStatusModWhileActive().filter(sm => sm.status == "force");
-
-        const masteryModSum = masteryModifiers.reduce((cumm, curr) => cumm + curr.modifier, 0);
-        const statModSum = statModifiers.reduce((cumm, curr) => cumm + curr.modifier, 0);
-
-        return base + modifier + masteryModSum + statModSum;
     }
 
     activateListeners(html) {

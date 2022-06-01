@@ -1,5 +1,3 @@
-import { itemStatsCalc } from "../core/itemTotalStatsCalc.js";
-
 export default class TogarashiItemSheet extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -16,12 +14,14 @@ export default class TogarashiItemSheet extends ItemSheet {
     getData() {
         const baseData = super.getData();
 
+        console.log(this.item);
+
         let sheetData = {
             owner: this.item.isOwner,
             editable: this.isEditable,
             item: baseData.item,
             data: baseData.item.data.data,
-            finalStats: itemStatsCalc(baseData.item.data),
+            finalStats: this.item.itemStatsCalc(baseData.item.data),
             config: CONFIG.togarashi
         };
 
