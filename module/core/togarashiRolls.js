@@ -6,7 +6,7 @@ export const guarda_calc = async (actor, n_dice, lower, upper, modifier, crit, d
 
 export const togarashi_roll = async (actor, n_dice, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
-    await send_roll_in_chat(actor, rolls.result, "systems/togarashi/templates/chat/dice-roll.html");
+    await send_roll_in_chat(actor, rolls.result);
     return await togarashi_roll_eval(rolls.dice, difficulty, dice_sides, crit_sides, modifier);
 }
 
@@ -23,12 +23,13 @@ export const roll_n_dice = async (n, dice_sides) => {
     }
 };
 
-const send_roll_in_chat = async (actor, rollResult, template, extraData={}) => {
+const send_roll_in_chat = async (actor, rollResult, extraData={}) => {
     let templateContext = {
         ...extraData,
         results: rollResult.terms[0].results.map(({ result }) => result)
     };
-
+    
+    const template = "systems/togarashi/templates/chat/dice-roll.html";
     const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
