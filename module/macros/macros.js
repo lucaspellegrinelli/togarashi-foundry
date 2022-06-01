@@ -1,7 +1,8 @@
 import { openDialogBox } from "../utils/dialogBox.js";
 import { togarashi } from "../config.js";
+import { guarda_calc } from "../core/togarashiRolls.js";
 
-export const customizableAttack = () => {
+export const customizableAttack = async () => {
     const info = getInfo();
     
     if (!info.userActor) {
@@ -30,11 +31,27 @@ export const customizableAttack = () => {
         advantageType: "none"
     };
 
-    openDialogBox(title, template, dialogExtraData).then(result => {
-        if (!result.cancelled) {
-            console.log(result);
-        }
-    });
+    const options = await openDialogBox(title, template, dialogExtraData);
+
+    if (!options.cancelled) {
+        info.actorsTargeted.forEach(async target => {
+            const { guardLow, guardHigh } = target.characterStatsCalc();
+            const diceCount = info.userActor.getFullStat("dexterity");
+            let modifier = info.userActor.getFullStat("accuracy", options.useWeaponStats) + options.accuracy;
+            let critical = info.userActor.getFullStat("critical", options.useWeaponStats) + options.critical;
+            
+            if (options.useWeaponStats) {
+                const equippedWeapon = info.userActor.getEquippedWeapon();
+                if (equippedWeapon) {
+                    const weaponStats = equippedWeapon.itemStatsCalc();
+                    modifier += weaponStats.accuracy;
+                    critical += weaponStats.critical;
+                }
+            }
+
+            const attackInfo = await guarda_calc(info.userActor, diceCount, guardLow, guardHigh, modifier, critical);
+        });
+    }
 };
 
 const getInfo = () => {

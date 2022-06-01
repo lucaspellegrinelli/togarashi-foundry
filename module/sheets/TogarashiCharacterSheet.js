@@ -107,7 +107,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             genericItems: baseData.items.filter(item => item.type == "generic").map(TogarashiItem.itemStatsCalcFromObj),
             weightStats: {
                 curr: baseData.items.map(TogarashiItem.itemStatsCalcFromObj).reduce((a, b) => a + b.weight, 0),
-                max: 5 * this.actor.getFullForce()
+                max: 5 * this.actor.getFullStat("force")
             }
         };
 

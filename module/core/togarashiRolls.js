@@ -1,11 +1,13 @@
-export const guarda_calc = async (n_dice, lower, upper, modifier, crit, dice_sides=10) => {
+export const guarda_calc = async (actor, n_dice, lower, upper, modifier, crit, dice_sides=10) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
-    return await guarda_calc_eval(rolls, lower, upper, modifier, crit, dice_sides);
+    await send_roll_in_chat(actor, rolls.result, "systems/togarashi/templates/chat/dice-roll.html");
+    return await guarda_calc_eval(rolls.dice, lower, upper, modifier, crit, dice_sides);
 }
 
-export const togarashi_roll = async (n_dice, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
+export const togarashi_roll = async (actor, n_dice, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
-    return await togarashi_roll_eval(rolls, difficulty, dice_sides, crit_sides, modifier);
+    await send_roll_in_chat(actor, rolls.result, "systems/togarashi/templates/chat/dice-roll.html");
+    return await togarashi_roll_eval(rolls.dice, difficulty, dice_sides, crit_sides, modifier);
 }
 
 export const roll_n_dice = async (n, dice_sides) => {
@@ -14,8 +16,29 @@ export const roll_n_dice = async (n, dice_sides) => {
     } else {
         const roll_formula = `${n}d${dice_sides}`;
         const roll_result = await new Roll(roll_formula).roll({ async: true });
-        return roll_result.terms[0].results.map(({ result }) => result);
+        return {
+            dice: roll_result.terms[0].results.map(({ result }) => result),
+            result: roll_result
+        };
     }
+};
+
+const send_roll_in_chat = async (actor, rollResult, template, extraData={}) => {
+    let templateContext = {
+        ...extraData,
+        results: rollResult.terms[0].results.map(({ result }) => result)
+    };
+
+    const chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor }),
+        roll: rollResult,
+        content: await renderTemplate(template, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    };
+    
+    ChatMessage.create(chatData);
 };
 
 const count_in_rolls = (roll, test) => {
@@ -59,9 +82,9 @@ export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_
     let all_rerolls = [];
     while (n_reroll > 0) {
         const rerolls = await roll_n_dice(n_reroll, 10);
-        rolls = rolls.concat(rerolls);
-        all_rerolls = all_rerolls.concat(rerolls);
-        n_reroll = count_max(rerolls, 10);
+        rolls = rolls.concat(rerolls.dice);
+        all_rerolls = all_rerolls.concat(rerolls.dice);
+        n_reroll = count_max(rerolls.dice, 10);
     }
     
     // Calculating number of successes in each guard
@@ -77,7 +100,8 @@ export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_
     return {
         upper: upper_success,
         lower: lower_success,
-        rerolls: all_rerolls
+        rerolls: all_rerolls,
+        rolls: rolls
     }
 }
 
@@ -94,10 +118,10 @@ export const togarashi_roll_eval = async (rolls, difficulty, dice_sides=10, crit
     let all_rerolls = [];
     while (n_reroll > 0) {
         const rerolls = await roll_n_dice(n_reroll, dice_sides);
-        all_rerolls = all_rerolls.concat(rerolls);
-        crit += count_crit(rerolls, dice_sides, crit_sides);
-        suc += count_suc(rerolls, difficulty, modifier);
-        n_reroll = count_max(rerolls, dice_sides);
+        all_rerolls = all_rerolls.concat(rerolls.dice);
+        crit += count_crit(rerolls.dice, dice_sides, crit_sides);
+        suc += count_suc(rerolls.dice, difficulty, modifier);
+        n_reroll = count_max(rerolls.dice, dice_sides);
     }
 
     return {

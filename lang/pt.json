@@ -137,10 +137,10 @@
             "cancel": "Fechar"
         },
         "attackDialogBox": {
-            "useWeaponStats": "Usar status da arma?",
+            "useWeaponStats": "Usar arma? (Desativar isso vai tirar seu bônus de estilo e os bônus da sua arma equipada)",
             "applyEffects": "Aplicar efeito? (dano ao oponente, armas e armaduras)",
             "advantageType": "Tipo de vantagem",
-            "isAttacking": "Atacando",
+            "isAttacking": "está atacando",
             "title": "Ataque Customizável",
             "noTargetError": "Nenhum token selecionado",
             "noActorError": "Você não possuí nenhum token nessa cena"
