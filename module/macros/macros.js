@@ -4,15 +4,21 @@ import { togarashi } from "../config.js";
 export const customizableAttack = () => {
     const info = getInfo();
     
-    if (info.actorsTargeted.length == 0) {
-        ui.notifications.error("Nenhum token selecionado");
+    if (!info.userActor) {
+        ui.notifications.error(game.i18n.localize("togarashi.attackDialogBox.noActorError"));
         return;
     }
 
-    const title = "Ataque Customizável";
+    if (info.actorsTargeted.length == 0) {
+        ui.notifications.error(game.i18n.localize("togarashi.attackDialogBox.noTargetError"));
+        return;
+    }
+
+    const title = game.i18n.localize("togarashi.attackDialogBox.title");
     const template = "systems/togarashi/templates/dialogboxes/customizable-attack.html";
     const dialogExtraData = {
         config: togarashi,
+        actorName: info.userActor.data.name,
         targetNames: info.actorsTargeted.map(a => a.data.name).join(", "),
         damageType: "none",
         secondaryDamageType: "none",

@@ -140,7 +140,10 @@
             "useWeaponStats": "Usar status da arma?",
             "applyEffects": "Aplicar efeito? (dano ao oponente, armas e armaduras)",
             "advantageType": "Tipo de vantagem",
-            "attacking": "Atacando"
+            "isAttacking": "Atacando",
+            "title": "Ataque Customizável",
+            "noTargetError": "Nenhum token selecionado",
+            "noActorError": "Você não possuí nenhum token nessa cena"
         },
         "advantageTypes": {
             "none": "Nenhum",
