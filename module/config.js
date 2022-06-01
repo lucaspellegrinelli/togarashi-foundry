@@ -124,3 +124,9 @@ togarashi.statsModifierTypes = {
     whileActive: "togarashi.statsModifierTypes.whileActive",
     permanent: "togarashi.statsModifierTypes.permanent"
 };
+
+togarashi.advantageTypes = {
+    none: "togarashi.advantageTypes.none",
+    advantage: "togarashi.advantageTypes.advantage",
+    disadvantage: "togarashi.advantageTypes.disadvantage"
+}

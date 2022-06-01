@@ -7,6 +7,7 @@ import TogarashiCombatant from "./module/combat/combatant.js";
 import TogarashiCombatantConfig from "./module/combat/combatantConfig.js";
 import TogarashiItem from "./module/objects/TogarashiItem.js";
 import TogarashiActor from "./module/objects/TogarashiActor.js";
+import * as Macros from "./module/macros/macros.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -54,4 +55,9 @@ Hooks.once("init", () => {
 
     preloadHandlebarsTemplates();
     registerSystemSettings();
+
+    game.togarashi = {
+        macros: Macros
+    }
 });
+

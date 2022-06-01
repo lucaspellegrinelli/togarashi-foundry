@@ -135,6 +135,17 @@
         "dialogBox": {
             "normal": "Ok",
             "cancel": "Fechar"
+        },
+        "attackDialogBox": {
+            "useWeaponStats": "Usar status da arma?",
+            "applyEffects": "Aplicar efeito? (dano ao oponente, armas e armaduras)",
+            "advantageType": "Tipo de vantagem",
+            "attacking": "Atacando"
+        },
+        "advantageTypes": {
+            "none": "Nenhum",
+            "advantage": "Vantagem",
+            "disadvantage": "Desvantagem"
         }
     },
     "SETTINGS": {

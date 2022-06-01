@@ -1,5 +1,5 @@
-export const openDialogBox = async (title, template) => {
-    const html = await renderTemplate(template, {});
+export const openDialogBox = async (title, template, data={}) => {
+    const html = await renderTemplate(template, data);
     return new Promise(resolve => {
         const data = {
             title: title,
@@ -25,5 +25,19 @@ export const openDialogBox = async (title, template) => {
 const processFormResponse = form => {
     const formEntries = new FormData(form).entries();
     const formData = Object.assign(...Array.from(formEntries, ([name, value]) => ({[name]: value})));
+
+    Array.from(form.getElementsByTagName("input")).forEach(inputDOM => {
+        const name = inputDOM.attributes["name"].value;
+        const type = inputDOM.attributes["type"].value;
+
+        if (type == "number") {
+            formData[name] = parseInt(inputDOM.attributes["value"].value);
+        } else if (type == "text") {
+            formData[name] = inputDOM.attributes["value"].value;
+        } else if (type == "checkbox") {
+            formData[name] = inputDOM.checked;
+        }
+    });
+
     return formData;
 };
