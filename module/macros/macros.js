@@ -3,18 +3,15 @@ import { togarashi } from "../config.js";
 import { guarda_calc } from "../core/togarashiRolls.js";
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 
-export const rangedAttack = async () => {
+export const rangedAttack = async (range) => {
     const info = getInfo();
-    const speaker = ChatMessage.implementation.getSpeaker();
-    console.log(speaker);
-    const token = canvas.tokens.get(speaker.token);
     const data = {
         t: "circle",
         user: game.user.id,
-        distance: 2,
+        distance: range,
         direction: 0,
-        x: token.center.x,
-        y: token.center.y,
+        x: info.userActor.token.object.center.x,
+        y: info.userActor.token.object.center.y,
         buttonMode: true,
         fillColor: "green",
         //texture: 'assets/textures/smoke_texture.webp'
@@ -22,8 +19,7 @@ export const rangedAttack = async () => {
     
     const template = await canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [data]);
     var element = document.querySelector("html");
-    console.log(template);
-    await waitListener(element,"click");
+    await waitListener(element, "click");
     await canvas.scene.deleteEmbeddedDocuments('MeasuredTemplate', [template[0].id])
 }
 
@@ -122,13 +118,17 @@ export const customizableAttack = async () => {
 };
 
 const getInfo = () => {
+    const speaker = ChatMessage.implementation.getSpeaker();
     const userId = game.user.id;
     const userSceneId = game.user.viewedScene;
     const userScene = game.scenes.get(userSceneId);
     const userSceneTokens = Array.from(userScene.data.tokens.values());
     const userSceneActors = userSceneTokens.map(t => t.actor);
     const actorsTargeted = Array.from(game.user.targets).map(t => t?.actor);
-    const userActor = userSceneActors.find(a => a.data.permission[userId] > 0);
+    // const userActor = userSceneActors.find(a => a.data.permission[userId] > 0);
+    const userActor = canvas.tokens.get(speaker.token).actor;
+
+    console.log(userActor);
 
     return {
         userId, userSceneId, userScene, userSceneTokens, userSceneActors,
