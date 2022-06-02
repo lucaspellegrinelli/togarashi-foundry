@@ -8,8 +8,8 @@ import TogarashiCombatantConfig from "./module/combat/combatantConfig.js";
 import TogarashiItem from "./module/objects/TogarashiItem.js";
 import TogarashiActor from "./module/objects/TogarashiActor.js";
 import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
-import * as Macros from "./module/macros/macros.js";
 import TogarashiToken from "./module/components/TogarashiToken.js";
+import * as Macros from "./module/macros/macros.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
