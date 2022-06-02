@@ -7,6 +7,7 @@ import TogarashiCombatant from "./module/combat/combatant.js";
 import TogarashiCombatantConfig from "./module/combat/combatantConfig.js";
 import TogarashiItem from "./module/objects/TogarashiItem.js";
 import TogarashiActor from "./module/objects/TogarashiActor.js";
+import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
 import * as Macros from "./module/macros/macros.js";
 
 async function preloadHandlebarsTemplates() {
@@ -91,6 +92,7 @@ Hooks.once("init", () => {
     CONFIG.Combatant.sheetClass = TogarashiCombatantConfig;
 
     CONFIG.ui.combat = TogarashiCombatTracker;
+    CONFIG.ui.hotbar = TogarashiHotbar;
     
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("togarashi", TogarashiItemSheet, { makeDefault: true });
