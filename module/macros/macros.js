@@ -13,7 +13,7 @@ export const rangedAttack = async (range) => {
         x: info.userActor.token.object.center.x,
         y: info.userActor.token.object.center.y,
         buttonMode: true,
-        fillColor: "green",
+        fillColor: "#00ff00",
         //texture: 'assets/textures/smoke_texture.webp'
     }
     
