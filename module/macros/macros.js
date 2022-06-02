@@ -3,6 +3,40 @@ import { togarashi } from "../config.js";
 import { guarda_calc } from "../core/togarashiRolls.js";
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 
+export const rangedAttack = async () => {
+    const info = getInfo();
+    const speaker = ChatMessage.implementation.getSpeaker();
+    console.log(speaker);
+    const token = canvas.tokens.get(speaker.token);
+    const data = {
+        t: "circle",
+        user: game.user.id,
+        distance: 2,
+        direction: 0,
+        x: token.center.x,
+        y: token.center.y,
+        buttonMode: true,
+        fillColor: "green",
+        //texture: 'assets/textures/smoke_texture.webp'
+    }
+    
+    const template = await canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [data]);
+    var element = document.querySelector("html");
+    console.log(template);
+    await waitListener(element,"click");
+    await canvas.scene.deleteEmbeddedDocuments('MeasuredTemplate', [template[0].id])
+}
+
+function waitListener(element, listenerName) {
+    return new Promise(function (resolve, reject) {
+        var listener = event => {
+            element.removeEventListener(listenerName, listener);
+            resolve(event);
+        };
+        element.addEventListener(listenerName, listener);
+    });
+}
+
 export const customizableAttack = async () => {
     const info = getInfo();
     

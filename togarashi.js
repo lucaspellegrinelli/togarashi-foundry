@@ -91,7 +91,7 @@ Hooks.once("init", () => {
     CONFIG.Combat.documentClass = TogarashiCombat;
     CONFIG.Combatant.documentClass = TogarashiCombatant;
     CONFIG.Combatant.sheetClass = TogarashiCombatantConfig;
-
+    
     CONFIG.ui.combat = TogarashiCombatTracker;
     CONFIG.ui.hotbar = TogarashiHotbar;
 
