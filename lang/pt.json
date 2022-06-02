@@ -1,4 +1,8 @@
 {
+    "TOKEN": {
+        "DISPLAY_OWNER": "Always for GM",
+        "DISPLAY_OWNER_HOVER": "Hovered by GM"
+    },
     "togarashi": {
         "attributes": "Atributos",
         "modifiers": "Modificadores",
