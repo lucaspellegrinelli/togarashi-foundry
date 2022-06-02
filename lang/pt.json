@@ -152,9 +152,29 @@
         }
     },
     "SETTINGS": {
-        "testSetting": {
-          "name": "This is a test.",
-          "label": "Don't panic."
-        }
+        "upperGuardDamageCalc": {
+          "name": "Dano na guarda de cima",
+          "label": ""
+        },
+        "lowerGuardDamageCalc": {
+            "name": "Dano na guarda de baixo",
+            "label": ""
+          },
+          "totalDamageCalc": {
+            "name": "Dano total",
+            "label": ""
+          },
+          "defenseWeaponResistDamageCalc": {
+            "name": "Dano na arma do defensor",
+            "label": ""
+          },
+          "attackWeaponResistDamageCalc": {
+            "name": "Dano na arma do atacante",
+            "label": ""
+          },
+          "defenseArmorResistDamageCalc": {
+            "name": "Dano na armadura do defensor",
+            "label": ""
+          }
     }    
 }

@@ -1,5 +1,9 @@
 <div class="dice-roll">
-    {{#each results as |result|}}
-        <p>{{result}}</p>
-    {{/each}}
+    <div class="dice-tooltip expanded">
+        <ol class="dice-rolls">
+            {{#each results as |result|}}
+                <li class="roll die d6">{{result}}</li>
+            {{/each}}
+        </ol>
+    </div>
 </div>

@@ -7,6 +7,13 @@ export default class TogarashiItem extends Item {
         return TogarashiItem.itemStatsCalcFromObj(this.data);
     };
 
+    getDamageTypes() {
+        return [
+            this.data.data.damageType,
+            this.data.data.secondaryDamageType
+        ];
+    }
+
     static itemStatsCalcFromObj(itemData) {
         let result = { };
         if (itemData.type == "weapon")

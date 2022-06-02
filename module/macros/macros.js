@@ -1,6 +1,7 @@
 import { openDialogBox } from "../utils/dialogBox.js";
 import { togarashi } from "../config.js";
 import { guarda_calc } from "../core/togarashiRolls.js";
+import { calculateDamage } from "../core/togarashiDamageCalc.js";
 
 export const customizableAttack = async () => {
     const info = getInfo();
@@ -37,19 +38,51 @@ export const customizableAttack = async () => {
         info.actorsTargeted.forEach(async target => {
             const { guardLow, guardHigh } = target.characterStatsCalc();
             const diceCount = info.userActor.getFullStat("dexterity");
+            let damage = info.userActor.getFullStat("force", options.useWeaponStats) + options.damage;
             let modifier = info.userActor.getFullStat("accuracy", options.useWeaponStats) + options.accuracy;
             let critical = info.userActor.getFullStat("critical", options.useWeaponStats) + options.critical;
+            let damageTypes = [];
             
             if (options.useWeaponStats) {
                 const equippedWeapon = info.userActor.getEquippedWeapon();
                 if (equippedWeapon) {
                     const weaponStats = equippedWeapon.itemStatsCalc();
+                    damage += weaponStats.damage;
                     modifier += weaponStats.accuracy;
                     critical += weaponStats.critical;
+                    damageTypes = equippedWeapon.getDamageTypes();
                 }
             }
 
+            // Calculate successes in each guard
             const attackInfo = await guarda_calc(info.userActor, diceCount, guardLow, guardHigh, modifier, critical);
+            
+            // Calculate damage
+            const defenseEquippedArmor = target.getEquippedArmor();
+            const damageInfo = calculateDamage({
+                upperSucesses: attackInfo.upper,
+                lowerSuccesses: attackInfo.lower,
+                damageTypes: damageTypes,
+                damagePerSuccess: damage,
+                defenseForce: target.getFullStat("force"),
+                auraShield: 0, // target.isUsingAuraShield ? aura shield : 0
+                defenseWeaponBlock: 0, // target.isUsingWeaponBlock ? weapon
+                armorDefenseBlock: defenseEquippedArmor ? defenseEquippedArmor.block : 0,
+                otherDefenseBlock: target.getFullStat("block")
+            });
+
+            const template = "systems/togarashi/templates/chat/attack-info.html";
+            const chatData = {
+                user: game.user.id,
+                speaker: ChatMessage.getSpeaker({ actor: info.userActor }),
+                content: await renderTemplate(template, {
+                    attackInfo: attackInfo,
+                    damageInfo: damageInfo,
+                    isGM: game.user.isGM
+                })
+            };
+
+            ChatMessage.create(chatData);
         });
     }
 };

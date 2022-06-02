@@ -22,13 +22,58 @@ async function preloadHandlebarsTemplates() {
 };
 
 function registerSystemSettings() {
-    game.settings.register("togarashi", "showTaskCheckOptions", {
+    game.settings.register("togarashi", "upperGuardDamageCalc", {
         config: true,
         scope: "client",
-        name: "SETTINGS.testSetting.name",
-        hint: "SETTINGS.testSetting.label",
+        name: "SETTINGS.upperGuardDamageCalc.name",
+        hint: "SETTINGS.upperGuardDamageCalc.label",
         type: String,
-        default: "test"
+        default: "@{dano-suc} * @{suc-cima}"
+    });
+
+    game.settings.register("togarashi", "lowerGuardDamageCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.lowerGuardDamageCalc.name",
+        hint: "SETTINGS.lowerGuardDamageCalc.label",
+        type: String,
+        default: "floor(@{dano-suc} * @{suc-cima} * 0.5)"
+    });
+
+    game.settings.register("togarashi", "totalDamageCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.totalDamageCalc.name",
+        hint: "SETTINGS.totalDamageCalc.label",
+        type: String,
+        default: "@{dano-cima} + @{dano-baixo}"
+    });
+
+    game.settings.register("togarashi", "defenseWeaponResistDamageCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.defenseWeaponResistDamageCalc.name",
+        hint: "SETTINGS.defenseWeaponResistDamageCalc.label",
+        type: String,
+        default: "floor(@{dano-bloqueado-arma} * @{suc-cima} + ${dano-bloqueado-arma} * @{suc-baixo} * 0.5)"
+    });
+
+    game.settings.register("togarashi", "attackWeaponResistDamageCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.attackWeaponResistDamageCalc.name",
+        hint: "SETTINGS.attackWeaponResistDamageCalc.label",
+        type: String,
+        default: "floor(@{orig-dano-suc} * 0.5)"
+    });
+
+    game.settings.register("togarashi", "defenseArmorResistDamageCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.defenseArmorResistDamageCalc.name",
+        hint: "SETTINGS.defenseArmorResistDamageCalc.label",
+        type: String,
+        default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + ${dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
     });
 }
   
