@@ -128,8 +128,6 @@ const getInfo = () => {
     // const userActor = userSceneActors.find(a => a.data.permission[userId] > 0);
     const userActor = canvas.tokens.get(speaker.token).actor;
 
-    console.log(userActor);
-
     return {
         userId, userSceneId, userScene, userSceneTokens, userSceneActors,
         actorsTargeted, userActor
