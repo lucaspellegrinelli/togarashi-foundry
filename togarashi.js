@@ -9,6 +9,7 @@ import TogarashiItem from "./module/objects/TogarashiItem.js";
 import TogarashiActor from "./module/objects/TogarashiActor.js";
 import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
 import TogarashiToken from "./module/components/TogarashiToken.js";
+import TogarashiAttackDialogForm from "./module/forms/TogarashiAttackDialogForm.js";
 import * as Macros from "./module/macros/macros.js";
 
 async function preloadHandlebarsTemplates() {
@@ -111,3 +112,6 @@ Hooks.once("init", () => {
     }
 });
 
+Hooks.once("ready", () => {
+    // new TogarashiAttackDialogForm().render(true);
+});

@@ -1,38 +1,59 @@
 import { togarashi } from "../config.js";
 
 export default class TogarashiAttackDialogForm extends FormApplication {
-    constructor(actorName="actor", targetName="target") {
+    constructor(actorName="actor", targetName="target", actor=undefined, callback=undefined) {
         super();
+
+        this.actor = actor;
+        this.weapon = actor?.getEquippedWeapon();
+
+        this.actorName = actorName;
+        this.targetName = targetName;
+
+        this.callback = callback;
         
         this.data = {
-            actorName: actorName,
-            targetName: targetName,
+            accuracy: 0,
+            damage: 0,
+            critical: 0,
+            range: 1,
+            damageType: "none",
+            secondaryDamageType: "none",
+            advantageType: "none"
+        };
+
+        this.editableData = {
             damageType: "none",
             secondaryDamageType: "none",
             accuracy: 0,
             damage: 0,
             critical: 0,
-            useWeaponStats: false,
-            applyEffects: false,
+            range: 1,
             advantageType: "none",
-            changeDamageType: false
+            useWeaponStats: false,
+            useCharacterStats: false
         };
       }
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            height: 720,
-            width: 800,
+            // height: 480,
+            width: 720,
             popOut: true,
             template: "systems/togarashi/templates/dialogboxes/customizable-attack.html",
-            resizable: true
+            resizable: true,
+            classes: [ "togarashi", "sheet", "dialog" ],
+            tabs: [{
+				navSelector: ".sheet-tabs",
+				contentSelector: ".sheet-body",
+				initial: "modifiers"
+			}]
         });
     }
 
     getData() {
         return {
             config: togarashi,
-            data: this.data,
             ...this
         }
     }
@@ -40,7 +61,21 @@ export default class TogarashiAttackDialogForm extends FormApplication {
     activateListeners(html) {
         if (this.isEditable) {
             html.find(".change-obj").change(ev => this._onEditObject(ev));
+            html.find("#attack").click(this._onClickAttack.bind(this));
+            html.find("#cancel").click(this._onClickCancel.bind(this));
         }
+    }
+
+    _onClickAttack(event) {
+        event.preventDefault();
+        this.callback(this.data);
+        this.close();
+    }
+
+    _onClickCancel(event) {
+        event.preventDefault();
+        this.callback({ cancelled: true });
+        this.close();
     }
     
     async _updateObject(event, formData) {
@@ -60,7 +95,34 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             value = element.checked;
         }
 
-        this.data = mergeObject(this.data, { [field]: value });
-        await this._updateObject(null, this.data);
+        this.editableData = mergeObject(this.editableData, { [field]: value });
+        await this._updateObject(null, this.editableData);
+        this.processFinalStats();
+    }
+
+    processFinalStats() {
+        this.data.accuracy = this.editableData.accuracy;
+        this.data.damage = this.editableData.damage;
+        this.data.critical = this.editableData.critical;
+        this.data.range = this.editableData.range;
+        this.data.damageType = this.editableData.damageType;
+        this.data.secondaryDamageType = this.editableData.secondaryDamageType;
+        this.data.advantageType = this.editableData.advantageType;
+
+        if (this.weapon && this.editableData.useWeaponStats) {
+            this.data.accuracy += this.weapon.accuracy;
+            this.data.damage += this.weapon.damage;
+            this.data.critical += this.weapon.critical;
+            this.data.range += this.weapon.range;
+            this.data.damageType = this.weapon.damageType;
+            this.data.secondaryDamageType = this.weapon.secondaryDamageType;
+        }
+
+        if (this.actor && this.editableData.useCharacterStats) {
+            const actorForce = this.actor.getFullStat("force");
+            this.data.accuracy += this.actor.data.data.accuracy;
+            this.data.damage += this.actor.data.data.damage + actorForce;
+            this.data.range = this.actor.data.data.range;
+        }
     }
 }

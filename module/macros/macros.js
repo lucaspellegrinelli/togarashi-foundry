@@ -1,9 +1,7 @@
-import { openDialogBox } from "../utils/dialogBox.js";
-import { togarashi } from "../config.js";
 import { guarda_calc } from "../core/togarashiRolls.js";
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
-import { waitListener } from "../utils/htmlUtilities.js";
 import { createAreaOfEffect } from "../utils/uiEffects.js";
+import TogarashiAttackDialogForm from "../forms/TogarashiAttackDialogForm.js";
 
 export const customizableAttack = async () => {
     const casterInfo = getCasterInfo();
@@ -11,25 +9,14 @@ export const customizableAttack = async () => {
 
     createAreaOfEffect(casterInfo.targetToken.center, 1);
 
+    game.user.updateTokenTargets();
     const targetInfo = await waitForTargetSelection(casterInfo.targetActor);
 
-    const title = game.i18n.localize("togarashi.attackDialogBox.title");
-    const template = "systems/togarashi/templates/dialogboxes/customizable-attack.html";
-    const dialogExtraData = {
-        config: togarashi,
-        actorName: casterInfo.targetActor.data.name,
-        targetName: targetInfo.targetActor.data.name,
-        damageType: "none",
-        secondaryDamageType: "none",
-        accuracy: 0,
-        damage: 0,
-        critical: 0,
-        useWeaponStats: false,
-        applyEffects: false,
-        advantageType: "none"
-    };
-
-    const options = await openDialogBox(title, template, dialogExtraData);
+    const options = await openAttackDialogBox(
+        casterInfo.targetActor.data.name,
+        targetInfo.targetActor.data.name,
+        casterInfo.targetActor
+    );
 
     if (!options.cancelled) {
         const target = targetInfo.targetActor;
@@ -84,10 +71,11 @@ export const customizableAttack = async () => {
 };
 
 const waitForTargetSelection = async prevSelectedActor => {
-    let info = getSelectedActorToken();
-    while (info.targetActor.data._id == prevSelectedActor.data._id) {
-        await waitListener(document.querySelector("html"), "click");
-        info = getSelectedActorToken();
+    let info = getTargetedActorToken();
+
+    while (!info.targetActor || info.targetActor.data._id == prevSelectedActor.data._id) {
+        await new Promise(r => setTimeout(r, 100));
+        info = getTargetedActorToken();
     }
 
     return info;
@@ -96,6 +84,14 @@ const waitForTargetSelection = async prevSelectedActor => {
 const getSelectedActorToken = () => {
     const speaker = ChatMessage.implementation.getSpeaker();
     const targetToken = canvas.tokens.get(speaker.token);
+    return {
+        targetToken: targetToken,
+        targetActor: targetToken?.actor
+    }
+};
+
+const getTargetedActorToken = () => {
+    const targetToken = Array.from(game.user.targets)[0];
     return {
         targetToken: targetToken,
         targetActor: targetToken?.actor
@@ -132,4 +128,10 @@ const getCasterInfo = () => {
             return { };
         }
     }
+};
+
+export const openAttackDialogBox = async (actorName, targetName, actor) => {
+    return new Promise(resolve => {
+        new TogarashiAttackDialogForm(actorName, targetName, actor, resolve).render(true);
+    });
 };

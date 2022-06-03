@@ -33,7 +33,8 @@
             "critical": "Critico",
             "durability": "Resistencia",
             "block": "Block",
-            "description": "Descrição"
+            "description": "Descrição",
+            "range": "Range"
         },
         "weaponTypes": {
             "dagger": "Adaga",

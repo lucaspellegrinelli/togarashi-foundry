@@ -59,6 +59,38 @@
     text-align: right;
     padding-right: 10px; }
 
+.togarashi.sheet.dialog form .true-stat-value {
+  width: 100%;
+  font-weight: 600;
+  font-size: 14pt;
+  text-align: center;
+  display: block; }
+
+.togarashi.sheet.dialog form td {
+  text-align: center; }
+
+.togarashi.sheet.dialog form input[type="number"] {
+  width: 50px;
+  font-size: 14pt; }
+
+.togarashi.sheet.dialog form .sheet-tabs {
+  font-size: 14pt;
+  font-weight: 600; }
+
+.togarashi.sheet.dialog form .form-col {
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.togarashi.sheet.dialog form select {
+  width: 100%; }
+
+.togarashi.sheet.dialog form footer {
+  margin-top: 15px; }
+
+.togarashi.sheet.dialog form table {
+  margin-bottom: 15px; }
+
 .togarashi.sheet.item form {
   display: flexbox;
   flex-direction: column; }
