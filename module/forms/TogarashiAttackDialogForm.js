@@ -16,7 +16,6 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             accuracy: 0,
             damage: 0,
             critical: 0,
-            range: 1,
             damageType: "none",
             secondaryDamageType: "none",
             advantageType: "none"
@@ -28,7 +27,6 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             accuracy: 0,
             damage: 0,
             critical: 0,
-            range: 1,
             advantageType: "none",
             useWeaponStats: false,
             useCharacterStats: false
@@ -104,7 +102,6 @@ export default class TogarashiAttackDialogForm extends FormApplication {
         this.data.accuracy = this.editableData.accuracy;
         this.data.damage = this.editableData.damage;
         this.data.critical = this.editableData.critical;
-        this.data.range = this.editableData.range;
         this.data.damageType = this.editableData.damageType;
         this.data.secondaryDamageType = this.editableData.secondaryDamageType;
         this.data.advantageType = this.editableData.advantageType;
@@ -113,7 +110,6 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             this.data.accuracy += this.weapon.accuracy;
             this.data.damage += this.weapon.damage;
             this.data.critical += this.weapon.critical;
-            this.data.range += this.weapon.range;
             this.data.damageType = this.weapon.damageType;
             this.data.secondaryDamageType = this.weapon.secondaryDamageType;
         }
@@ -122,7 +118,6 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             const actorForce = this.actor.getFullStat("force");
             this.data.accuracy += this.actor.data.data.accuracy;
             this.data.damage += this.actor.data.data.damage + actorForce;
-            this.data.range = this.actor.data.data.range;
         }
     }
 }

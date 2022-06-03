@@ -34,7 +34,9 @@
             "durability": "Resistencia",
             "block": "Block",
             "description": "Descrição",
-            "range": "Range"
+            "range": "Range",
+            "lowerRange": "Range Inferior",
+            "upperRange": "Range Superior"
         },
         "weaponTypes": {
             "dagger": "Adaga",

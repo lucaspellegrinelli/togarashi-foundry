@@ -1,3 +1,4 @@
+import { waitListener } from "../utils/htmlUtilities.js";
 import { guarda_calc } from "../core/togarashiRolls.js";
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 import { createAreaOfEffect } from "../utils/uiEffects.js";
@@ -7,10 +8,25 @@ export const customizableAttack = async () => {
     const casterInfo = getCasterInfo();
     if (!casterInfo.targetActor) return;
 
-    createAreaOfEffect(casterInfo.targetToken.center, 1);
+    let lowerRange = casterInfo.targetActor.getFullStat("lowerRange");
+    let upperRange = casterInfo.targetActor.getFullStat("upperRange");
+
+    const playerWeapon = casterInfo.targetActor.getEquippedWeapon();
+    if (playerWeapon) {
+        lowerRange += playerWeapon.lowerRange;
+        upperRange += playerWeapon.upperRange;
+    }
+
+    createAreaOfEffect(casterInfo.targetToken.center, lowerRange, "#00ff00");
+
+    if (lowerRange != upperRange)
+        createAreaOfEffect(casterInfo.targetToken.center, upperRange, "#ffff00");
 
     game.user.updateTokenTargets();
-    const targetInfo = await waitForTargetSelection(casterInfo.targetActor);
+
+    const targetInfo = await waitForTargetSelection(casterInfo.targetActor, () => canExitTrigger);
+
+    if (!targetInfo.targetActor) return;
 
     const options = await openAttackDialogBox(
         casterInfo.targetActor.data.name,
@@ -70,11 +86,20 @@ export const customizableAttack = async () => {
     }
 };
 
-const waitForTargetSelection = async prevSelectedActor => {
+const waitForTargetSelection = async (prevSelectedActor) => {
+    let canExitTrigger = false;
+    new Promise(async () => {
+        const element = document.querySelector("html");
+        await new Promise(r => setTimeout(r, 100));
+        await waitListener(element, "click");
+        canExitTrigger = true;
+    }).then();
+
     let info = getTargetedActorToken();
 
     while (!info.targetActor || info.targetActor.data._id == prevSelectedActor.data._id) {
         await new Promise(r => setTimeout(r, 100));
+        if (canExitTrigger) break;
         info = getTargetedActorToken();
     }
 

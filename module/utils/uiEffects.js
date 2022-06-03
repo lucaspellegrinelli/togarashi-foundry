@@ -1,6 +1,6 @@
 import { waitListener } from "./htmlUtilities.js";
 
-export const createAreaOfEffect = async (position, range) => {
+export const createAreaOfEffect = async (position, range, color="#00ff00") => {
     const data = {
         t: "circle",
         user: game.user.id,
@@ -9,7 +9,7 @@ export const createAreaOfEffect = async (position, range) => {
         x: position.x,
         y: position.y,
         buttonMode: true,
-        fillColor: "#00ff00",
+        fillColor: color,
         //texture: "assets/textures/smoke_texture.webp"
     }
     

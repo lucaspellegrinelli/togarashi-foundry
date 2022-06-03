@@ -11,6 +11,8 @@
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                 <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
                 <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+                <th>{{localize "togarashi.itemAttributes.lowerRange"}}</th>
+                <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
                 <th>{{localize "togarashi.itemAttributes.block"}}</th>
                 <th>{{localize "togarashi.itemAttributes.durability"}}</th>
             </tr>
@@ -26,6 +28,12 @@
                 </td>
                 <td>
                     <span class="true-stat-value">{{finalStats.critical}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{finalStats.lowerRange}}</span>
+                </td>
+                <td>
+                    <span class="true-stat-value">{{finalStats.upperRange}}</span>
                 </td>
                 <td>
                     <span class="true-stat-value">{{finalStats.block}}</span>
@@ -75,6 +83,8 @@
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
                 <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
                 <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+                <th>{{localize "togarashi.itemAttributes.lowerRange"}}</th>
+                <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
                 <th>{{localize "togarashi.itemAttributes.block"}}</th>
                 <th>{{localize "togarashi.itemAttributes.durability"}}</th>
             </tr>
@@ -90,6 +100,12 @@
                 </td>
                 <td>
                     <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.lowerRange" type="text" value="{{data.lowerRange}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input name="data.upperRange" type="text" value="{{data.upperRange}}" data-dtype="Number"></input>
                 </td>
                 <td>
                     <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
