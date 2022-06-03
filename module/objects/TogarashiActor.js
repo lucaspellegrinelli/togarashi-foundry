@@ -44,7 +44,7 @@ export default class TogarashiActor extends Actor {
         let base = 0;
         let modifier = 0;
 
-        if (this.data.data[statname].base && this.data.data[statname].modifier) {
+        if (this.data.data[statname]?.base !== undefined) {
             base = this.data.data[statname].base;
             modifier = this.data.data[statname].modifier;
         } else {

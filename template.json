@@ -9,6 +9,7 @@
             "accuracy": 0,
             "damage": 0,
             "critical": 0,
+            "block": 0,
             "texture": "physical",
             "equippedItems": {
                 "weapon": "",
