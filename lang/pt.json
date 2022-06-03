@@ -147,6 +147,7 @@
             "isAttacking": "está atacando",
             "title": "Ataque Customizável",
             "noTargetError": "Nenhum token selecionado",
+            "multipleActorNoSelectedError": "Voce tem mais de um token na cena. Selecione um deles antes de fazer essa acao",
             "noActorError": "Você não possuí nenhum token nessa cena"
         },
         "advantageTypes": {

@@ -1,41 +1,66 @@
 <form>
-    <h2>{{actorName}} {{localize "togarashi.attackDialogBox.isAttacking"}} {{targetNames}}</h2>
+    <h1>{{data.actorName}} {{localize "togarashi.attackDialogBox.isAttacking"}} {{data.targetName}}</h1>
+
+    <h2>Stats finais</h2>
+    <table>
+        <tr>
+            <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
+            <th>{{localize "togarashi.itemAttributes.damage"}}</th>
+            <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+        </tr>
+        <tr>
+            <td>
+                {{data.accuracy}}
+            </td>
+            <td>
+                {{data.damage}}
+            </td>
+            <td>
+                {{data.critical}}
+            </td>
+        </tr>
+    </table>
+
+    <h2>Modificadores</h2>
+    <table>
+        <tr>
+            <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
+            <th>{{localize "togarashi.itemAttributes.damage"}}</th>
+            <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+        </tr>
+        <tr>
+            <td>
+                <input class="change-obj" type="number" data-field="accuracy" value="{{data.accuracy}}"/>
+            </td>
+            <td>
+                <input class="change-obj" type="number" data-field="damage" value="{{data.damage}}"/>
+            </td>
+            <td>
+                <input class="change-obj" type="number" data-field="critical" value="{{data.critical}}"/>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Opcoes extras</h2>
     <div class="form-group">
-        <label>{{localize "togarashi.itemAttributes.damageType"}}</label>
-        <select name="damageType" data-field="damageType">
-            {{selectOptions config.damageTypes selected=damageType localize=true}}
-        </select>
+        <label>Alterar tipo do dano</label>
+        <input class="change-obj" type="checkbox" data-dtype="Boolean" data-field="changeDamageType" {{#if data.changeDamageType}} checked {{/if}} />
     </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.itemAttributes.secondaryDamageType"}}</label>
-        <select name="secondaryDamageType" data-field="secondaryDamageType">
-            {{selectOptions config.damageTypes selected=secondaryDamageType localize=true}}
-        </select>
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.itemAttributes.accuracy"}}</label>
-        <input type="number" name="accuracy" value="{{accuracy}}"/>
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.itemAttributes.damage"}}</label>
-        <input type="number" name="damage" value="{{damage}}"/>
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.itemAttributes.critical"}}</label>
-        <input type="number" name="critical" value="{{critical}}"/>
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.attackDialogBox.advantageType"}}</label>
-        <select name="advantageType" data-field="advantageType">
-            {{selectOptions config.advantageTypes selected=advantageType localize=true}}
-        </select>
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.attackDialogBox.useWeaponStats"}}</label>
-        <input type="checkbox" name="useWeaponStats" {{#if useWeaponStats}} checked {{/if}} />
-    </div>
-    <div class="form-group">
-        <label>{{localize "togarashi.attackDialogBox.applyEffects"}}</label>
-        <input type="checkbox" name="applyEffects" {{#if applyEffects}} checked {{/if}} />
-    </div>
+
+    {{#if data.changeDamageType}}
+        <div style="margin-left: 25px;">
+            <div class="form-group">
+                <label>{{localize "togarashi.itemAttributes.damageType"}}</label>
+                <select class="change-obj" data-field="damageType">
+                    {{selectOptions config.damageTypes selected=data.damageType localize=true}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{localize "togarashi.itemAttributes.secondaryDamageType"}}</label>
+                <select class="change-obj" data-field="secondaryDamageType">
+                    {{selectOptions config.damageTypes selected=data.secondaryDamageType localize=true}}
+                </select>
+            </div>
+        </div>
+    {{/if}}
 </form>

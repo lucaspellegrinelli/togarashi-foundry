@@ -18,7 +18,13 @@ export const openDialogBox = async (title, template, data={}) => {
             close: () => resolve({ cancelled: true })
         };
 
-        new Dialog(data, null).render(true);
+        const dialog = new Dialog(data, {
+            tabs: [{
+				navSelector: ".tabs",
+				contentSelector: ".tabs-body",
+				initial: "powers"
+			}]
+        }).render(true);
     });
 };
 
