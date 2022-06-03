@@ -8,6 +8,7 @@
             "stress": 0,
             "accuracy": 0,
             "damage": 0,
+            "critical": 0,
             "texture": "physical",
             "equippedItems": {
                 "weapon": "",

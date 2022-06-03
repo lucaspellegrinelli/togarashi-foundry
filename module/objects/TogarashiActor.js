@@ -41,8 +41,16 @@ export default class TogarashiActor extends Actor {
     }
 
     getFullStat(statname, useMasteries=true) {
-        const base = this.data.data[statname].base;
-        const modifier = this.data.data[statname].modifier;
+        let base = 0;
+        let modifier = 0;
+
+        if (this.data.data[statname].base && this.data.data[statname].modifier) {
+            base = this.data.data[statname].base;
+            modifier = this.data.data[statname].modifier;
+        } else {
+            base = this.data.data[statname];
+        }
+
         const masteryModifiers = useMasteries ? this.getApplyableMasteries().filter(m => m.status == statname) : [];
         const statModifiers = this.getStatusModWhileActive().filter(sm => sm.status == statname);
 
@@ -58,7 +66,8 @@ export default class TogarashiActor extends Actor {
         const equipedWeaponItem = this.items.get(equipedWeaponId);
         return {
             name: equipedWeaponItem.data.name,
-            ...equipedWeaponItem.data.data
+            ...equipedWeaponItem.data.data,
+            ...equipedWeaponItem.itemStatsCalc()
         };
     }
 
@@ -68,7 +77,8 @@ export default class TogarashiActor extends Actor {
         const equipedArmorItem = this.items.get(equipedArmorId);
         return {
             name: equipedArmorItem.data.name,
-            ...equipedArmorItem.data.data
+            ...equipedArmorItem.data.data,
+            ...equipedArmorItem.itemStatsCalc()
         };
     }
 }

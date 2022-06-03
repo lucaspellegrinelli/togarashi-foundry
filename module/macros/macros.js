@@ -23,9 +23,7 @@ export const customizableAttack = async () => {
         createAreaOfEffect(casterInfo.targetToken.center, upperRange, "#ffff00");
 
     game.user.updateTokenTargets();
-
     const targetInfo = await waitForTargetSelection(casterInfo.targetActor, () => canExitTrigger);
-
     if (!targetInfo.targetActor) return;
 
     const options = await openAttackDialogBox(

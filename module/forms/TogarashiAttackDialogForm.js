@@ -18,7 +18,8 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             critical: 0,
             damageType: "none",
             secondaryDamageType: "none",
-            advantageType: "none"
+            advantageType: "none",
+            applyEffects: false
         };
 
         this.editableData = {
@@ -29,7 +30,8 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             critical: 0,
             advantageType: "none",
             useWeaponStats: false,
-            useCharacterStats: false
+            useCharacterStats: false,
+            applyEffects: false
         };
       }
 

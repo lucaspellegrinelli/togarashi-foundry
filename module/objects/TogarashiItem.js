@@ -52,7 +52,9 @@ export default class TogarashiItem extends Item {
             durability: modDurability + materialBonuses.durability + baseWeaponDurability,
             block: modBlock + materialBonuses.block,
             lowerRange: modLowerRange,
-            upperRange: modUpperRange
+            upperRange: modUpperRange,
+            damageType: weaponTypeBonuses.damageType,
+            secondaryDamageType: weaponTypeBonuses.secondaryDamageType,
         };
     };
     
