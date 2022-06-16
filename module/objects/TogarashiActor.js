@@ -1,4 +1,9 @@
 export default class TogarashiActor extends Actor {
+    constructor() {
+        this.weaponBlockUsage = false;
+        this.auraShieldBlock = 0;
+    }
+
     characterStatsCalc() {
         const experience = this.data.data.experience;
         const resistence = this.data.data.resistence.base + this.data.data.resistence.modifier;
@@ -82,11 +87,23 @@ export default class TogarashiActor extends Actor {
         };
     }
 
-    isUsingAuraShield() {
-        return false;
+    getAuraShieldBlock() {
+        return this.auraShieldBlock;
+    }
+
+    setAuraShieldUsage(usage, fullBody, orangeAura) {
+        if (usage) {
+            this.auraShieldBlock = 1; // calc stuff
+        } else {
+            this.auraShieldBlock = 0;
+        }
     }
 
     isUsingWeaponBlock() {
-        return false;
+        return self.weaponBlockUsage;
+    }
+
+    setWeaponBlockUsage(usage) {
+        self.weaponBlockUsage = usage;
     }
 }

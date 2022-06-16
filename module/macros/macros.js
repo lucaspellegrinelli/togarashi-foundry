@@ -64,7 +64,7 @@ export const customizableAttack = async () => {
             damageTypes: damageTypes,
             damagePerSuccess: damage,
             defenseForce: target.getFullStat("force"),
-            auraShield: target.isUsingAuraShield() ? target.data.auraShield : 0,
+            auraShield: target.getAuraShieldBlock(),
             defenseWeaponBlock: (defenseEquippedWeapon && target.isUsingWeaponBlock()) ? defenseEquippedWeapon.block : 0,
             armorDefenseBlock: defenseEquippedArmor ? defenseEquippedArmor.block : 0,
             otherDefenseBlock: target.getFullStat("block")
@@ -82,6 +82,53 @@ export const customizableAttack = async () => {
         };
 
         ChatMessage.create(chatData);
+    }
+};
+
+const useWeaponBlock = () => {
+    const casterInfo = getCasterInfo();
+    if (!casterInfo.targetActor) return;
+
+    const playerWeapon = casterInfo.targetActor.getEquippedWeapon();
+    if (playerWeapon) {
+        casterInfo.targetActor.setWeaponBlockUsage(true);
+    } else {
+        ui.notifications.error("O token selecionado não tem nenhuma arma equipada.");
+    }
+};
+
+const useAuraShield = () => {
+    const casterInfo = getCasterInfo();
+    if (!casterInfo.targetActor) return;
+
+    const fullBodyShield = false;
+    const useOrangeAura = false;
+
+    const normalAura = casterInfo.targetActor.data.data.auras.normal;
+    const orangeAura = casterInfo.targetActor.data.data.auras.orange;
+
+    if (useOrangeAura) {
+        if (orangeAura != "none") {
+            casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield);
+        } else {
+            ui.notifications.error("O token selecionado não tem aura laranja.");
+        }
+    } else {
+        if (normalAura != "none") {
+            casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield);
+        } else {
+            ui.notifications.error("O token selecionado não tem aura normal.");
+        }
+    }
+
+    if (casterInfo.targetActor.data.data.auras.normal != "none") {
+        casterInfo.targetActor.setAuraShieldUsage(true);
+    }
+
+    if (playerWeapon) {
+        casterInfo.targetActor.setWeaponBlockUsage(true);
+    } else {
+        ui.notifications.error("O token selecionado não tem nenhuma arma equipada.");
     }
 };
 
