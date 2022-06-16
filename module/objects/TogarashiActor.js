@@ -1,3 +1,5 @@
+import { auraStats } from "../data/auraStats.js";
+
 export default class TogarashiActor extends Actor {
     constructor() {
         this.weaponBlockUsage = false;
@@ -93,7 +95,10 @@ export default class TogarashiActor extends Actor {
 
     setAuraShieldUsage(usage, fullBody, orangeAura) {
         if (usage) {
-            this.auraShieldBlock = 1; // calc stuff
+            const auraKey = orangeAura ? "orange" : "normal";
+            const rankKey = this.data.data.auras[auraKey];
+            const typeKey = fullBody ? "fullBody" : "normal";
+            this.auraShieldBlock = auraStats[auraKey][rankKey][typeKey];
         } else {
             this.auraShieldBlock = 0;
         }
