@@ -37,7 +37,9 @@
             "description": "Descrição",
             "range": "Range",
             "lowerRange": "Range Inferior",
-            "upperRange": "Range Superior"
+            "upperRange": "Range Superior",
+            "wear": "Desgaste",
+            "remainingDurability": "Durabilidade Restante"
         },
         "weaponTypes": {
             "dagger": "Adaga",

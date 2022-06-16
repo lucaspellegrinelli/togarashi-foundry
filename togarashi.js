@@ -58,7 +58,7 @@ function registerSystemSettings() {
         name: "SETTINGS.defenseWeaponResistDamageCalc.name",
         hint: "SETTINGS.defenseWeaponResistDamageCalc.label",
         type: String,
-        default: "floor(@{dano-bloqueado-arma} * @{suc-cima} + ${dano-bloqueado-arma} * @{suc-baixo} * 0.5)"
+        default: "floor(@{dano-bloqueado-arma} * @{suc-cima} + @{dano-bloqueado-arma} * @{suc-baixo} * 0.5)"
     });
 
     game.settings.register("togarashi", "attackWeaponResistDamageCalc", {
@@ -76,7 +76,7 @@ function registerSystemSettings() {
         name: "SETTINGS.defenseArmorResistDamageCalc.name",
         hint: "SETTINGS.defenseArmorResistDamageCalc.label",
         type: String,
-        default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + ${dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
+        default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
     });
 }
   

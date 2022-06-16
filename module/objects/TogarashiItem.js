@@ -43,6 +43,7 @@ export default class TogarashiItem extends Item {
         const modBlock = itemData.data.block || 0;
         const modLowerRange = itemData.data.lowerRange || 0;
         const modUpperRange = itemData.data.upperRange || 0;
+        const modWear = itemData.data.wear || 0;
     
         return {
             damage: modDamage + weaponTypeBonuses.damage + materialBonuses.damage,
@@ -55,6 +56,7 @@ export default class TogarashiItem extends Item {
             upperRange: modUpperRange,
             damageType: weaponTypeBonuses.damageType,
             secondaryDamageType: weaponTypeBonuses.secondaryDamageType,
+            remainingDurability: modDurability + materialBonuses.durability + baseWeaponDurability - modWear
         };
     };
     
@@ -65,10 +67,14 @@ export default class TogarashiItem extends Item {
     
         const modWeight = itemData.data.weight || 0;
         const modBlock = itemData.data.block || 0;
+        const modDurability = itemData.data.durability || 0;
+        const modWear = itemData.data.wear || 0;
     
         return {
             weight: modWeight + armorTypeBonuses.weight,
             block: modBlock + armorTypeBonuses.block,
+            durability: modDurability + armorTypeBonuses.durability,
+            remainingDurability: modDurability + armorTypeBonuses.durability - modWear
         }
     };
     

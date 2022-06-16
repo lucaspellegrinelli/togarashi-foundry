@@ -71,6 +71,13 @@ export const customizableAttack = async () => {
             otherDefenseBlock: target.getFullStat("block")
         });
 
+        if (options.applyEffects) {
+            target.applyDamage(damageInfo.totalDamage);
+            target.applyWeaponDamage(damageInfo.defenseWeaponResistDamage);
+            target.applyArmorDamage(damageInfo.defenseArmorResistDamage);
+            casterInfo.targetActor.applyWeaponDamage(damageInfo.attackWeaponResistDamage);
+        }
+
         const template = "systems/togarashi/templates/chat/attack-info.html";
         const chatData = {
             user: game.user.id,

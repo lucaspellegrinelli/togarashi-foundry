@@ -22,7 +22,8 @@ export default class TogarashiItemSheet extends ItemSheet {
             item: baseData.item,
             data: baseData.item.data.data,
             finalStats: this.item.itemStatsCalc(baseData.item.data),
-            config: CONFIG.togarashi
+            config: CONFIG.togarashi,
+            isGM: game.user.isGM
         };
 
         return sheetData;

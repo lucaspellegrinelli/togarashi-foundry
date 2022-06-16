@@ -45,7 +45,7 @@ export default class TogarashiActor extends Actor {
         });
         
         const newStatsMods = this.data.data.statusModifiers.map(mod => ({ ...mod, turns: mod.turns - 1 })).filter(mod => mod.turns > 0);
-        this.update({ ["data.statusModifiers"]: newStatsMods })
+        this.update({ ["data.statusModifiers"]: newStatsMods });
     }
 
     getFullStat(statname, useMasteries=true) {
@@ -88,6 +88,25 @@ export default class TogarashiActor extends Actor {
             ...equipedArmorItem.data.data,
             ...equipedArmorItem.itemStatsCalc()
         };
+    }
+
+    applyDamage(damage) {
+        const currentHealth = this.data.data.health.value;
+        this.update({ "data.health.value": currentHealth - damage });
+    }
+
+    applyWeaponDamage(damage) {
+        const equipedWeaponId = this.data.data.equippedItems.weapon;
+        if (equipedWeaponId == "") return undefined;
+        const equipedWeaponItem = this.items.get(equipedWeaponId);
+        equipedWeaponItem.data.data.wear += damage;
+    }
+
+    applyArmorDamage(damage) {
+        const equipedArmorId = this.data.data.equippedItems.armor;
+        if (equipedArmorId == "") return undefined;
+        const equipedArmorItem = this.items.get(equipedArmorId);
+        equipedArmorItem.data.data.wear += damage;
     }
 
     getAuraShieldBlock() {

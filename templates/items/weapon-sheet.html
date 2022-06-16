@@ -15,6 +15,9 @@
                 <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
                 <th>{{localize "togarashi.itemAttributes.block"}}</th>
                 <th>{{localize "togarashi.itemAttributes.durability"}}</th>
+                {{#if isGM}}
+                    <th>{{localize "togarashi.itemAttributes.remainingDurability"}}</th>
+                {{/if}}
             </tr>
             <tr>
                 <td>
@@ -41,6 +44,11 @@
                 <td>
                     <span class="true-stat-value">{{finalStats.durability}}</span>
                 </td>
+                {{#if isGM}}
+                    <td>
+                        <span class="true-stat-value">{{finalStats.remainingDurability}}</span>
+                    </td>
+                {{/if}}
             </tr>
         </table>
 
@@ -87,6 +95,9 @@
                 <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
                 <th>{{localize "togarashi.itemAttributes.block"}}</th>
                 <th>{{localize "togarashi.itemAttributes.durability"}}</th>
+                {{#if isGM}}
+                    <th>{{localize "togarashi.itemAttributes.wear"}}</th>
+                {{/if}}
             </tr>
             <tr>
                 <td>
@@ -113,6 +124,11 @@
                 <td>
                     <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
                 </td>
+                {{#if isGM}}
+                    <td>
+                        <input name="data.wear" type="text" value="{{data.wear}}" data-dtype="Number"></input>
+                    </td>
+                {{/if}}
             </tr>
         </table>
 
