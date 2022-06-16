@@ -1,4 +1,5 @@
 import { auraStats } from "../data/auraStats.js";
+import { resolveFormula } from "../utils/formulaParser.js";
 
 export default class TogarashiActor extends Actor {
     characterStatsCalc() {
@@ -46,6 +47,15 @@ export default class TogarashiActor extends Actor {
         
         const newStatsMods = this.data.data.statusModifiers.map(mod => ({ ...mod, turns: mod.turns - 1 })).filter(mod => mod.turns > 0);
         this.update({ ["data.statusModifiers"]: newStatsMods });
+    }
+
+    getMaxHealth() {
+        const healthFormula = game.settings.get("togarashi", "fullHealth");
+        return resolveFormula(healthFormula, {
+            "@{forca}": this.data.data.force.base,
+            "@{destreza}": this.data.data.dexterity.base,
+            "@{resistencia}": this.data.data.resistence.base
+        });
     }
 
     getFullStat(statname, useMasteries=true) {

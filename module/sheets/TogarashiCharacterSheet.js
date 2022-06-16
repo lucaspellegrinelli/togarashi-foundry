@@ -92,6 +92,8 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     getData() {
         const baseData = super.getData();
 
+        this.actor.update({ "data.health.max": this.actor.getMaxHealth() });
+
         let sheetData = {
             owner: this.actor.isOwner,
             isGM: game.user.isGM,

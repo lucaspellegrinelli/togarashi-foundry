@@ -179,22 +179,26 @@
         "lowerGuardDamageCalc": {
             "name": "Dano na guarda de baixo",
             "label": ""
-          },
-          "totalDamageCalc": {
+        },
+        "totalDamageCalc": {
             "name": "Dano total",
             "label": ""
-          },
-          "defenseWeaponResistDamageCalc": {
+        },
+        "defenseWeaponResistDamageCalc": {
             "name": "Dano na arma do defensor",
             "label": ""
-          },
-          "attackWeaponResistDamageCalc": {
+        },
+        "attackWeaponResistDamageCalc": {
             "name": "Dano na arma do atacante",
             "label": ""
-          },
-          "defenseArmorResistDamageCalc": {
+        },
+        "defenseArmorResistDamageCalc": {
             "name": "Dano na armadura do defensor",
             "label": ""
-          }
+        },
+        "fullHealth": {
+            "name": "Vida máxima de um personagem",
+            "label": ""
+        }
     }    
 }

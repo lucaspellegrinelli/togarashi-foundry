@@ -77,6 +77,15 @@ function registerSystemSettings() {
         type: String,
         default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
     });
+
+    game.settings.register("togarashi", "fullHealth", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.fullHealth.name",
+        hint: "SETTINGS.fullHealth.label",
+        type: String,
+        default: "(@{resistencia} + @{forca}) * 20"
+    });
 }
 
 //Easter Egg
