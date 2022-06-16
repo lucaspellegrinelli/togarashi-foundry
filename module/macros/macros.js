@@ -79,17 +79,18 @@ export const customizableAttack = async () => {
         }
 
         const template = "systems/togarashi/templates/chat/attack-info.html";
-        const chatData = {
+        const allGMIds = Array.from(game.users).filter(user => user.isGM).map(user => user.data._id);
+
+        await ChatMessage.create({
             user: game.user.id,
             speaker: ChatMessage.getSpeaker({ actor: casterInfo.targetActor }),
+            whisper: allGMIds,
             content: await renderTemplate(template, {
                 attackInfo: attackInfo,
                 damageInfo: damageInfo,
                 isGM: game.user.isGM
             })
-        };
-
-        ChatMessage.create(chatData);
+        });
     }
 };
 
