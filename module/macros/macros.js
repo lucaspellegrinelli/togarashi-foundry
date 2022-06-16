@@ -104,32 +104,7 @@ const useAuraShield = () => {
     const fullBodyShield = false;
     const useOrangeAura = false;
 
-    const normalAura = casterInfo.targetActor.data.data.auras.normal;
-    const orangeAura = casterInfo.targetActor.data.data.auras.orange;
-
-    if (useOrangeAura) {
-        if (orangeAura != "none") {
-            casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield);
-        } else {
-            ui.notifications.error("O token selecionado não tem aura laranja.");
-        }
-    } else {
-        if (normalAura != "none") {
-            casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield);
-        } else {
-            ui.notifications.error("O token selecionado não tem aura normal.");
-        }
-    }
-
-    if (casterInfo.targetActor.data.data.auras.normal != "none") {
-        casterInfo.targetActor.setAuraShieldUsage(true);
-    }
-
-    if (playerWeapon) {
-        casterInfo.targetActor.setWeaponBlockUsage(true);
-    } else {
-        ui.notifications.error("O token selecionado não tem nenhuma arma equipada.");
-    }
+    casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield, useOrangeAura);
 };
 
 const waitForTargetSelection = async (prevSelectedActor) => {
