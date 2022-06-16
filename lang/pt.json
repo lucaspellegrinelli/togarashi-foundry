@@ -174,39 +174,39 @@
     "SETTINGS": {
         "upperGuardDamageCalc": {
           "name": "Dano na guarda de cima",
-          "label": ""
+          "label": "Resultado do dano calculado a partir dos sucessos na guarda de cima"
         },
         "lowerGuardDamageCalc": {
             "name": "Dano na guarda de baixo",
-            "label": ""
+            "label": "Resultado do dano calculado a partir dos sucessos na guarda de baixo"
         },
         "totalDamageCalc": {
             "name": "Dano total",
-            "label": ""
+            "label": "Dano total que será aplicado ao personagem alvo de um ataque"
         },
         "defenseWeaponResistDamageCalc": {
             "name": "Dano na arma do defensor",
-            "label": ""
+            "label": "Dano que será aplicado na arma do defensor após um ataque"
         },
         "attackWeaponResistDamageCalc": {
             "name": "Dano na arma do atacante",
-            "label": ""
+            "label": "Dano que será aplicado na arma do atacante após um ataque"
         },
         "defenseArmorResistDamageCalc": {
             "name": "Dano na armadura do defensor",
-            "label": ""
+            "label": "Dano que será aplicado na armadura do defensor após um ataque"
         },
         "fullHealthCalc": {
-            "name": "Vida máxima de um personagem",
-            "label": ""
+            "name": "Vida",
+            "label": "Vida máxima de um personagem"
         },
         "vitalAuraCalc": {
-            "name": "Aura vitalícia máxima de um personagem",
-            "label": ""
+            "name": "Aura vitalícia",
+            "label": "Aura vitalícia máxima de um personagem"
         },
         "dailyAuraCalc": {
-            "name": "Aura diária máxima de um personagem",
-            "label": ""
+            "name": "Aura diária",
+            "label": "Aura diária máxima de um personagem"
         }
     }    
 }
