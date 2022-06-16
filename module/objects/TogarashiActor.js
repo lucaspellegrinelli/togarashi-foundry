@@ -31,15 +31,21 @@ export default class TogarashiActor extends Actor {
 
     tickStatusMods() {
         const permanentMods = this.getPermanentStatusMods();
+        const actor = this;
+        const actorData = this.data.data;
+
         permanentMods.forEach(mod => {
-            if (typeof this.data.data[mod.status] == "object") {
-                const currentStat = this.data.data[mod.status].base;
-                this.actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
+            if (typeof actorData[mod.status] == "object") {
+                const currentStat = actorData[mod.status].base;
+                actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
             } else {
-                const currentStat = this.data.data[mod.status];
-                this.actor.update({ [`data.${mod.status}`]: currentStat + mod.modifier });
+                const currentStat = actorData[mod.status];
+                actor.update({ [`data.${mod.status}`]: currentStat + mod.modifier });
             }
         });
+        
+        const newStatsMods = this.data.data.statusModifiers.map(mod => ({ ...mod, turns: mod.turns - 1 })).filter(mod => mod.turns > 0);
+        this.update({ ["data.statusModifiers"]: newStatsMods })
     }
 
     getFullStat(statname, useMasteries=true) {

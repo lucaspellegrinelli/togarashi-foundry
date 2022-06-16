@@ -6,6 +6,7 @@
                 <th>{{localize "togarashi.status"}}</th>
                 <th>{{localize "togarashi.modifierType"}}</th>
                 <th>{{localize "togarashi.modifier"}}</th>
+                <th>{{localize "togarashi.turns"}}</th>
             </tr>
             {{#each data.statusModifiers as |statusModifier|}}
                 <tr class="modifiers-card" data-change-array="statusModifiers" data-change-index="{{@index}}">
@@ -21,6 +22,9 @@
                     </td>
                     <td>
                         <input class="change-array-obj" type="number" value="{{statusModifier.modifier}}" data-field="modifier" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input class="change-array-obj" type="number" value="{{statusModifier.turns}}" data-field="turns" data-dtype="Number"></input>
                     </td>
                 </tr>
             {{/each}}

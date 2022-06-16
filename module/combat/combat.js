@@ -19,7 +19,13 @@ export default class TogarashiCombat extends Combat {
     //     return super.startCombat();
     // }
 
-    // async nextRound() {
-    //     return this.update({ round: this.round + 1, turn: 0 });
-    // }
+    async nextRound() {
+        // console.log(this.combatants);
+        return this.update({ round: this.round + 1, turn: 0 });
+    }
+
+    async nextTurn() {
+        this.combatant.actor.tickStatusMods();
+        super.nextTurn();
+    }
 }

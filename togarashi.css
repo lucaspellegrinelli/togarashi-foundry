@@ -91,6 +91,11 @@
 .togarashi.sheet.dialog form table {
   margin-bottom: 15px; }
 
+.togarashi.sheet.dialog .roll-title {
+  border-bottom: 1px black;
+  font-size: 12pt;
+  font-weight: 600; }
+
 .togarashi.sheet.item form {
   display: flexbox;
   flex-direction: column; }

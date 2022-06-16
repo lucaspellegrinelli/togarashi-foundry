@@ -135,7 +135,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     _onStatusModifierAdd(event) {
         event.preventDefault();
         const currentStatusModList = this.getData().data.statusModifiers;
-        currentStatusModList.push({ status: "health", modifierType: "whileActive", modifier: 0 });
+        currentStatusModList.push({ status: "health", modifierType: "whileActive", modifier: 0, turns: 3 });
         this.actor.update({ "data.statusModifiers": currentStatusModList });
     }
 

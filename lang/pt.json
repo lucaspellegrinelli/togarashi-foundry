@@ -22,6 +22,7 @@
         "unequip": "Desequipar",
         "mastery": "Perícia / Estilo",
         "modifierType": "Tipo",
+        "turns": "Turnos",
         "itemAttributes": {
             "type": "Tipo",
             "material": "Material",
@@ -137,7 +138,7 @@
         },
         "statsModifierTypes": {
             "whileActive": "Enquanto ativo",
-            "permanent": "Permanent"
+            "permanent": "Permanente"
         },
         "dialogBox": {
             "normal": "Ok",
