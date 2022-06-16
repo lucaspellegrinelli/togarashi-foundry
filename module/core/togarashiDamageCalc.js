@@ -73,7 +73,7 @@ export const calculateDamage = (config) => {
     const upperGuardDamage = resolveFormula(formulas["upperGuardDamageCalc"], variableList());
     extraVariables["@{dano-cima}"] = upperGuardDamage;
     const lowerGuardDamage = resolveFormula(formulas["lowerGuardDamageCalc"], variableList());
-    extraVariables["@{dano-baixo}"] = upperGuardDamage;
+    extraVariables["@{dano-baixo}"] = lowerGuardDamage;
 
     // Calcula o dano total causado ao oponente
     let totalDamage = resolveFormula(formulas["totalDamageCalc"], variableList());

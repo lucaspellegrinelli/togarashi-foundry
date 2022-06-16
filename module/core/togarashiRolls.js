@@ -1,7 +1,7 @@
 export const guarda_calc = async (actor, n_dice, lower, upper, modifier, crit, dice_sides=10) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
     await send_roll_in_chat(actor, rolls.result);
-    return await guarda_calc_eval(rolls.dice, lower, upper, modifier, crit, dice_sides);
+    return await guarda_calc_eval(actor, rolls.dice, lower, upper, modifier, crit, dice_sides);
 }
 
 export const togarashi_roll = async (actor, n_dice, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
@@ -64,7 +64,7 @@ const count_suc = (roll, diff, modifier) => {
     return count_in_rolls(roll, x => ((x != 1) && ((x + modifier) >= diff)))
 }
 
-export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_sides=10) => {
+export const guarda_calc_eval = async(actor, rolls, lower, upper, modifier, crit, dice_sides=10) => {
     let ones = count_crit_err(rolls);
 
     // Calculating dices after discounting 1s
@@ -86,6 +86,7 @@ export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_
         await new Promise(r => setTimeout(r, isFirstReroll ? 2500 : 1000));
         isFirstReroll = false;
         const rerolls = await roll_n_dice(n_reroll, 10);
+        await send_roll_in_chat(actor, rerolls.result);
         rolls = rolls.concat(rerolls.dice);
         all_rerolls = all_rerolls.concat(rerolls.dice);
         n_reroll = count_max(rerolls.dice, 10);

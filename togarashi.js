@@ -40,7 +40,7 @@ function registerSystemSettings() {
         name: "SETTINGS.lowerGuardDamageCalc.name",
         hint: "SETTINGS.lowerGuardDamageCalc.label",
         type: String,
-        default: "floor(@{dano-suc} * @{suc-cima} * 0.5)"
+        default: "floor(@{dano-suc} * @{suc-baixo} * 0.5)"
     });
 
     game.settings.register("togarashi", "totalDamageCalc", {
