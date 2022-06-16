@@ -81,4 +81,12 @@ export default class TogarashiActor extends Actor {
             ...equipedArmorItem.itemStatsCalc()
         };
     }
+
+    isUsingAuraShield() {
+        return false;
+    }
+
+    isUsingWeaponBlock() {
+        return false;
+    }
 }

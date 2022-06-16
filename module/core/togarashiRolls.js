@@ -81,7 +81,10 @@ export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_
     // Rerolling crits
     let n_reroll = count_crit(rolls, 10, crit);
     let all_rerolls = [];
+    let isFirstReroll = true;
     while (n_reroll > 0) {
+        await new Promise(r => setTimeout(r, isFirstReroll ? 2500 : 1000));
+        isFirstReroll = false;
         const rerolls = await roll_n_dice(n_reroll, 10);
         rolls = rolls.concat(rerolls.dice);
         all_rerolls = all_rerolls.concat(rerolls.dice);
@@ -117,7 +120,10 @@ export const togarashi_roll_eval = async (rolls, difficulty, dice_sides=10, crit
 
     // Rerolling dice
     let all_rerolls = [];
+    let isFirstReroll = true;
     while (n_reroll > 0) {
+        await new Promise(r => setTimeout(r, isFirstReroll ? 2500 : 1000));
+        isFirstReroll = false;
         const rerolls = await roll_n_dice(n_reroll, dice_sides);
         all_rerolls = all_rerolls.concat(rerolls.dice);
         crit += count_crit(rerolls.dice, dice_sides, crit_sides);

@@ -56,6 +56,7 @@ export const customizableAttack = async () => {
         const attackInfo = await guarda_calc(casterInfo.targetActor, diceCount, guardLow, guardHigh, modifier, critical);
         
         // Calculate damage
+        const defenseEquippedWeapon = target.getEquippedWeapon();
         const defenseEquippedArmor = target.getEquippedArmor();
         const damageInfo = calculateDamage({
             upperSucesses: attackInfo.upper,
@@ -63,8 +64,8 @@ export const customizableAttack = async () => {
             damageTypes: damageTypes,
             damagePerSuccess: damage,
             defenseForce: target.getFullStat("force"),
-            auraShield: 0, // target.isUsingAuraShield ? aura shield : 0
-            defenseWeaponBlock: 0, // target.isUsingWeaponBlock ? weapon
+            auraShield: target.isUsingAuraShield() ? target.data.auraShield : 0,
+            defenseWeaponBlock: (defenseEquippedWeapon && target.isUsingWeaponBlock()) ? defenseEquippedWeapon.block : 0,
             armorDefenseBlock: defenseEquippedArmor ? defenseEquippedArmor.block : 0,
             otherDefenseBlock: target.getFullStat("block")
         });
