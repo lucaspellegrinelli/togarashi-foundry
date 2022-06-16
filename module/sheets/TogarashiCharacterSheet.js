@@ -99,9 +99,9 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         });
 
         let sheetData = {
-            owner: baseData.actor.isOwner,
             isGM: game.user.isGM,
-            editable: baseData.isEditable,
+            owner: this.actor.isOwner,
+            editable: this.isEditable,
             actor: baseData.actor,
             data: baseData.actor.data.data,
             config: CONFIG.togarashi,
@@ -120,6 +120,8 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     }
 
     activateListeners(html) {
+        super.activateListeners(html);
+
         if (this.isEditable) {
             new ContextMenu(html, ".item-card", this.itemContextMenu);
             new ContextMenu(html, ".modifiers-card", this.modifiersContextMenu);

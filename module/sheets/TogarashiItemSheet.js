@@ -21,7 +21,7 @@ export default class TogarashiItemSheet extends ItemSheet {
             editable: this.isEditable,
             item: baseData.item,
             data: baseData.item.data.data,
-            finalStats: this.item.itemStatsCalc(baseData.item.data),
+            finalStats: baseData.item.itemStatsCalc(baseData.item.data),
             config: CONFIG.togarashi,
             isGM: game.user.isGM
         };
