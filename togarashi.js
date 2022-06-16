@@ -78,8 +78,7 @@ function registerSystemSettings() {
         default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
     });
 }
-  
-  
+
 //Easter Egg
 Hooks.once("init", () => {
     console.log("Togarashi | Initializing Togarashi Game System");
@@ -109,4 +108,19 @@ Hooks.once("init", () => {
     game.togarashi = {
         macros: Macros
     }
+});
+
+Hooks.once("ready", () => {
+    const tokenConfigurations = {
+        displayName: CONST.TOKEN_DISPLAY_MODES.ALWAYS,
+        actorLink: true,
+        bar1: {
+            attribute: "health"
+        },
+        displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER
+    };
+    
+    game.settings.set("core", DefaultTokenConfig.SETTING, tokenConfigurations).then(() => {
+        console.log("Togarashi | Initialized default token configurations")
+    });
 });
