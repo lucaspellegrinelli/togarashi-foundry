@@ -2,30 +2,32 @@
     <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
     <h1><input class="name-editor" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
     
-    <table>
-        <tr>
-            <th>{{localize "togarashi.characterStats.health"}}</th>
-            <th>{{localize "togarashi.characterStats.dailyAura"}}</th>
-            <th>{{localize "togarashi.characterStats.vitalAura"}}</th>
-        </tr>
-        <tr>
-            <td>
-                <input class="change-obj small-input" type="number" data-field="data.health.value" value="{{data.health.value}}" data-dtype="Number"></input>
-                <span>/</span>
-                <input class="change-obj small-input" type="number" data-field="data.health.max" value="{{data.health.max}}" data-dtype="Number"></input>
-            </td>
-            <td>
-                <input class="change-obj small-input" type="number" data-field="data.dailyAura.value" value="{{data.dailyAura.value}}" data-dtype="Number"></input>
-                <span>/</span>
-                <input class="change-obj small-input" type="number" data-field="data.dailyAura.max" value="{{data.dailyAura.max}}" data-dtype="Number"></input>
-            </td>
-            <td>
-                <input class="change-obj small-input" type="number" data-field="data.vitalAura.value" value="{{data.vitalAura.value}}" data-dtype="Number"></input>
-                <span>/</span>
-                <input class="change-obj small-input" type="number" data-field="data.vitalAura.max" value="{{data.vitalAura.max}}" data-dtype="Number"></input>
-            </td>
-        </tr>
-    </table>
+    {{#if isGM}}
+        <table>
+            <tr>
+                <th>{{localize "togarashi.characterStats.health"}}</th>
+                <th>{{localize "togarashi.characterStats.dailyAura"}}</th>
+                <th>{{localize "togarashi.characterStats.vitalAura"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="change-obj small-input" type="number" data-field="data.health.value" value="{{data.health.value}}" data-dtype="Number"></input>
+                    <span>/</span>
+                    <input class="change-obj small-input" type="number" data-field="data.health.max" value="{{data.health.max}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input class="change-obj small-input" type="number" data-field="data.dailyAura.value" value="{{data.dailyAura.value}}" data-dtype="Number"></input>
+                    <span>/</span>
+                    <input class="change-obj small-input" type="number" data-field="data.dailyAura.max" value="{{data.dailyAura.max}}" data-dtype="Number"></input>
+                </td>
+                <td>
+                    <input class="change-obj small-input" type="number" data-field="data.vitalAura.value" value="{{data.vitalAura.value}}" data-dtype="Number"></input>
+                    <span>/</span>
+                    <input class="change-obj small-input" type="number" data-field="data.vitalAura.max" value="{{data.vitalAura.max}}" data-dtype="Number"></input>
+                </td>
+            </tr>
+        </table>
+    {{/if}}
     
     <table>
         <tr>
