@@ -129,4 +129,14 @@ togarashi.advantageTypes = {
     none: "togarashi.advantageTypes.none",
     advantage: "togarashi.advantageTypes.advantage",
     disadvantage: "togarashi.advantageTypes.disadvantage"
+};
+
+togarashi.auraShieldAuras = {
+    normal: "togarashi.auraTypes.normal",
+    orange: "togarashi.auraTypes.orange"
 }
+
+togarashi.auraShieldTypes = {
+    specific: "togarashi.auraShieldTypes.specific",
+    fullBody: "togarashi.auraShieldTypes.fullBody",
+};

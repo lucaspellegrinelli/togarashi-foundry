@@ -1,8 +1,9 @@
 import { waitListener } from "../utils/htmlUtilities.js";
-import { guarda_calc } from "../core/togarashiRolls.js";
+import { guarda_calc, togarashi_roll } from "../core/togarashiRolls.js";
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 import { createAreaOfEffect } from "../utils/uiEffects.js";
 import TogarashiAttackDialogForm from "../forms/TogarashiAttackDialogForm.js";
+import TogarashiAuraShieldDialogForm from "../forms/TogarashiAuraShieldDialogForm.js";
 
 export const customizableAttack = async () => {
     const casterInfo = getCasterInfo();
@@ -85,26 +86,45 @@ export const customizableAttack = async () => {
     }
 };
 
-const useWeaponBlock = () => {
+export const useWeaponBlock = async () => {
     const casterInfo = getCasterInfo();
     if (!casterInfo.targetActor) return;
 
     const playerWeapon = casterInfo.targetActor.getEquippedWeapon();
     if (playerWeapon) {
-        casterInfo.targetActor.setWeaponBlockUsage(true);
+        const casterIntuition = target.getFullStat("intuition");
+        const roll = togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
+
+        if (roll.sucesses > 0) {
+            casterInfo.targetActor.setWeaponBlockUsage(true);
+        } else {
+            ui.notifications.error("Você falhou no teste de intuição para bloquear.");
+        }
     } else {
         ui.notifications.error("O token selecionado não tem nenhuma arma equipada.");
     }
 };
 
-const useAuraShield = () => {
+export const useAuraShield = async () => {
     const casterInfo = getCasterInfo();
     if (!casterInfo.targetActor) return;
 
-    const fullBodyShield = false;
-    const useOrangeAura = false;
+    const options = await openAuraShieldDialogBox(
+        casterInfo.targetActor.data.name,
+        casterInfo.targetActor
+    );
 
-    casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield, useOrangeAura);
+    const fullBodyShield = options.auraShieldType == "fullBody";
+    const useOrangeAura = options.auraShieldAura == "orange";
+
+    const casterIntuition = target.getFullStat("intuition");
+    const roll = togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
+
+    if (roll.sucesses > 0) {
+        casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield, useOrangeAura);
+    } else {
+        ui.notifications.error("Você falhou no teste de intuição para usar o escudo de aura.");
+    }
 };
 
 const waitForTargetSelection = async (prevSelectedActor) => {
@@ -179,5 +199,11 @@ const getCasterInfo = () => {
 export const openAttackDialogBox = async (actorName, targetName, actor) => {
     return new Promise(resolve => {
         new TogarashiAttackDialogForm(actorName, targetName, actor, resolve).render(true);
+    });
+};
+
+export const openAuraShieldDialogBox = async (actorName, actor) => {
+    return new Promise(resolve => {
+        new TogarashiAuraShieldDialogForm(actorName, actor, resolve).render(true);
     });
 };

@@ -157,6 +157,15 @@
             "none": "Nenhum",
             "advantage": "Vantagem",
             "disadvantage": "Desvantagem"
+        },
+        "auraShieldTypes": {
+            "specific": "Especifico",
+            "fullBody": "Corpo Inteiro"
+        },
+        "auraShieldDialogBox": {
+            "isUsingShield": "está utilizando escudo de aura",
+            "auraShieldAura": "Aura do escudo",
+            "auraShieldType": "Tipo de escudo de aura"
         }
     },
     "SETTINGS": {
