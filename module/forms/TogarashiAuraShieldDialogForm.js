@@ -10,7 +10,7 @@ export default class TogarashiAttackDialogForm extends FormApplication {
         
         this.data = {
             auraShieldAura: "normal",
-            auraShieldType: "specific"
+            auraShieldType: "localized"
         };
       }
 

@@ -137,6 +137,6 @@ togarashi.auraShieldAuras = {
 }
 
 togarashi.auraShieldTypes = {
-    specific: "togarashi.auraShieldTypes.specific",
+    localized: "togarashi.auraShieldTypes.localized",
     fullBody: "togarashi.auraShieldTypes.fullBody",
 };

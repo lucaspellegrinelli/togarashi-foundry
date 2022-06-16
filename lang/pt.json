@@ -159,7 +159,7 @@
             "disadvantage": "Desvantagem"
         },
         "auraShieldTypes": {
-            "specific": "Especifico",
+            "localized": "Localizado",
             "fullBody": "Corpo Inteiro"
         },
         "auraShieldDialogBox": {
