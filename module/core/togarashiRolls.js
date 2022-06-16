@@ -7,7 +7,7 @@ export const guarda_calc = async (actor, n_dice, lower, upper, modifier, crit, d
 export const togarashi_roll = async (actor, n_dice, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
     const rolls = await roll_n_dice(n_dice, dice_sides);
     await send_roll_in_chat(actor, rolls.result);
-    return await togarashi_roll_eval(rolls.dice, difficulty, dice_sides, crit_sides, modifier);
+    return await togarashi_roll_eval(actor, rolls.dice, difficulty, dice_sides, crit_sides, modifier);
 }
 
 export const roll_n_dice = async (n, dice_sides) => {
@@ -109,7 +109,7 @@ export const guarda_calc_eval = async(rolls, lower, upper, modifier, crit, dice_
     }
 }
 
-export const togarashi_roll_eval = async (rolls, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
+export const togarashi_roll_eval = async (actor, rolls, difficulty, dice_sides=10, crit_sides=1, modifier=0) => {
     let ones = count_crit_err(rolls);
     let crit = count_crit(rolls, dice_sides, crit_sides);
     let suc = count_suc(rolls, difficulty, modifier);
@@ -125,6 +125,7 @@ export const togarashi_roll_eval = async (rolls, difficulty, dice_sides=10, crit
         await new Promise(r => setTimeout(r, isFirstReroll ? 2500 : 1000));
         isFirstReroll = false;
         const rerolls = await roll_n_dice(n_reroll, dice_sides);
+        await send_roll_in_chat(actor, rerolls.result);
         all_rerolls = all_rerolls.concat(rerolls.dice);
         crit += count_crit(rerolls.dice, dice_sides, crit_sides);
         suc += count_suc(rerolls.dice, difficulty, modifier);

@@ -92,7 +92,7 @@ export const useWeaponBlock = async () => {
 
     const playerWeapon = casterInfo.targetActor.getEquippedWeapon();
     if (playerWeapon) {
-        const casterIntuition = target.getFullStat("intuition");
+        const casterIntuition = casterInfo.targetActor.getFullStat("intuition");
         const roll = togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
 
         if (roll.sucesses > 0) {
@@ -117,7 +117,7 @@ export const useAuraShield = async () => {
     const fullBodyShield = options.auraShieldType == "fullBody";
     const useOrangeAura = options.auraShieldAura == "orange";
 
-    const casterIntuition = target.getFullStat("intuition");
+    const casterIntuition = casterInfo.targetActor.getFullStat("intuition");
     const roll = togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
 
     if (roll.sucesses > 0) {
