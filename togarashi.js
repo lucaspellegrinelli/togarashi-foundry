@@ -78,13 +78,31 @@ function registerSystemSettings() {
         default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
     });
 
-    game.settings.register("togarashi", "fullHealth", {
+    game.settings.register("togarashi", "fullHealthCalc", {
         config: true,
         scope: "client",
-        name: "SETTINGS.fullHealth.name",
-        hint: "SETTINGS.fullHealth.label",
+        name: "SETTINGS.fullHealthCalc.name",
+        hint: "SETTINGS.fullHealthCalc.label",
         type: String,
         default: "(@{resistencia} + @{forca}) * 20"
+    });
+    
+    game.settings.register("togarashi", "vitalAuraCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.vitalAuraCalc.name",
+        hint: "SETTINGS.vitalAuraCalc.label",
+        type: String,
+        default: "(@{energia-natural} + @{controle}) * 20"
+    });
+
+    game.settings.register("togarashi", "dailyAuraCalc", {
+        config: true,
+        scope: "client",
+        name: "SETTINGS.dailyAuraCalc.name",
+        hint: "SETTINGS.dailyAuraCalc.label",
+        type: String,
+        default: "(@{energia-natural} + @{controle}) * 20"
     });
 }
 

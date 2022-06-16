@@ -196,8 +196,16 @@
             "name": "Dano na armadura do defensor",
             "label": ""
         },
-        "fullHealth": {
+        "fullHealthCalc": {
             "name": "Vida máxima de um personagem",
+            "label": ""
+        },
+        "vitalAuraCalc": {
+            "name": "Aura vitalícia máxima de um personagem",
+            "label": ""
+        },
+        "dailyAuraCalc": {
+            "name": "Aura diária máxima de um personagem",
             "label": ""
         }
     }    

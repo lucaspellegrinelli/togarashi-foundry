@@ -49,13 +49,33 @@ export default class TogarashiActor extends Actor {
         this.update({ ["data.statusModifiers"]: newStatsMods });
     }
 
-    getMaxHealth() {
-        const healthFormula = game.settings.get("togarashi", "fullHealth");
-        return resolveFormula(healthFormula, {
+    getActorStatsFormulas() {
+        return {
             "@{forca}": this.data.data.force.base,
             "@{destreza}": this.data.data.dexterity.base,
-            "@{resistencia}": this.data.data.resistence.base
-        });
+            "@{resistencia}": this.data.data.resistence.base,
+            "@{inteligencia}": this.data.data.intelligence.base,
+            "@{foco}": this.data.data.focus.base,
+            "@{intuicao}": this.data.data.intuition.base,
+            "@{energia-natural}": this.data.data.naturalEnergy.base,
+            "@{abertura}": this.data.data.opening.base,
+            "@{controle}": this.data.data.control.base
+        }
+    }
+
+    getMaxHealth() {
+        const healthFormula = game.settings.get("togarashi", "fullHealthCalc");
+        return resolveFormula(healthFormula, this.getActorStatsFormulas());
+    }
+
+    getMaxVitalAura() {
+        const vitalAuraFormula = game.settings.get("togarashi", "vitalAuraCalc");
+        return resolveFormula(vitalAuraFormula, this.getActorStatsFormulas());
+    }
+
+    getMaxDailyAura() {
+        const dailyAuraFormula = game.settings.get("togarashi", "dailyAuraCalc");
+        return resolveFormula(dailyAuraFormula, this.getActorStatsFormulas());
     }
 
     getFullStat(statname, useMasteries=true) {

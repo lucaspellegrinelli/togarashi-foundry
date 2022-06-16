@@ -92,23 +92,27 @@ export default class TogarashiCharacterSheet extends ActorSheet {
     getData() {
         const baseData = super.getData();
 
-        this.actor.update({ "data.health.max": this.actor.getMaxHealth() });
+        baseData.actor.update({
+            "data.health.max": baseData.actor.getMaxHealth(),
+            "data.vitalAura.max": baseData.actor.getMaxVitalAura(),
+            "data.dailyAura.max": baseData.actor.getMaxDailyAura()
+        });
 
         let sheetData = {
-            owner: this.actor.isOwner,
+            owner: baseData.actor.isOwner,
             isGM: game.user.isGM,
-            editable: this.isEditable,
+            editable: baseData.isEditable,
             actor: baseData.actor,
             data: baseData.actor.data.data,
             config: CONFIG.togarashi,
             items: baseData.items,
-            guard: this.actor.characterStatsCalc(baseData.actor.data),
+            guard: baseData.actor.characterStatsCalc(baseData.actor.data),
             weapons: baseData.items.filter(item => item.type == "weapon").map(TogarashiItem.itemStatsCalcFromObj),
             armors: baseData.items.filter(item => item.type == "armor").map(TogarashiItem.itemStatsCalcFromObj),
             genericItems: baseData.items.filter(item => item.type == "generic").map(TogarashiItem.itemStatsCalcFromObj),
             weightStats: {
                 curr: baseData.items.map(TogarashiItem.itemStatsCalcFromObj).reduce((a, b) => a + b.weight, 0),
-                max: 5 * this.actor.getFullStat("force")
+                max: 5 * baseData.actor.getFullStat("force")
             }
         };
 
