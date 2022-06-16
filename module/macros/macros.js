@@ -55,7 +55,7 @@ export const customizableAttack = async () => {
 
         // Calculate successes in each guard
         const attackInfo = await guarda_calc(casterInfo.targetActor, diceCount, guardLow, guardHigh, modifier, critical);
-        
+
         // Calculate damage
         const defenseEquippedWeapon = target.getEquippedWeapon();
         const defenseEquippedArmor = target.getEquippedArmor();

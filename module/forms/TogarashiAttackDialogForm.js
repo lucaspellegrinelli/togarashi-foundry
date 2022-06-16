@@ -29,10 +29,12 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             damage: 0,
             critical: 0,
             advantageType: "none",
-            useWeaponStats: false,
-            useCharacterStats: false,
-            applyEffects: false
+            useWeaponStats: true,
+            useCharacterStats: true,
+            applyEffects: true
         };
+
+        this.processFinalStats();
       }
 
     static get defaultOptions() {
