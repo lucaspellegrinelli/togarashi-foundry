@@ -1,4 +1,9 @@
 export default class TogarashiToken extends Token {
+    constructor(...args) {
+        super(...args);
+        this.data.actorLink = true;
+    }
+
     _canViewMode(mode) {
         if (mode === CONST.TOKEN_DISPLAY_MODES.NONE) return false;
         else if (mode === CONST.TOKEN_DISPLAY_MODES.ALWAYS) return true;

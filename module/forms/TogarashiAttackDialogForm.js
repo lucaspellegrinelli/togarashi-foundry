@@ -19,7 +19,7 @@ export default class TogarashiAttackDialogForm extends FormApplication {
             damageType: "none",
             secondaryDamageType: "none",
             advantageType: "none",
-            applyEffects: false
+            applyEffects: true
         };
 
         this.editableData = {

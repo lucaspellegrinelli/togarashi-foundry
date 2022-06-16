@@ -99,14 +99,14 @@ export default class TogarashiActor extends Actor {
         const equipedWeaponId = this.data.data.equippedItems.weapon;
         if (equipedWeaponId == "") return undefined;
         const equipedWeaponItem = this.items.get(equipedWeaponId);
-        equipedWeaponItem.data.data.wear += damage;
+        equipedWeaponItem.update({ "data.wear": equipedWeaponItem.data.data.wear + damage });
     }
 
     applyArmorDamage(damage) {
         const equipedArmorId = this.data.data.equippedItems.armor;
         if (equipedArmorId == "") return undefined;
         const equipedArmorItem = this.items.get(equipedArmorId);
-        equipedArmorItem.data.data.wear += damage;
+        equipedArmorItem.update({ "data.wear": equipedArmorItem.data.data.wear + damage });
     }
 
     getAuraShieldBlock() {

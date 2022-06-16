@@ -5,11 +5,17 @@
             <tr>
                 <th>{{localize "togarashi.item"}}</th>
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                {{#if isGM}}
+                    <th>{{localize "togarashi.itemAttributes.durability"}}</th>
+                {{/if}}
             </tr>
             {{#each armors as |item|}}
                 <tr class="item-card {{#if (eq ../data.equippedItems.armor item._id)}}selected{{/if}}" data-item-type="armor" data-item-id="{{item._id}}">
                     <td>{{item.name}}</td>
                     <td>{{item.weight}}</td>
+                    {{#if ../isGM}}
+                        <td>{{item.remainingDurability}}</td>
+                    {{/if}}
                 </tr>
             {{/each}}
         </table>
@@ -20,11 +26,17 @@
             <tr>
                 <th>{{localize "togarashi.item"}}</th>
                 <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                {{#if isGM}}
+                    <th>{{localize "togarashi.itemAttributes.durability"}}</th>
+                {{/if}}
             </tr>
             {{#each weapons as |item|}}
                 <tr class="item-card {{#if (eq ../data.equippedItems.weapon item._id)}}selected{{/if}}" data-item-type="weapon" data-item-id="{{item._id}}">
                     <td>{{item.name}}</td>
                     <td>{{item.weight}}</td>
+                    {{#if ../isGM}}
+                        <td>{{item.remainingDurability}}</td>
+                    {{/if}}
                 </tr>  
             {{/each}}
         </table>

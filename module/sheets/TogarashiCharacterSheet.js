@@ -94,6 +94,7 @@ export default class TogarashiCharacterSheet extends ActorSheet {
 
         let sheetData = {
             owner: this.actor.isOwner,
+            isGM: game.user.isGM,
             editable: this.isEditable,
             actor: baseData.actor,
             data: baseData.actor.data.data,
