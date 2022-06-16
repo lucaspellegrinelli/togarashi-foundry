@@ -138,8 +138,10 @@ const waitForTargetSelection = async (prevSelectedActor) => {
     let canExitTrigger = false;
     new Promise(async () => {
         const element = document.querySelector("html");
-        await new Promise(r => setTimeout(r, 100));
-        await waitListener(element, "click");
+        for (let i = 0; i < 2; i++) {
+            await new Promise(r => setTimeout(r, 100));
+            await waitListener(element, "click");
+        }
         canExitTrigger = true;
     }).then();
 
