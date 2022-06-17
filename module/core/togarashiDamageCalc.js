@@ -1,4 +1,5 @@
 import { resolveFormula } from "../utils/formulaParser.js";
+import TogarashiFormulaEditor from "../forms/TogarashiFormulaEditor.js";
 
 export const calculateDamage = (config) => {
     const formulaNames = [
@@ -10,7 +11,7 @@ export const calculateDamage = (config) => {
         "defenseArmorResistDamageCalc"
     ]
 
-    const formulas = formulaNames.reduce((map, name) => ({ ...map, [name]: game.settings.get("togarashi", name) }), {});
+    const formulas = formulaNames.reduce((map, name) => ({ ...map, [name]: TogarashiFormulaEditor.getFormula(name) }), {});
 
     let upperSuccesses = config.upperSucesses;
     let lowerSuccesses = config.lowerSuccesses;
