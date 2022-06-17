@@ -136,16 +136,18 @@ export default class TogarashiCharacterSheet extends ActorSheet {
 
     _onMasteryAdd(event) {
         event.preventDefault();
-        const currentMasteryList = this.getData().data.masteries;
-        currentMasteryList.push({ status: "health", weapon: "dagger", modifier: 0 });
-        this.actor.update({ "data.masteries": currentMasteryList });
+        this.actor.addMastery({ status: "health", weapon: "dagger", modifier: 0 });
+        // const currentMasteryList = this.getData().data.masteries;
+        // currentMasteryList.push({ status: "health", weapon: "dagger", modifier: 0 });
+        // this.actor.update({ "data.masteries": currentMasteryList });
     }
 
     _onStatusModifierAdd(event) {
         event.preventDefault();
-        const currentStatusModList = this.getData().data.statusModifiers;
-        currentStatusModList.push({ status: "health", modifierType: "whileActive", modifier: 0, turns: 3 });
-        this.actor.update({ "data.statusModifiers": currentStatusModList });
+        this.actor.addStatusEffect({ status: "health", modifierType: "whileActive", modifier: 0, turns: 3 });
+        // const currentStatusModList = this.getData().data.statusModifiers;
+        // currentStatusModList.push({ status: "health", modifierType: "whileActive", modifier: 0, turns: 3 });
+        // this.actor.update({ "data.statusModifiers": currentStatusModList });
     }
 
     // Helpers

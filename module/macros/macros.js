@@ -76,7 +76,12 @@ export const customizableAttack = async () => {
 
         const casterId = casterInfo.targetActor.data._id;
         const targetId = target.data._id;
-        togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, attackInfo, damageInfo, options.applyEffects);
+
+        try {
+            togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, attackInfo, damageInfo, damageTypes, options.applyEffects);
+        } catch (e) {
+            ui.notifications.error("Não foi possível aplicar os danos visto que não temos um GM online");
+        }
     }
 };
 

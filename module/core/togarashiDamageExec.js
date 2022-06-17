@@ -1,4 +1,4 @@
-export const executeDamageFromAttack = async (casterId, targetId, attackInfo, damageInfo, applyEffects) => {
+export const executeDamageFromAttack = async (casterId, targetId, attackInfo, damageInfo, damageTypes, applyEffects) => {
     const caster = game.actors.get(casterId);
     const target = game.actors.get(targetId);
 
@@ -7,6 +7,10 @@ export const executeDamageFromAttack = async (casterId, targetId, attackInfo, da
         target.applyWeaponDamage(damageInfo.defenseWeaponResistDamage);
         target.applyArmorDamage(damageInfo.defenseArmorResistDamage);
         caster.applyWeaponDamage(damageInfo.attackWeaponResistDamage);
+
+        if (damageTypes.includes("cut") && attackInfo.lower + attackInfo.upper >= 4) {
+            target.applyBleeding();
+        }
     }
 
     const template = "systems/togarashi/templates/chat/attack-info.html";

@@ -141,6 +141,27 @@ export default class TogarashiActor extends Actor {
         equipedArmorItem.update({ "data.wear": equipedArmorItem.data.data.wear + damage });
     }
 
+    applyBleeding() {
+        this.addStatusEffect({
+            status: "health",
+            modifierType: "permanent",
+            modifier: -5,
+            turns: 99
+        });
+    }
+
+    addStatusEffect(statusEffect) {
+        const currentStatusModList = this.data.data.statusModifiers;
+        currentStatusModList.push(statusEffect);
+        this.update({ "data.statusModifiers": currentStatusModList });
+    }
+
+    addMastery(mastery) {
+        const currentMasteryList = this.data.data.masteries;
+        currentMasteryList.push(mastery);
+        this.update({ "data.masteries": currentMasteryList });
+    }
+
     getAuraShieldBlock() {
         if (!this.auraShieldBlock)
             this.auraShieldBlock = 0;
