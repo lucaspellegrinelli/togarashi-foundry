@@ -158,6 +158,6 @@ Hooks.once("ready", () => {
 });
 
 Hooks.once("socketlib.ready", () => {
-	togarashi.socket = socketlib.registerModule("togarashi");
+	togarashi.socket = socketlib.registerSystem("togarashi");
 	togarashi.socket.register("executeDamageFromAttack", executeDamageFromAttack);
 });

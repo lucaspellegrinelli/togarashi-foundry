@@ -1,14 +1,14 @@
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 
 export const executeDamageFromAttack = async (config) => {
-    attackInfo = config.attackInfo;
-    damageTypes = config.damageTypes;
-    damage = config.damage;
-    target = config.target;
-    defenseEquippedWeapon = config.defenseEquippedWeapon;
-    defenseEquippedArmor = config.defenseEquippedArmor;
-    applyEffects = config.applyEffects;
-    casterInfo = config.casterInfo;
+    const attackInfo = config.attackInfo;
+    const damageTypes = config.damageTypes;
+    const damage = config.damage;
+    const target = config.target;
+    const defenseEquippedWeapon = config.defenseEquippedWeapon;
+    const defenseEquippedArmor = config.defenseEquippedArmor;
+    const applyEffects = config.applyEffects;
+    const casterInfo = config.casterInfo;
 
     const damageInfo = calculateDamage({
         upperSucesses: attackInfo.upper,
