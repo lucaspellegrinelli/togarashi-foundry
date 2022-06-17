@@ -3,7 +3,7 @@
     "title": "Togarashi",
     "description": "Game system para Togarashi",
     "author": "Lucas Pellegrinelli | João Campos",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "esmodules": [
@@ -25,6 +25,12 @@
             "lang": "pt",
             "name": "Portugues",
             "path": "lang/pt.json"
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "socketlib",
+            "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/develop/module.json"
         }
     ],
     "gridDistance": 1,

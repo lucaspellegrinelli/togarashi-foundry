@@ -11,6 +11,8 @@ import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
 import TogarashiToken from "./module/components/TogarashiToken.js";
 import * as Macros from "./module/macros/macros.js";
 
+import { executeDamageFromAttack } from "./module/core/togarashiDamageExec.js";
+
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
         "systems/togarashi/templates/character/partials/aura-list.html",
@@ -144,10 +146,18 @@ Hooks.once("ready", () => {
         bar1: {
             attribute: "health"
         },
-        displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER
+        displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER,
+        brightSight: 100,
+        dimSIght: 100,
+        vision: true
     };
     
     game.settings.set("core", DefaultTokenConfig.SETTING, tokenConfigurations).then(() => {
         console.log("Togarashi | Initialized default token configurations")
     });
+});
+
+Hooks.once("socketlib.ready", () => {
+	togarashi.socket = socketlib.registerModule("togarashi");
+	togarashi.socket.register("executeDamageFromAttack", executeDamageFromAttack);
 });
