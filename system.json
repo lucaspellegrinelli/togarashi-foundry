@@ -3,7 +3,7 @@
     "title": "Togarashi",
     "description": "Game system para Togarashi",
     "author": "Lucas Pellegrinelli | João Campos",
-    "version": "0.1.8b",
+    "version": "0.1.9",
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "esmodules": [
