@@ -74,36 +74,9 @@ export const customizableAttack = async () => {
             otherDefenseBlock: target.getFullStat("block")
         });
 
-        if (options.applyEffects) {
-            const casterId = casterInfo.targetActor.data._id;
-            const targetId = target.data._id;
-            togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, damageInfo);
-        }
-    
-        const template = "systems/togarashi/templates/chat/attack-info.html";
-        const allGMIds = Array.from(game.users).filter(user => user.isGM).map(user => user.data._id);
-    
-        await ChatMessage.create({
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker({ actor: casterInfo.targetActor }),
-            whisper: allGMIds,
-            content: await renderTemplate(template, {
-                attackInfo: attackInfo,
-                damageInfo: damageInfo,
-                isGM: game.user.isGM
-            })
-        });
-        
-        // togarashi.socket.executeAsGM("executeDamageFromAttack", {
-        //     attackInfo: attackInfo,
-        //     damageTypes: damageTypes,
-        //     damage: damage,
-        //     target: target,
-        //     defenseEquippedWeapon: defenseEquippedWeapon,
-        //     defenseEquippedArmor: defenseEquippedArmor,
-        //     applyEffects: options.applyEffects,
-        //     casterInfo: casterInfo
-        // });
+        const casterId = casterInfo.targetActor.data._id;
+        const targetId = target.data._id;
+        togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, attackInfo, damageInfo, options.applyEffects);
     }
 };
 
