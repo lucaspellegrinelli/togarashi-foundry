@@ -9,9 +9,11 @@ import TogarashiItem from "./module/objects/TogarashiItem.js";
 import TogarashiActor from "./module/objects/TogarashiActor.js";
 import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
 import TogarashiToken from "./module/components/TogarashiToken.js";
+import TogarashiFormulaEditor from "./module/forms/TogarashiFormulaEditor.js";
 import * as Macros from "./module/macros/macros.js";
 
 import { executeDamageFromAttack } from "./module/core/togarashiDamageExec.js";
+import { encodeObject } from "./module/utils/crypto.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -26,85 +28,32 @@ async function preloadHandlebarsTemplates() {
 };
 
 function registerSystemSettings() {
-    game.settings.register("togarashi", "upperGuardDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.upperGuardDamageCalc.name",
-        hint: "SETTINGS.upperGuardDamageCalc.label",
-        type: String,
-        default: "@{dano-suc} * @{suc-cima}"
+    game.settings.registerMenu("togarashi", TogarashiFormulaEditor.SETTING, {
+        name: "SETTINGS.formulaEditor.name",
+        label: "SETTINGS.formulaEditor.label",
+        hint: "SETTINGS.formulaEditor.hint",
+        icon: "fas fa-calculator",
+        type: TogarashiFormulaEditor,
+        restricted: true
     });
 
-    game.settings.register("togarashi", "lowerGuardDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.lowerGuardDamageCalc.name",
-        hint: "SETTINGS.lowerGuardDamageCalc.label",
-        type: String,
-        default: "floor(@{dano-suc} * @{suc-baixo} * 0.5)"
-    });
-
-    game.settings.register("togarashi", "totalDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.totalDamageCalc.name",
-        hint: "SETTINGS.totalDamageCalc.label",
-        type: String,
-        default: "@{dano-cima} + @{dano-baixo}"
-    });
-
-    game.settings.register("togarashi", "defenseWeaponResistDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.defenseWeaponResistDamageCalc.name",
-        hint: "SETTINGS.defenseWeaponResistDamageCalc.label",
-        type: String,
-        default: "floor(@{dano-bloqueado-arma} * @{suc-cima} + @{dano-bloqueado-arma} * @{suc-baixo} * 0.5)"
-    });
-
-    game.settings.register("togarashi", "attackWeaponResistDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.attackWeaponResistDamageCalc.name",
-        hint: "SETTINGS.attackWeaponResistDamageCalc.label",
-        type: String,
-        default: "floor(@{orig-dano-suc} * 0.5)"
-    });
-
-    game.settings.register("togarashi", "defenseArmorResistDamageCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.defenseArmorResistDamageCalc.name",
-        hint: "SETTINGS.defenseArmorResistDamageCalc.label",
-        type: String,
-        default: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)"
-    });
-
-    game.settings.register("togarashi", "fullHealthCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.fullHealthCalc.name",
-        hint: "SETTINGS.fullHealthCalc.label",
-        type: String,
-        default: "(@{resistencia} + @{forca}) * 20"
-    });
-    
-    game.settings.register("togarashi", "vitalAuraCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.vitalAuraCalc.name",
-        hint: "SETTINGS.vitalAuraCalc.label",
-        type: String,
-        default: "(@{energia-natural} + @{controle}) * 20"
-    });
-
-    game.settings.register("togarashi", "dailyAuraCalc", {
-        config: true,
-        scope: "client",
-        name: "SETTINGS.dailyAuraCalc.name",
-        hint: "SETTINGS.dailyAuraCalc.label",
-        type: String,
-        default: "(@{energia-natural} + @{controle}) * 20"
+    game.settings.register("togarashi", TogarashiFormulaEditor.SETTING, {
+        name: "SETTINGS.formulaEditor.name",
+        hint: "SETTINGS.formulaEditor.hint",
+        scope: "world",
+        type: Object,
+        config: false,
+        default: encodeObject({
+            upperGuardDamageCalc: "@{dano-suc} * @{suc-cima}",
+            lowerGuardDamageCalc: "floor(@{dano-suc} * @{suc-baixo} * 0.5)",
+            totalDamageCalc: "@{dano-cima} + @{dano-baixo}",
+            defenseWeaponResistDamageCalc: "floor(@{dano-bloqueado-arma} * @{suc-cima} + @{dano-bloqueado-arma} * @{suc-baixo} * 0.5)",
+            attackWeaponResistDamageCalc: "floor(@{orig-dano-suc} * 0.5)",
+            defenseArmorResistDamageCalc: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)",
+            fullHealthCalc: "(@{resistencia} + @{forca}) * 20",
+            vitalAuraCalc: "(@{energia-natural} + @{controle}) * 20",
+            dailyAuraCalc: "(@{energia-natural} + @{controle}) * 20"
+        })
     });
 }
 

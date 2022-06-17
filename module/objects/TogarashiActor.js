@@ -1,6 +1,8 @@
 import { auraStats } from "../data/auraStats.js";
 import { resolveFormula } from "../utils/formulaParser.js";
 
+import TogarashiFormulaEditor from "../forms/TogarashiFormulaEditor.js";
+
 export default class TogarashiActor extends Actor {
     characterStatsCalc() {
         const experience = this.data.data.experience;
@@ -64,17 +66,17 @@ export default class TogarashiActor extends Actor {
     }
 
     getMaxHealth() {
-        const healthFormula = game.settings.get("togarashi", "fullHealthCalc");
+        const healthFormula = TogarashiFormulaEditor.getFormula("fullHealthCalc");
         return resolveFormula(healthFormula, this.getActorStatsFormulas());
     }
 
     getMaxVitalAura() {
-        const vitalAuraFormula = game.settings.get("togarashi", "vitalAuraCalc");
+        const vitalAuraFormula = TogarashiFormulaEditor.getFormula("vitalAuraCalc");
         return resolveFormula(vitalAuraFormula, this.getActorStatsFormulas());
     }
 
     getMaxDailyAura() {
-        const dailyAuraFormula = game.settings.get("togarashi", "dailyAuraCalc");
+        const dailyAuraFormula = TogarashiFormulaEditor.getFormula("dailyAuraCalc");
         return resolveFormula(dailyAuraFormula, this.getActorStatsFormulas());
     }
 

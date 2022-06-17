@@ -207,6 +207,11 @@
         "dailyAuraCalc": {
             "name": "Aura diária",
             "label": "Aura diária máxima de um personagem"
+        },
+        "formulaEditor": {
+            "name": "Editor de Formula",
+            "label": "Editar formulas de Togarashi",
+            "hint": "..."
         }
     }    
 }
