@@ -39,28 +39,10 @@ export const customizableAttack = async () => {
         const target = targetInfo.targetActor;
         const { guardLow, guardHigh } = target.characterStatsCalc();
         const diceCount = casterInfo.targetActor.getFullStat("dexterity");
-        let damage = casterInfo.targetActor.getFullStat("force", options.useWeaponStats) + options.damage;
-        let modifier = casterInfo.targetActor.getFullStat("accuracy", options.useWeaponStats) + options.accuracy;
-        let critical = casterInfo.targetActor.getFullStat("critical", options.useWeaponStats) + options.critical;
-        let damageTypes = [];
-        
-        damage += options.damage;
-        modifier += options.accuracy;
-        critical += options.critical;
-        if (options.damageType) damageTypes.push(options.damageType);
-        if (options.secondaryDamageType) damageTypes.push(options.secondaryDamageType);
-
-        // if (options.useWeaponStats) {
-        //     const equippedWeapon = casterInfo.targetActor.getEquippedWeapon();
-        //     if (equippedWeapon) {
-        //         const weaponStats = equippedWeapon.itemStatsCalc();
-        //         damage += weaponStats.damage;
-        //         modifier += weaponStats.accuracy;
-        //         critical += weaponStats.critical;
-        //         damageTypes = equippedWeapon.getDamageTypes();
-        //     }
-        //     console.log(equippedWeapon);
-        // }
+        let damage = options.damage;
+        let modifier = options.accuracy;
+        let critical = options.critical;
+        let damageTypes = [options.damageType, options.secondaryDamageType];
 
         // Calculate successes in each guard
         const attackInfo = await guarda_calc(casterInfo.targetActor, diceCount, guardLow, guardHigh, modifier, critical);
