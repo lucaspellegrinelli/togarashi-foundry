@@ -1,6 +1,6 @@
 import { calculateDamage } from "../core/togarashiDamageCalc.js";
 
-export const executeDamageFromAttack = (config) => {
+export const executeDamageFromAttack = async (config) => {
     attackInfo = config.attackInfo;
     damageTypes = config.damageTypes;
     damage = config.damage;
@@ -32,7 +32,7 @@ export const executeDamageFromAttack = (config) => {
     const template = "systems/togarashi/templates/chat/attack-info.html";
     const allGMIds = Array.from(game.users).filter(user => user.isGM).map(user => user.data._id);
 
-    ChatMessage.create({
+    await ChatMessage.create({
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: casterInfo.targetActor }),
         whisper: allGMIds,
@@ -41,5 +41,5 @@ export const executeDamageFromAttack = (config) => {
             damageInfo: damageInfo,
             isGM: game.user.isGM
         })
-    }).then();
+    });
 };
