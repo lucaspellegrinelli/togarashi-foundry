@@ -65,16 +65,6 @@ export default class TogarashiActor extends Actor {
         }
     }
 
-    getMaxHealth() {
-        const healthFormula = TogarashiFormulaEditor.getFormula("fullHealthCalc");
-        return resolveFormula(healthFormula, this.getActorStatsFormulas());
-    }
-
-    getMaxVitalAura() {
-        const vitalAuraFormula = TogarashiFormulaEditor.getFormula("vitalAuraCalc");
-        return resolveFormula(vitalAuraFormula, this.getActorStatsFormulas());
-    }
-
     getMaxDailyAura() {
         const dailyAuraFormula = TogarashiFormulaEditor.getFormula("dailyAuraCalc");
         return resolveFormula(dailyAuraFormula, this.getActorStatsFormulas());

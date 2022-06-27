@@ -196,10 +196,6 @@
             "name": "Dano na armadura do defensor",
             "label": "Dano que será aplicado na armadura do defensor após um ataque"
         },
-        "fullHealthCalc": {
-            "name": "Vida",
-            "label": "Vida máxima de um personagem"
-        },
         "vitalAuraCalc": {
             "name": "Aura vitalícia",
             "label": "Aura vitalícia máxima de um personagem"
@@ -211,6 +207,11 @@
         "formulaEditor": {
             "name": "Editor de Formula",
             "label": "Editar formulas de Togarashi",
+            "hint": "..."
+        },
+        "weaponBaseStats": {
+            "name": "Editor de Armas",
+            "label": "Editar as resistências bases das armas",
             "hint": "..."
         }
     }    

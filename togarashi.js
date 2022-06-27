@@ -14,6 +14,7 @@ import * as Macros from "./module/macros/macros.js";
 
 import { executeDamageFromAttack } from "./module/core/togarashiDamageExec.js";
 import { encodeObject } from "./module/utils/crypto.js";
+import TogarashiWeaponBaseStatEditor from "./module/forms/TogarashiWeaponBaseStatEditor.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -50,9 +51,27 @@ function registerSystemSettings() {
             defenseWeaponResistDamageCalc: "floor(@{dano-bloqueado-arma} * @{suc-cima} + @{dano-bloqueado-arma} * @{suc-baixo} * 0.5)",
             attackWeaponResistDamageCalc: "floor(@{orig-dano-suc} * 0.5)",
             defenseArmorResistDamageCalc: "floor(@{dano-bloqueado-armadura} * @{suc-cima} + @{dano-bloqueado-armadura} * @{suc-baixo} * 0.5)",
-            fullHealthCalc: "(@{resistencia} + @{forca}) * 20",
-            vitalAuraCalc: "(@{energia-natural} + @{controle}) * 20",
             dailyAuraCalc: "(@{energia-natural} + @{controle}) * 20"
+        })
+    });
+
+    game.settings.registerMenu("togarashi", TogarashiWeaponBaseStatEditor.SETTING, {
+        name: "SETTINGS.weaponBaseStats.name",
+        label: "SETTINGS.weaponBaseStats.label",
+        hint: "SETTINGS.weaponBaseStats.hint",
+        icon: "fas fa-calculator",
+        type: TogarashiWeaponBaseStatEditor,
+        restricted: true
+    });
+
+    game.settings.register("togarashi",TogarashiWeaponBaseStatEditor.SETTING, {
+        name: "SETTINGS.weaponBaseStats.name",
+        hint: "SETTINGS.weaponBaseStats.hint",
+        scope: "world",
+        type: Object,
+        config: false,
+        default: encodeObject({
+            
         })
     });
 }

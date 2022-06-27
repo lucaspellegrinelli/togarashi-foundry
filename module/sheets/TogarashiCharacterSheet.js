@@ -93,8 +93,6 @@ export default class TogarashiCharacterSheet extends ActorSheet {
         const baseData = super.getData();
 
         baseData.actor.update({
-            "data.health.max": baseData.actor.getMaxHealth(),
-            "data.vitalAura.max": baseData.actor.getMaxVitalAura(),
             "data.dailyAura.max": baseData.actor.getMaxDailyAura()
         });
 
