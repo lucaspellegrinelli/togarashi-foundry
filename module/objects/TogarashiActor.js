@@ -6,11 +6,13 @@ import TogarashiFormulaEditor from "../forms/TogarashiFormulaEditor.js";
 export default class TogarashiActor extends Actor {
     characterStatsCalc() {
         const experience = this.data.data.experience;
-        const resistence = this.data.data.resistence.base + this.data.data.resistence.modifier;
-        const dexterity = this.data.data.dexterity.base + this.data.data.dexterity.modifier;
-    
+        // const resistence = this.data.data.resistence.base + this.data.data.resistence.modifier;
+        // const dexterity = this.data.data.dexterity.base + this.data.data.dexterity.modifier;
+        const resistence = this.getFullStat("resistence");
+        const dexterity = this.getFullStat("dexterity");
+
         return {
-            guardLow: resistence + experience,
+            guardLow: dexterity + experience,
             guardHigh: resistence + dexterity + experience
         }
     };
