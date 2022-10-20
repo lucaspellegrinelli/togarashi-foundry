@@ -62,12 +62,12 @@
             </tr>
             <tr>
                 <td>
-                    <select id="weapon-type" name="data.type" data-field="data.type">
+                    <select {{#unless isGM}} disabled {{/unless}} id="weapon-type" name="data.type" data-field="data.type">
                         {{selectOptions config.weaponTypes selected=data.type localize=true}}
                     </select>
                 </td>
                 <td>
-                    <select name="data.material" data-field="data.material">
+                    <select {{#unless isGM}} disabled {{/unless}} name="data.material" data-field="data.material">
                         {{selectOptions config.weaponMaterials selected=data.material localize=true}}
                     </select>
                 </td>
@@ -83,54 +83,52 @@
                 </td>
             </tr>
         </table>
-
-        <h2>{{localize "togarashi.modifiers"}}</h2>
-        <table>
-            <tr>
-                <th>{{localize "togarashi.itemAttributes.damage"}}</th>
-                <th>{{localize "togarashi.itemAttributes.weight"}}</th>
-                <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
-                <th>{{localize "togarashi.itemAttributes.critical"}}</th>
-                <th>{{localize "togarashi.itemAttributes.lowerRange"}}</th>
-                <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
-                <th>{{localize "togarashi.itemAttributes.block"}}</th>
-                <th>{{localize "togarashi.itemAttributes.durability"}}</th>
-                {{#if isGM}}
+        
+        {{#if isGM}}
+            <h2>{{localize "togarashi.modifiers"}}</h2>
+            <table>
+                <tr>
+                    <th>{{localize "togarashi.itemAttributes.damage"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.weight"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.accuracy"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.critical"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.lowerRange"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.upperRange"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.block"}}</th>
+                    <th>{{localize "togarashi.itemAttributes.durability"}}</th>
                     <th>{{localize "togarashi.itemAttributes.wear"}}</th>
-                {{/if}}
-            </tr>
-            <tr>
-                <td>
-                    <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.lowerRange" type="text" value="{{data.lowerRange}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.upperRange" type="text" value="{{data.upperRange}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
-                </td>
-                <td>
-                    <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
-                </td>
-                {{#if isGM}}
+                </tr>
+                <tr>
+                    <td>
+                        <input name="data.damage" type="text" value="{{data.damage}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.weight" type="text" value="{{data.weight}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.accuracy" type="text" value="{{data.accuracy}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.critical" type="text" value="{{data.critical}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.lowerRange" type="text" value="{{data.lowerRange}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.upperRange" type="text" value="{{data.upperRange}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.block" type="text" value="{{data.block}}" data-dtype="Number"></input>
+                    </td>
+                    <td>
+                        <input name="data.durability" type="text" value="{{data.durability}}" data-dtype="Number"></input>
+                    </td>
                     <td>
                         <input name="data.wear" type="text" value="{{data.wear}}" data-dtype="Number"></input>
                     </td>
-                {{/if}}
-            </tr>
-        </table>
+                </tr>
+            </table>
+        {{/if}}
 
         <h2>{{localize "togarashi.description"}}</h2>
         {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}

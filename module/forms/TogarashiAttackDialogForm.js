@@ -120,7 +120,8 @@ export default class TogarashiAttackDialogForm extends FormApplication {
 
         if (this.actor && this.editableData.useCharacterStats) {
             const actorForce = this.actor.getFullStat("force");
-            this.data.accuracy += this.actor.data.data.accuracy;
+            // this.data.accuracy += this.actor.data.data.accuracy;
+            this.data.accuracy += this.actor.getFullStat("accuracy");
             this.data.damage += this.actor.data.data.damage + actorForce;
         }
     }

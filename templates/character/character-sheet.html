@@ -10,16 +10,17 @@
 
             <h1>{{localize "togarashi.items"}} ({{weightStats.curr}} / {{weightStats.max}} peso)</h1>
             {{> "systems/togarashi/templates/character/partials/items-table.html"}}
-
-            {{#if isGM}}
-                <h1>{{localize "togarashi.modifiers"}}</h1>
-                {{> "systems/togarashi/templates/character/partials/modifiers-table.html"}}
-            {{/if}}
+        
+            <h1>{{localize "togarashi.modifiers"}}</h1>
+            {{> "systems/togarashi/templates/character/partials/modifiers-table.html"}}
 
         {{else}}
             <img src="{{actor.img}}" title="{{actor.name}}" height="64" width="64"/>
             <h1>{{actor.name}}</h1>
         {{/if}}
+
+        <!-- <h2>{{localize "togarashi.description"}}</h2> -->
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 
     <!-- <section class="section section--tabs flexshrink">

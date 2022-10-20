@@ -5,6 +5,7 @@
         ],
         "character": {
             "experience": 0,
+            "description": "",
             "stress": 0,
             "accuracy": 0,
             "damage": 0,
