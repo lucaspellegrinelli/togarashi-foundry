@@ -1,6 +1,8 @@
 export const executeDamageFromAttack = async (casterId, targetId, attackInfo, damageInfo, damageTypes, applyEffects) => {
-    const caster = game.actors.get(casterId);
-    const target = game.actors.get(targetId);
+    // const caster = game.actors.get(casterId);
+    // const target = game.actors.get(targetId);
+    const caster = canvas.tokens.get(casterId).document.actor;
+    const target = canvas.tokens.get(targetId).document.actor;
 
     if (applyEffects) {
         target.applyDamage(damageInfo.totalDamage);

@@ -26,7 +26,8 @@ export const customizableAttack = async () => {
         createAreaOfEffect(tokenCenter, upperRange, "#ffff00");
 
     game.user.updateTokenTargets();
-    const targetInfo = await waitForTargetSelection(casterInfo.targetActor, () => canExitTrigger);
+    const targetInfo = await waitForTargetSelection(casterInfo.targetToken, () => canExitTrigger);
+    
     if (!targetInfo.targetActor) return;
 
     const options = await openAttackDialogBox(
@@ -37,6 +38,7 @@ export const customizableAttack = async () => {
 
     if (!options.cancelled) {
         const target = targetInfo.targetActor;
+        const targetToken = targetInfo.targetToken;
         const { guardLow, guardHigh } = target.characterStatsCalc();
         const diceCount = casterInfo.targetActor.getFullStat("dexterity");
         const damageTypes = [options.damageType, options.secondaryDamageType];
@@ -60,8 +62,8 @@ export const customizableAttack = async () => {
             otherDefenseBlock: target.getFullStat("block")
         });
 
-        const casterId = casterInfo.targetActor.data._id;
-        const targetId = target.data._id;
+        const casterId = casterInfo.targetToken.data._id;
+        const targetId = targetToken.data._id;
 
         try {
             togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, attackInfo, damageInfo, damageTypes, options.applyEffects);
@@ -112,7 +114,7 @@ export const useAuraShield = async () => {
     }
 };
 
-const waitForTargetSelection = async (prevSelectedActor) => {
+const waitForTargetSelection = async (prevSelectedToken) => {
     let canExitTrigger = false;
     new Promise(async () => {
         const element = document.querySelector("html");
@@ -125,12 +127,12 @@ const waitForTargetSelection = async (prevSelectedActor) => {
 
     let info = getTargetedActorToken();
 
-    while (!info.targetActor || info.targetActor.data._id == prevSelectedActor.data._id) {
+    while (!info.targetActor || info.targetToken.data._id == prevSelectedToken.data._id) {
         await new Promise(r => setTimeout(r, 100));
         if (canExitTrigger) break;
         info = getTargetedActorToken();
     }
-
+    
     return info;
 };
 

@@ -10,11 +10,12 @@ import TogarashiActor from "./module/objects/TogarashiActor.js";
 import TogarashiHotbar from "./module/components/TogarashiHotbar.js";
 import TogarashiToken from "./module/components/TogarashiToken.js";
 import TogarashiFormulaEditor from "./module/forms/TogarashiFormulaEditor.js";
+import TogarashiWeaponBaseStatEditor from "./module/forms/TogarashiWeaponBaseStatEditor.js";
+import TogarashiAuraCostEditor from "./module/forms/TogarashiAuraCostEditor.js";
 import * as Macros from "./module/macros/macros.js";
 
 import { executeDamageFromAttack } from "./module/core/togarashiDamageExec.js";
 import { encodeObject } from "./module/utils/crypto.js";
-import TogarashiWeaponBaseStatEditor from "./module/forms/TogarashiWeaponBaseStatEditor.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -67,6 +68,26 @@ function registerSystemSettings() {
     game.settings.register("togarashi",TogarashiWeaponBaseStatEditor.SETTING, {
         name: "SETTINGS.weaponBaseStats.name",
         hint: "SETTINGS.weaponBaseStats.hint",
+        scope: "world",
+        type: Object,
+        config: false,
+        default: encodeObject({
+            
+        })
+    });
+
+    game.settings.registerMenu("togarashi", TogarashiAuraCostEditor.SETTING, {
+        name: "SETTINGS.auraCostEditor.name",
+        label: "SETTINGS.auraCostEditor.label",
+        hint: "SETTINGS.auraCostEditor.hint",
+        icon: "fas fa-calculator",
+        type: TogarashiAuraCostEditor,
+        restricted: true
+    });
+
+    game.settings.register("togarashi",TogarashiAuraCostEditor.SETTING, {
+        name: "SETTINGS.auraCostEditor.name",
+        hint: "SETTINGS.auraCostEditor.hint",
         scope: "world",
         type: Object,
         config: false,

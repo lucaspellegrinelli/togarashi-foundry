@@ -213,6 +213,11 @@
             "name": "Editor de Armas",
             "label": "Editar as resistências bases das armas",
             "hint": "..."
+        },
+        "auraCostEditor": {
+            "name": "Editor de Custo de Aura",
+            "label": "Editar os custos de aura de cada tipo de aura",
+            "hint": "..."
         }
     }    
 }

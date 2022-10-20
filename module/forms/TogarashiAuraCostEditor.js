@@ -1,6 +1,6 @@
 import { decodeObject, encodeObject } from "../utils/crypto.js";
 
-export default class TogarashiWeaponBaseStatEditor extends FormApplication {
+export default class TogarashiAuraCostEditor extends FormApplication {
     constructor(...args) {
         super(...args);
         this.updatedData = {};
@@ -11,7 +11,7 @@ export default class TogarashiWeaponBaseStatEditor extends FormApplication {
             // height: 480,
             width: 720,
             popOut: true,
-            template: "systems/togarashi/templates/dialogboxes/weapon-base-stat-editor.html",
+            template: "systems/togarashi/templates/dialogboxes/aura-cost-editor.html",
             resizable: true,
             classes: [ "togarashi", "sheet", "dialog" ],
             tabs: [{
@@ -22,18 +22,19 @@ export default class TogarashiWeaponBaseStatEditor extends FormApplication {
         });
     }
 
-    static SETTING = "weaponBaseStatEditor";
+    static SETTING = "auraCostEditor";
 
     static getFormula(name) {
-        const formulas = decodeObject(game.settings.get("togarashi", TogarashiWeaponBaseStatEditor.SETTING));
+        const formulas = decodeObject(game.settings.get("togarashi", TogarashiAuraCostEditor.SETTING));
         return formulas[name];
     }
 
     getData() {
-        const savedData = decodeObject(game.settings.get("togarashi", TogarashiWeaponBaseStatEditor.SETTING));
+        const savedData = decodeObject(game.settings.get("togarashi", TogarashiAuraCostEditor.SETTING));
 
         return {
-            data: mergeObject(savedData, this.updatedData)
+            data: mergeObject(savedData, this.updatedData),
+            auras: CONFIG.TOGARASHI.auras,
         }
     }
 
@@ -47,9 +48,9 @@ export default class TogarashiWeaponBaseStatEditor extends FormApplication {
 
     _onClickApply(event) {
         event.preventDefault();
-        const prevData = decodeObject(game.settings.get("togarashi", TogarashiWeaponBaseStatEditor.SETTING));
+        const prevData = decodeObject(game.settings.get("togarashi", TogarashiAuraCostEditor.SETTING));
         const newData = encodeObject(mergeObject(prevData, this.updatedData));
-        game.settings.set("togarashi", TogarashiWeaponBaseStatEditor.SETTING, newData);
+        game.settings.set("togarashi", TogarashiAuraCostEditor.SETTING, newData);
         this.close();
     }
 
