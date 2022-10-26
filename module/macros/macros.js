@@ -30,6 +30,14 @@ export const customizableAttack = async () => {
     
     if (!targetInfo.targetActor) return;
 
+    const casterId = casterInfo.targetToken.data._id;
+    const targetId = targetInfo.targetToken.data._id;
+
+    if (casterId == targetId) {
+        ui.notifications.error(game.i18n.localize("Você não pode atacar a si mesmo"));
+        return;
+    }
+
     const options = await openAttackDialogBox(
         casterInfo.targetActor.data.name,
         targetInfo.targetActor.data.name,
@@ -38,7 +46,6 @@ export const customizableAttack = async () => {
 
     if (!options.cancelled) {
         const target = targetInfo.targetActor;
-        const targetToken = targetInfo.targetToken;
         const { guardLow, guardHigh } = target.characterStatsCalc();
         const diceCount = casterInfo.targetActor.getFullStat("dexterity");
         const damageTypes = [options.damageType, options.secondaryDamageType];
@@ -61,9 +68,6 @@ export const customizableAttack = async () => {
             armorDefenseBlock: defenseEquippedArmor ? defenseEquippedArmor.block : 0,
             otherDefenseBlock: target.getFullStat("block")
         });
-
-        const casterId = casterInfo.targetToken.data._id;
-        const targetId = targetToken.data._id;
 
         try {
             togarashi.socket.executeAsGM("executeDamageFromAttack", casterId, targetId, attackInfo, damageInfo, damageTypes, options.applyEffects);

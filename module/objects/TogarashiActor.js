@@ -41,8 +41,13 @@ export default class TogarashiActor extends Actor {
 
         permanentMods.forEach(mod => {
             if (typeof actorData[mod.status] == "object") {
-                const currentStat = actorData[mod.status].base;
-                actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
+                if (mod.status == "health" || mod.status == "aura") {
+                    const currentStat = actorData[mod.status].value;
+                    actor.update({ [`data.${mod.status}.value`]: currentStat + mod.modifier });
+                } else {
+                    const currentStat = actorData[mod.status].base;
+                    actor.update({ [`data.${mod.status}.base`]: currentStat + mod.modifier });
+                }
             } else {
                 const currentStat = actorData[mod.status];
                 actor.update({ [`data.${mod.status}`]: currentStat + mod.modifier });
