@@ -155,10 +155,9 @@ export default class TogarashiActor extends Actor {
     }
 
     getAuraShieldBlock() {
-        if (!this.auraShieldBlock)
-            this.auraShieldBlock = 0;
-
-        return this.auraShieldBlock;
+        if (!this.data.data.auraShieldBlock)
+            this.update({ "data.auraShieldBlock": 0 });
+        return this.data.data.auraShieldBlock;
     }
 
     setAuraShieldUsage(usage, fullBody, orangeAura) {
@@ -168,25 +167,24 @@ export default class TogarashiActor extends Actor {
 
             if (rankKey != "none") {
                 const typeKey = fullBody ? "fullBody" : "normal";
-                this.auraShieldBlock = auraStats[auraKey][rankKey][typeKey];
+                this.update({ "data.auraShieldBlock": auraStats[auraKey][rankKey][typeKey] });
             } else {
                 const localizationStr = game.i18n.localize(`togarashi.auraTypes.${auraKey}`);
                 ui.notifications.error(`Você não tem a aura ${localizationStr} para utilizar esse escudo de aura`);
-                this.auraShieldBlock = 0;
+                this.update({ "data.auraShieldBlock": 0 });
             }
         } else {
-            this.auraShieldBlock = 0;
+            this.update({ "data.auraShieldBlock": 0 });
         }
     }
 
     isUsingWeaponBlock() {
-        if (!this.weaponBlockUsage)
-            this.weaponBlockUsage = false;
-
-        return this.weaponBlockUsage;
+        if (!this.data.data.isUsingWeaponBlock)
+            this.update({ "data.isUsingWeaponBlock": false });
+        return this.data.data.isUsingWeaponBlock;
     }
 
     setWeaponBlockUsage(usage) {
-        this.weaponBlockUsage = usage;
+        this.update({ "data.isUsingWeaponBlock": usage });
     }
 }

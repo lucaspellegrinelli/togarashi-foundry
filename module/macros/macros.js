@@ -82,8 +82,14 @@ export const useWeaponBlock = async () => {
         const casterIntuition = casterInfo.targetActor.getFullStat("intuition");
         const roll = await togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
 
+        
         if (roll.sucesses > 0) {
-            casterInfo.targetActor.setWeaponBlockUsage(true);
+            try {
+                const casterId = casterInfo.targetToken.data._id;
+                togarashi.socket.executeAsGM("setWeaponBlockUsage", casterId, true);
+            } catch (e) {
+                ui.notifications.error("Não foi possível aplicar os danos visto que não temos um GM online");
+            }
         } else {
             ui.notifications.error("Você falhou no teste de intuição para bloquear.");
         }
@@ -108,7 +114,12 @@ export const useAuraShield = async () => {
     const roll = await togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
 
     if (roll.sucesses > 0) {
-        casterInfo.targetActor.setAuraShieldUsage(true, fullBodyShield, useOrangeAura);
+        try {
+            const casterId = casterInfo.targetToken.data._id;
+            togarashi.socket.executeAsGM("setAuraShieldUsage", casterId, true, fullBodyShield, useOrangeAura);
+        } catch (e) {
+            ui.notifications.error("Não foi possível aplicar os danos visto que não temos um GM online");
+        }
     } else {
         ui.notifications.error("Você falhou no teste de intuição para usar o escudo de aura.");
     }

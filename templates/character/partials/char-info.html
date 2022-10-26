@@ -1,7 +1,7 @@
 <div class="top-stats-content">
     <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
     <h1><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
-    
+
     {{#if isGM}}
         <table>
             <tr>
@@ -35,6 +35,8 @@
             <th>{{localize "togarashi.characterStats.guardHigh"}}</th>
             <th>{{localize "togarashi.characterStats.experience"}}</th>
             <th>{{localize "togarashi.characterStats.texture"}}</th>
+            <th>Block de Arma</th>
+            <th>Escudo de Aura</th>
         </tr>
         <tr>
             <td>
@@ -50,6 +52,12 @@
                 <select name="data.texture" data-field="data.texture">
                     {{selectOptions config.textureTypes selected=data.texture localize=true}}
                 </select>
+            </td>
+            <td>
+                <input {{#unless isGM}} disabled {{/unless}} class="small-input" name="data.isUsingWeaponBlock" type="checkbox" data-field="data.isUsingWeaponBlock" {{#if data.isUsingWeaponBlock}}checked{{/if}}></input>
+            </td>
+            <td>
+                <input {{#unless isGM}} disabled {{/unless}} class="small-input" name="data.auraShieldBlock" type="number" value="{{data.auraShieldBlock}}" data-dtype="Number"></input>
             </td>
         </tr>
     </table>

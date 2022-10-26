@@ -12,6 +12,8 @@
             "critical": 0,
             "block": 0,
             "texture": "physical",
+            "isUsingWeaponBlock": false,
+            "auraShieldBlock": 0,
             "equippedItems": {
                 "weapon": "",
                 "armor": ""

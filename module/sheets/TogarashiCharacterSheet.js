@@ -111,7 +111,8 @@ export default class TogarashiCharacterSheet extends ActorSheet {
             weightStats: {
                 curr: baseData.items.map(TogarashiItem.itemStatsCalcFromObj).reduce((a, b) => a + b.weight, 0),
                 max: 5 * baseData.actor.getFullStat("force")
-            }
+            },
+            usingWeaponBloc: baseData.actor.isUsingWeaponBlock()
         };
 
         return sheetData;

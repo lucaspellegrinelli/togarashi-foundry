@@ -14,7 +14,7 @@ import TogarashiWeaponBaseStatEditor from "./module/forms/TogarashiWeaponBaseSta
 import TogarashiAuraCostEditor from "./module/forms/TogarashiAuraCostEditor.js";
 import * as Macros from "./module/macros/macros.js";
 
-import { executeDamageFromAttack } from "./module/core/togarashiDamageExec.js";
+import { executeDamageFromAttack, setAuraShieldUsage, setWeaponBlockUsage } from "./module/core/togarashiDamageExec.js";
 import { encodeObject } from "./module/utils/crypto.js";
 
 async function preloadHandlebarsTemplates() {
@@ -149,4 +149,6 @@ Hooks.once("ready", () => {
 Hooks.once("socketlib.ready", () => {
 	togarashi.socket = socketlib.registerSystem("togarashi");
 	togarashi.socket.register("executeDamageFromAttack", executeDamageFromAttack);
+    togarashi.socket.register("setWeaponBlockUsage", setWeaponBlockUsage);
+    togarashi.socket.register("setAuraShieldUsage", setAuraShieldUsage);
 });
