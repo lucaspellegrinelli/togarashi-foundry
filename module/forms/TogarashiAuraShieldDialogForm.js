@@ -39,7 +39,12 @@ export default class TogarashiAttackDialogForm extends FormApplication {
 
     activateListeners(html) {
         if (this.isEditable) {
-            // html.find(".change-obj").change(ev => this._onEditObject(ev));
+            for (let select of html.find("select")) {
+                const dataField = select.getAttribute("data-field").split(".")[1]
+                select.addEventListener("change", () => {
+                    this.data[dataField] = select.value;
+                });
+            }
             html.find("#use").click(this._onClickUse.bind(this));
             html.find("#cancel").click(this._onClickCancel.bind(this));
         }
