@@ -1,0 +1,23 @@
+<form>
+    <h1>{{actorName}} {{localize "togarashi.rollDialogBox.isRollingDice"}}</h1>
+    
+    <div class="form-group">
+        <label>{{localize "togarashi.rollDialogBox.numberDice"}}</label>
+        <input class="change-obj" type="number" data-field="numberDice" value="{{data.numberDice}}"/>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "togarashi.rollDialogBox.difficulty"}}</label>
+        <input class="change-obj" type="number" data-field="difficulty" value="{{data.difficulty}}"/>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "togarashi.rollDialogBox.modifier"}}</label>
+        <input class="change-obj" type="number" data-field="modifier" value="{{data.modifier}}"/>
+    </div>
+
+    <footer class="flexrow">
+        <button id="use">Rolar</button>
+        <button id="cancel">Cancelar</button>
+    </footer>
+</form>

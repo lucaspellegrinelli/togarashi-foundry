@@ -5,6 +5,7 @@ import { guarda_calc, togarashi_roll } from "../core/togarashiRolls.js";
 import { createAreaOfEffect } from "../utils/uiEffects.js";
 import TogarashiAttackDialogForm from "../forms/TogarashiAttackDialogForm.js";
 import TogarashiAuraShieldDialogForm from "../forms/TogarashiAuraShieldDialogForm.js";
+import TogarashiRollDialogForm from "../forms/TogarashiRollDialogForm.js";
 
 export const customizableAttack = async () => {
     const casterInfo = getCasterInfo();
@@ -27,7 +28,7 @@ export const customizableAttack = async () => {
 
     game.user.updateTokenTargets();
     const targetInfo = await waitForTargetSelection(casterInfo.targetToken, () => canExitTrigger);
-    
+
     if (!targetInfo.targetActor) return;
 
     const casterId = casterInfo.targetToken.data._id;
@@ -86,7 +87,7 @@ export const useWeaponBlock = async () => {
         const casterIntuition = casterInfo.targetActor.getFullStat("intuition");
         const roll = await togarashi_roll(casterInfo.targetActor, casterIntuition, 6, 10, 1, 0);
 
-        
+
         if (roll.sucesses > 0) {
             try {
                 const casterId = casterInfo.targetToken.data._id;
@@ -129,6 +130,36 @@ export const useAuraShield = async () => {
     }
 };
 
+export const useRollDice = async () => {
+    const casterInfo = getCasterInfo();
+    if (!casterInfo.targetActor) return;
+
+    const options = await openRollDialogBox(
+        casterInfo.targetActor.data.name,
+        casterInfo.targetActor
+    );
+
+    const numberDice = parseInt(options.numberDice);
+    const difficulty = parseInt(options.difficulty);
+    const modifier = parseInt(options.modifier);
+
+    const roll = await togarashi_roll(casterInfo.targetActor, numberDice, difficulty, 10, 1, modifier);
+
+    await new Promise(r => setTimeout(r, 2000));
+
+    const template = "systems/togarashi/templates/chat/roll-successes.html";
+    await ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: casterInfo.targetActor }),
+        content: await renderTemplate(template, {
+            numberDice: numberDice,
+            difficulty: difficulty,
+            modifier: modifier,
+            successes: roll.sucesses
+        })
+    });
+};
+
 const waitForTargetSelection = async (prevSelectedToken) => {
     let canExitTrigger = false;
     new Promise(async () => {
@@ -147,7 +178,7 @@ const waitForTargetSelection = async (prevSelectedToken) => {
         if (canExitTrigger) break;
         info = getTargetedActorToken();
     }
-    
+
     return info;
 };
 
@@ -183,7 +214,7 @@ const getCasterInfo = () => {
 
     if (userActors.length == 0) {
         ui.notifications.error(game.i18n.localize("togarashi.attackDialogBox.noActorError"));
-        return { };
+        return {};
     } else if (userActors.length == 1) {
         return {
             targetToken: userTokens[0],
@@ -195,7 +226,7 @@ const getCasterInfo = () => {
             return { targetToken, targetActor }
         } else {
             ui.notifications.error(game.i18n.localize("togarashi.attackDialogBox.multipleActorNoSelectedError"));
-            return { };
+            return {};
         }
     }
 };
@@ -203,6 +234,12 @@ const getCasterInfo = () => {
 export const openAttackDialogBox = async (actorName, targetName, actor) => {
     return new Promise(resolve => {
         new TogarashiAttackDialogForm(actorName, targetName, actor, resolve).render(true);
+    });
+};
+
+export const openRollDialogBox = async (actorName, actor) => {
+    return new Promise(resolve => {
+        new TogarashiRollDialogForm(actorName, actor, resolve).render(true);
     });
 };
 

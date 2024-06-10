@@ -169,6 +169,12 @@
             "isUsingShield": "está utilizando escudo de aura",
             "auraShieldAura": "Aura do escudo",
             "auraShieldType": "Tipo de escudo de aura"
+        },
+        "rollDialogBox": {
+            "isRollingDice": "está utilizando rolando dados",
+            "numberDice": "Número de dados",
+            "difficulty": "Dificuldade do teste",
+            "modifier": "Modificador"
         }
     },
     "SETTINGS": {
